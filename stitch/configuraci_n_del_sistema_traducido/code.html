@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración del Administrador - The Academic Ledger</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#d5e3fc",
+              "on-primary-container": "#39527b",
+              "surface-bright": "#f7f9fb",
+              "on-secondary-container": "#455367",
+              "inverse-primary": "#a8c2f1",
+              "secondary": "#526074",
+              "outline-variant": "#a9b4b9",
+              "primary-container": "#d6e3ff",
+              "primary-fixed": "#d6e3ff",
+              "tertiary-fixed-dim": "#cbc9e9",
+              "on-error": "#fff7f6",
+              "on-primary": "#f6f7ff",
+              "on-background": "#2a3439",
+              "error-container": "#fe8983",
+              "primary": "#465f88",
+              "tertiary": "#5d5c78",
+              "secondary-dim": "#465468",
+              "primary-fixed-dim": "#bfd5ff",
+              "error": "#9f403d",
+              "surface-tint": "#465f88",
+              "on-surface-variant": "#566166",
+              "surface-variant": "#d9e4ea",
+              "on-secondary-fixed-variant": "#4e5c71",
+              "surface-container-highest": "#d9e4ea",
+              "surface-dim": "#cfdce3",
+              "on-primary-fixed-variant": "#435c85",
+              "secondary-fixed": "#d5e3fc",
+              "on-tertiary-container": "#4a4a65",
+              "on-surface": "#2a3439",
+              "surface-container-high": "#e1e9ee",
+              "primary-dim": "#3a537b",
+              "error-dim": "#4e0309",
+              "tertiary-dim": "#51516c",
+              "on-secondary": "#f8f8ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#254067",
+              "surface-container-low": "#f0f4f7",
+              "inverse-surface": "#0b0f10",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed": "#324053",
+              "on-error-container": "#752121",
+              "on-tertiary": "#fbf7ff",
+              "tertiary-fixed": "#d9d7f8",
+              "on-tertiary-fixed": "#383751",
+              "tertiary-container": "#d9d7f8",
+              "background": "#f7f9fb",
+              "outline": "#717c82",
+              "on-tertiary-fixed-variant": "#54546f",
+              "secondary-fixed-dim": "#c7d5ed",
+              "inverse-on-surface": "#9a9d9f",
+              "surface-container": "#e8eff3"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active-nib::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            bottom: 15%;
+            width: 3px;
+            background-color: #465f88;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 z-50 flex justify-between items-center w-full px-6 py-3 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-[#002147] dark:text-white font-headline">The Academic Ledger</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200" href="#">Documentos</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200" href="#">Directorio</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200" href="#">Log de Auditoría</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-[#465f88] font-medium hover:bg-white/50 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="switch_account">switch_account</span>
+<span class="text-sm">Cambiar Rol</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-surface-variant">
+<img alt="University official profile picture" data-alt="professional portrait of a university administrator in a modern office environment with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB54skSXPcTiIr23gbEHrO2kTvS4eNQ_xmP-v0gCjHLQJrtX55QPg67dUO6nPyC_K_0mZrrE_DinSqEW_MseRp7tafqmMu2b-CQcVdrww7edhXv2o2t5TAzpUxqF4FE5q9uCzgaSJvBz7GZ_WnpclIAjO9xBmhIZcE7EJueqNO5kYnzkL9oT-3Zqia3dNkZrQJCdkqVRjkxGkp6_Va4Y0vvX7gmQD2LFqAkxbYN3v80t10L-N8nfEhPlCU5FadkBawYJZ35Qoqt-AnB"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-[#e8eff3] dark:bg-slate-950 flex flex-col pt-20 pb-8 px-4 z-40 transition-all">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[#465f88]" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#002147] dark:text-slate-100 font-headline leading-tight">Oficina de Registros</h2>
+<p class="text-[10px] font-bold text-on-surface-variant tracking-widest font-label uppercase">Academic Ledger v2.4</p>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Panel de Control</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-medium">Mis Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-medium">Registrar Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Archivo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-[#465f88] shadow-sm relative sidebar-active-nib rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-bold">Configuración</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-medium text-sm">Soporte</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium text-sm">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="pl-64 pt-20 min-h-screen">
+<div class="max-w-6xl mx-auto p-12">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="text-4xl font-extrabold font-headline text-on-surface tracking-tight mb-2">Configuración del Administrador</h1>
+<p class="text-on-surface-variant text-lg">Configure protocolos de firma de la universidad, alertas de seguridad y gestión de accesos.</p>
+</div>
+<!-- Settings Grid -->
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left Column: User Management -->
+<section class="col-span-12 lg:col-span-8 space-y-8">
+<!-- User Management Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 transition-all">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-xl font-bold font-headline text-primary-dim">Gestión de Usuarios</h3>
+<p class="text-sm text-on-surface-variant">Gestionar autoridad del registrador y roles de firma.</p>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-dim text-on-primary px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-semibold shadow-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+                                Agregar Funcionario
+                            </button>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-4">
+<thead>
+<tr class="text-xs font-label tracking-widest text-on-surface-variant uppercase">
+<th class="px-4 pb-2">NOMBRE COMPLETO</th>
+<th class="px-4 pb-2">ROL INSTITUCIONAL</th>
+<th class="px-4 pb-2">ESTADO</th>
+<th class="px-4 pb-2 text-right">ACCIÓN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-4 py-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-sm">MB</div>
+<div>
+<div class="font-bold text-on-surface">Mariana Benites</div>
+<div class="text-xs text-on-surface-variant">m.benites@university.edu</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">Jefe de Admisiones</span>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-primary-container text-on-primary-container">Activo</span>
+</td>
+<td class="px-4 py-4 text-right rounded-r-xl">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-4 py-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold text-sm">JV</div>
+<div>
+<div class="font-bold text-on-surface">Jorge Villacorta</div>
+<div class="text-xs text-on-surface-variant">j.villacorta@university.edu</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">Secretario Académico</span>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-primary-container text-on-primary-container">Activo</span>
+</td>
+<td class="px-4 py-4 text-right rounded-r-xl">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="px-4 py-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-sm">CR</div>
+<div>
+<div class="font-bold text-on-surface">Carmen Rojas</div>
+<div class="text-xs text-on-surface-variant">c.rojas@university.edu</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-4">
+<span class="text-sm font-medium">Líder de Departamento</span>
+</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-surface-variant text-on-surface-variant">Inactivo</span>
+</td>
+<td class="px-4 py-4 text-right rounded-r-xl">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- System Alerts -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border-l-4 border-primary">
+<div class="flex items-start gap-4 mb-6">
+<div class="p-3 bg-secondary-container rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-headline text-on-surface">Alertas del Sistema</h3>
+<p class="text-sm text-on-surface-variant">Automatización y disparadores de notificación para el ciclo de vida de documentos.</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+<div>
+<div class="font-bold text-primary">Resúmenes de revisión diaria</div>
+<div class="text-xs text-on-surface-variant">Enviar un resumen de revisiones de documentos vencidos a las 08:00 AM.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl opacity-60">
+<div>
+<div class="font-bold text-primary">Escalamientos críticos</div>
+<div class="text-xs text-on-surface-variant">Notificación SMS para solicitudes de firma a nivel de Rectoría.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Config & Preferences -->
+<section class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Signature Engine Config -->
+<div class="bg-surface-container rounded-xl p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="fingerprint">fingerprint</span>
+<h3 class="text-lg font-bold font-headline text-on-surface">Motor de Firma</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-2">Ruta de integración</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm font-medium py-3 px-4 focus:ring-2 focus:ring-primary transition-all">
+<option>ReFirma (Estándar RENIEC)</option>
+<option>Firma Perú (Estándar PCM)</option>
+<option>Certificado Local Híbrido</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-2">Endpoint de API (UAT/PROD)</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm font-body py-3 px-4 focus:ring-2 focus:ring-primary transition-all" type="text" value="https://api.refirma.gob.pe/v2/verify"/>
+<p class="mt-2 text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="verified">verified</span>
+                                    Estado de conexión: Establecido
+                                </p>
+</div>
+<button class="w-full mt-2 bg-white/60 hover:bg-white text-primary text-xs font-bold py-2 rounded uppercase tracking-widest transition-all">
+                                Probar Latencia de Firma
+                            </button>
+</div>
+</div>
+<!-- General Preferences -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="account_balance">account_balance</span>
+<h3 class="text-lg font-bold font-headline text-on-surface">Preferencias del Portal UPT</h3>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between gap-4">
+<div>
+<div class="text-sm font-bold">Modo Mantenimiento</div>
+<div class="text-[11px] text-on-surface-variant leading-tight">Restringir la creación de documentos durante periodos de auditoría.</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<label class="block text-xs font-label uppercase tracking-widest text-on-surface-variant mb-2">Zona de Ledger Primaria</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-primary-container text-on-primary-container border-2 border-primary py-2 text-xs font-bold rounded">LATAM-01</button>
+<button class="bg-surface-container-low text-on-surface-variant border-2 border-transparent py-2 text-xs font-bold rounded hover:bg-surface-container-high transition-all">SEC-NOD-02</button>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex flex-col gap-3">
+<button class="w-full bg-error-container text-on-error-container py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg" data-icon="lock_reset">lock_reset</span>
+                                    Revocar Todos los Tokens Activos
+                                </button>
+<p class="text-[10px] text-center text-on-surface-variant italic">La acción de seguridad requiere autenticación de segundo factor.</p>
+</div>
+</div>
+</div>
+<!-- Archival Quality Visual -->
+<div class="relative overflow-hidden rounded-xl aspect-video group">
+<img alt="Fondo de Biblioteca Institucional" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="modern minimalist university hall with tall glass walls and soft blue atmospheric lighting focused on architectural depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSlVHNsPKWBhjflBzwzh0KHFckjV8HDmqYW9KxYbvFXjsgYrjnwn9iqcfiWqgg0eEEywIpQLxjDgAFarGHHuz2iLWxgY8AjmqZTM--dckkKQM2BhLWY3rQb92IJZ7eSJGEieOcXjdm15IWI9so4dHnzi8-cZryU12ahdINgZOAcHm1oB7QGVqNEEGc362dUSOEsQ5aIm8ZUUzBoIRHkkxfFY8YVmqof4e95IHF2inIY-TMBCzfw972L9CY91DdCKxN_DGKcapjltZp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-6">
+<span class="text-xs font-bold text-white/70 uppercase tracking-widest mb-1">Integridad del Archivo</span>
+<h4 class="text-white font-bold font-headline">Garantía de disponibilidad del 99.9%</h4>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

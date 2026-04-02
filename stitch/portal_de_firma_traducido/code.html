@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Academic Ledger | Portal de Firma</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#d5e3fc",
+                        "on-primary-container": "#39527b",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-container": "#455367",
+                        "inverse-primary": "#a8c2f1",
+                        "secondary": "#526074",
+                        "outline-variant": "#a9b4b9",
+                        "primary-container": "#d6e3ff",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary-fixed-dim": "#cbc9e9",
+                        "on-error": "#fff7f6",
+                        "on-primary": "#f6f7ff",
+                        "on-background": "#2a3439",
+                        "error-container": "#fe8983",
+                        "primary": "#465f88",
+                        "tertiary": "#5d5c78",
+                        "secondary-dim": "#465468",
+                        "primary-fixed-dim": "#bfd5ff",
+                        "error": "#9f403d",
+                        "surface-tint": "#465f88",
+                        "on-surface-variant": "#566166",
+                        "surface-variant": "#d9e4ea",
+                        "on-secondary-fixed-variant": "#4e5c71",
+                        "surface-container-highest": "#d9e4ea",
+                        "surface-dim": "#cfdce3",
+                        "on-primary-fixed-variant": "#435c85",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-tertiary-container": "#4a4a65",
+                        "on-surface": "#2a3439",
+                        "surface-container-high": "#e1e9ee",
+                        "primary-dim": "#3a537b",
+                        "error-dim": "#4e0309",
+                        "tertiary-dim": "#51516c",
+                        "on-secondary": "#f8f8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#254067",
+                        "surface-container-low": "#f0f4f7",
+                        "inverse-surface": "#0b0f10",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed": "#324053",
+                        "on-error-container": "#752121",
+                        "on-tertiary": "#fbf7ff",
+                        "tertiary-fixed": "#d9d7f8",
+                        "on-tertiary-fixed": "#383751",
+                        "tertiary-container": "#d9d7f8",
+                        "background": "#f7f9fb",
+                        "outline": "#717c82",
+                        "on-tertiary-fixed-variant": "#54546f",
+                        "secondary-fixed-dim": "#c7d5ed",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container": "#e8eff3"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f7f9fb;
+            color: #2a3439;
+        }
+        .signature-nib {
+            width: 3px;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center w-full px-6 py-3">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-[#002147] dark:text-white font-headline">The Academic Ledger</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200 font-body" href="#">Documentos</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200 font-body" href="#">Directorio</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-[#465f88] transition-colors duration-200 font-body" href="#">Registro de Auditoría</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">account_balance</span>
+<span class="text-xs font-medium text-on-surface-variant font-label uppercase tracking-wider">Cambio de Rol</span>
+</div>
+<img alt="Foto de perfil del oficial de la universidad" class="w-8 h-8 rounded-full border border-outline-variant/30 object-cover" data-alt="Professional portrait of a university official in a blazer with a neutral office background and soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfqFpTZi257cUdu43qf7s3vHzzVi3J3BW03MX0piQgC_tKq9lr1aDCpQizXmOla-67jB0k4B3HPWrNfx2u0VMjM5ph183vxszQ1M3BXlmOfEKx1D8vuxBkdPK_2DgPZ1EgFtAkthn65XsiUUBobmQ2kIhRxiIWbkwlbdkptSuW6sNG5T8ugVjtWCh5bVBXG86GE7yk7V5GZ_TjueHDpsE2wVpb051ivkKZ_L7lG9cJs7LDjLvnugkXC3FiolCRiAgKf4xd0sPKLkr8"/>
+</div>
+</header>
+<!-- Sidebar & Layout Wrapper -->
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-[#e8eff3] dark:bg-slate-950 flex flex-col pt-20 pb-8 px-4 z-40">
+<div class="mb-8 px-4">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+<h2 class="text-lg font-black text-[#002147] dark:text-slate-100 font-headline">Oficina del Registrador</h2>
+</div>
+<p class="text-[10px] font-medium text-slate-500 tracking-widest uppercase font-label">Academic Ledger v2.4</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg group font-body" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Panel de Control</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-[#465f88] shadow-sm relative rounded-lg font-body" href="#">
+<div class="absolute left-0 top-2 bottom-2 w-1 bg-[#465f88] rounded-full"></div>
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-sm font-semibold">Mis Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg font-body" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="text-sm font-medium">Registrar Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg font-body" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-sm font-medium">Archivo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg font-body" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Ajustes</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg font-body" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-sm font-medium">Soporte</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800 transition-all rounded-lg font-body" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm font-medium">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 p-8 bg-background">
+<div class="max-w-6xl mx-auto">
+<!-- Status Banner -->
+<div class="mb-8 p-1 bg-gradient-to-r from-primary to-primary-dim rounded-xl shadow-lg">
+<div class="bg-primary/10 backdrop-blur-md px-6 py-4 rounded-[calc(0.75rem-1px)] flex items-center justify-between text-white">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg">Acción Requerida</h3>
+<p class="text-sm text-primary-fixed opacity-90 font-body">Es su turno de firmar. Verifique el contenido del documento antes de proceder.</p>
+</div>
+</div>
+<div class="hidden lg:flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg border border-white/20">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-xs font-label uppercase tracking-widest">Portal de Firma Seguro</span>
+</div>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left: Document Viewer -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-surface-container-low rounded-xl p-8 min-h-[800px] shadow-sm relative overflow-hidden">
+<!-- Document Header Overlay -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary/20"></div>
+<!-- Document Canvas (Mockup) -->
+<div class="bg-surface-container-lowest p-12 shadow-sm rounded-sm mx-auto max-w-2xl min-h-[900px] flex flex-col">
+<div class="flex justify-between items-start mb-12">
+<div class="space-y-1">
+<div class="text-2xl font-black text-[#002147] font-headline uppercase leading-none">Registro Universitario</div>
+<div class="text-[10px] text-on-surface-variant font-label tracking-tighter">CREDENCIAL ACADÉMICA OFICIAL</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-bold text-on-surface uppercase font-label">ID del Documento</div>
+<div class="text-sm font-mono text-primary">AL-2024-00892-KJ</div>
+</div>
+</div>
+<div class="space-y-6 flex-1">
+<h1 class="text-xl font-bold font-headline text-on-surface border-b border-surface-variant pb-4">Autorización de Certificación de Grado</h1>
+<div class="space-y-4 text-sm leading-relaxed text-on-surface-variant font-body">
+<p>Este documento sirve como la autorización electrónica final para la emisión de credenciales académicas para la sesión 2023-2024. Al firmar este documento, el firmante confirma que se han cumplido todos los protocolos de auditoría y que se mantiene la integridad del registro de acuerdo con los estatutos institucionales.</p>
+<div class="bg-surface-container p-4 rounded-lg space-y-3">
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-xs uppercase font-label font-bold">Destinatario</span>
+<span class="text-xs font-medium">Dra. Helena Vance</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-xs uppercase font-label font-bold">Departamento</span>
+<span class="text-xs font-medium">Facultad de Ciencias Aplicadas</span>
+</div>
+<div class="flex justify-between">
+<span class="text-xs uppercase font-label font-bold">Fecha de Vigencia</span>
+<span class="text-xs font-medium">24 de Octubre de 2024</span>
+</div>
+</div>
+<p>La verificación de la Firma Digital sigue el estándar XAdES-BES, garantizando el no repudio a largo plazo y el sellado de tiempo. The Academic Ledger utiliza la arquitectura Firmador para el procesamiento criptográfico seguro.</p>
+</div>
+<!-- Visual Signature Placeholder -->
+<div class="mt-20 flex justify-end">
+<div class="w-64 h-32 border-2 border-dashed border-outline-variant/30 rounded-lg flex flex-col items-center justify-center bg-surface-container-low/50 group hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline-variant text-4xl mb-2 group-hover:text-primary transition-colors">draw</span>
+<span class="text-[10px] font-label font-bold uppercase tracking-widest text-outline-variant">Coloque la Firma Aquí</span>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-6 border-t border-surface-variant text-[9px] text-on-surface-variant font-label tracking-wide flex justify-between uppercase">
+<span>The Academic Ledger © 2024</span>
+<span>PÁGINA 1 DE 1</span>
+<span>HASH SEGURO: 8f92a...c021</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Signing Controls & Tracker -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Integration Module -->
+<section class="bg-surface-container rounded-xl p-6 space-y-6">
+<div class="space-y-1">
+<h4 class="font-headline font-bold text-on-surface">Identidad de Firma Digital</h4>
+<p class="text-xs text-on-surface-variant font-body">Elija su método de autenticación seguro para firmar este documento del libro mayor.</p>
+</div>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-between px-5 py-4 bg-gradient-to-br from-primary to-primary-dim text-white rounded-xl shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-200 group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white/80 group-hover:text-white" style="font-variation-settings: 'FILL' 1;">badge</span>
+<span class="font-headline font-bold text-sm tracking-tight">Firmar con DNIe</span>
+</div>
+<span class="material-symbols-outlined text-xl text-white/50 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-5 py-4 bg-surface-container-lowest text-on-primary-container rounded-xl shadow-sm hover:bg-white hover:scale-[1.02] active:scale-95 transition-all duration-200 border border-transparent group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">key</span>
+<span class="font-headline font-bold text-sm tracking-tight">Firmar con Token</span>
+</div>
+<span class="material-symbols-outlined text-xl text-primary/30 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+<!-- Validation Message (Contextual) -->
+<div class="p-4 bg-white/60 rounded-lg flex items-start gap-3 border border-outline-variant/10">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-primary text-lg animate-pulse">verified_user</span>
+</div>
+<div class="space-y-1">
+<p class="text-xs font-bold text-primary font-headline">Verificando Integridad de Firma...</p>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">El sistema está comprobando las cadenas criptográficas y el estado de revocación CRL para la autoridad seleccionada.</p>
+</div>
+</div>
+</section>
+<!-- Sequence Tracker -->
+<section class="bg-surface-container rounded-xl p-6">
+<h4 class="font-headline font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                            Secuencia de Firma
+                        </h4>
+<div class="space-y-0">
+<!-- Signed User 1 -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white z-10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="w-0.5 h-12 bg-primary"></div>
+</div>
+<div class="pt-1 flex-1">
+<div class="flex justify-between items-start">
+<h5 class="text-xs font-bold text-on-surface font-headline">Alexander Thorne</h5>
+<span class="text-[9px] font-label font-bold uppercase text-primary bg-primary-container px-2 py-0.5 rounded">FIRMADO</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-body">Decano de Facultad • 24 Oct, 09:12 AM</p>
+</div>
+</div>
+<!-- Active User (You) -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-white flex items-center justify-center text-primary z-10 relative">
+<div class="absolute inset-0 rounded-full animate-ping bg-primary/20"></div>
+<span class="material-symbols-outlined text-sm font-bold">edit</span>
+</div>
+<div class="w-0.5 h-12 bg-surface-variant"></div>
+</div>
+<div class="pt-1 flex-1">
+<div class="flex justify-between items-start">
+<h5 class="text-xs font-bold text-on-surface font-headline">Julian Rivers (Tú)</h5>
+<span class="text-[9px] font-label font-bold uppercase text-secondary-dim bg-secondary-container px-2 py-0.5 rounded">PENDIENTE</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-body">Oficial del Registrador • Esperando Firma</p>
+</div>
+</div>
+<!-- Upcoming User -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant z-10 opacity-50">
+<span class="text-[10px] font-bold">03</span>
+</div>
+</div>
+<div class="pt-1 flex-1">
+<div class="flex justify-between items-start">
+<h5 class="text-xs font-bold text-on-surface font-headline opacity-50">Sarah Jenkins</h5>
+<span class="text-[9px] font-label font-bold uppercase text-on-surface-variant bg-surface-variant px-2 py-0.5 rounded opacity-50">EN COLA</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-body opacity-50">Oficial de Cumplimiento Legal</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Validity Note -->
+<div class="bg-surface-container-high/40 rounded-xl p-4 border-l-4 border-primary/40">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-lg">verified</span>
+<div class="space-y-1">
+<p class="text-[11px] font-bold text-on-surface font-headline uppercase tracking-tight">Validez Legal</p>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">Este proceso de firma cumple con las regulaciones eIDAS y el Estatuto Universitario 14.2 para la transformación digital.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Security Tag (Decorative Component) -->
+<div class="fixed bottom-6 right-6 z-50">
+<div class="flex items-center gap-3 bg-white/80 backdrop-blur-lg px-4 py-2 rounded-full shadow-lg border border-white/50">
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary opacity-60"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary opacity-30"></span>
+</div>
+<span class="text-[10px] font-label font-black uppercase tracking-widest text-[#002147]">Sesión Segura Activa</span>
+</div>
+</div>
+</body></html>

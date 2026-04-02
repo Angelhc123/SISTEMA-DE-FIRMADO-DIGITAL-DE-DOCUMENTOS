@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interfaz de Revisión Colaborativa | El Libro Académico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#cfdce3",
+              "on-secondary-fixed": "#324053",
+              "on-primary": "#f6f7ff",
+              "on-tertiary": "#fbf7ff",
+              "on-primary-fixed": "#254067",
+              "on-background": "#2a3439",
+              "tertiary-container": "#d9d7f8",
+              "secondary-fixed-dim": "#c7d5ed",
+              "outline": "#717c82",
+              "tertiary-fixed": "#d9d7f8",
+              "tertiary": "#5d5c78",
+              "on-error": "#fff7f6",
+              "on-tertiary-fixed": "#383751",
+              "surface-container": "#e8eff3",
+              "primary-fixed-dim": "#bfd5ff",
+              "primary": "#465f88",
+              "on-secondary": "#f8f8ff",
+              "primary-container": "#d6e3ff",
+              "on-primary-container": "#39527b",
+              "inverse-surface": "#0b0f10",
+              "inverse-primary": "#a8c2f1",
+              "surface-variant": "#d9e4ea",
+              "surface-bright": "#f7f9fb",
+              "tertiary-dim": "#51516c",
+              "error-dim": "#4e0309",
+              "error": "#9f403d",
+              "on-primary-fixed-variant": "#435c85",
+              "on-surface": "#2a3439",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed-variant": "#4e5c71",
+              "secondary": "#526074",
+              "on-surface-variant": "#566166",
+              "error-container": "#fe8983",
+              "surface-container-highest": "#d9e4ea",
+              "surface-container-low": "#f0f4f7",
+              "secondary-container": "#d5e3fc",
+              "on-tertiary-container": "#4a4a65",
+              "surface-container-high": "#e1e9ee",
+              "on-tertiary-fixed-variant": "#54546f",
+              "primary-fixed": "#d6e3ff",
+              "secondary-dim": "#465468",
+              "background": "#f7f9fb",
+              "outline-variant": "#a9b4b9",
+              "primary-dim": "#3a537b",
+              "tertiary-fixed-dim": "#cbc9e9",
+              "secondary-fixed": "#d5e3fc",
+              "on-error-container": "#752121",
+              "surface-tint": "#465f88",
+              "inverse-on-surface": "#9a9d9f",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#455367"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-header {
+            background: rgba(247, 249, 251, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .signature-sidebar-nib {
+            width: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #a9b4b9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-header flex justify-between items-center w-full px-8 py-3 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#002147] tracking-tight">El Libro Académico</span>
+<nav class="hidden md:flex gap-6 items-center font-manrope text-sm font-medium tracking-tight text-[#465f88]">
+<a class="text-slate-500 hover:text-[#465f88] transition-colors" href="#">Documentos</a>
+<a class="text-slate-500 hover:text-[#465f88] transition-colors" href="#">Directorio</a>
+<a class="text-slate-500 hover:text-[#465f88] transition-colors" href="#">Registro de Auditoría</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-surface-container-high text-on-primary-container px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-surface-container-highest">
+                Cambiar Rol
+            </button>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer p-2 rounded-full hover:bg-slate-100 transition-colors">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer p-2 rounded-full hover:bg-slate-100 transition-colors">account_circle</span>
+</div>
+</div>
+</header>
+<!-- App Layout Container -->
+<div class="pt-16 flex min-h-screen">
+<!-- SideNavBar (Suppressed for specialized task flow if needed, but included here as task anchor) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#e8eff3] flex flex-col pt-16 z-40 hidden lg:flex">
+<div class="p-6">
+<p class="text-lg font-black text-[#002147] tracking-wide">Gestión Digital</p>
+<p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Universidad</p>
+</div>
+<nav class="flex-1 px-4 space-y-1 font-manrope text-sm font-semibold tracking-wide">
+<a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-[#d9e4ea] transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Panel de Control
+                </a>
+<a class="bg-white text-[#002147] border-l-4 border-[#465f88] px-4 py-3 flex items-center gap-3 rounded-r-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span> Mis Documentos
+                </a>
+<a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-[#d9e4ea] transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">add_box</span> Registrar Nuevo
+                </a>
+<a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-[#d9e4ea] transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Archivo
+                </a>
+<a class="text-slate-600 px-4 py-3 flex items-center gap-3 hover:bg-[#d9e4ea] transition-all rounded-lg mt-auto mb-8" href="#">
+<span class="material-symbols-outlined">settings</span> Configuración
+                </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 lg:ml-64 p-8 flex flex-col gap-8 max-w-[1600px] mx-auto w-full">
+<!-- Document Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-[0.1em] font-label">Expediente Académico 2024-B-042</span>
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight leading-none">Reglamento General de Posgrado y Educación Continua</h1>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high text-on-primary-container px-6 py-3 rounded-xl font-semibold text-sm hover:bg-surface-container-highest transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span> Descargar Copia
+                    </button>
+<button class="bg-surface-container-high text-on-primary-container px-6 py-3 rounded-xl font-semibold text-sm hover:bg-surface-container-highest transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">history</span> Historial de Versiones
+                    </button>
+</div>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-8 flex-1">
+<!-- Central PDF Viewer (Authority Visual) -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-4">
+<div class="bg-surface-container-lowest rounded-xl shadow-none overflow-hidden flex-1 relative min-h-[800px] flex flex-col">
+<!-- PDF Controls -->
+<div class="bg-surface-container-low px-6 py-3 flex justify-between items-center">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">arrow_back_ios</span>
+<span class="text-sm font-medium">Página 12 de 48</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">arrow_forward_ios</span>
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">zoom_out</span>
+<span class="text-sm font-medium">125%</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">zoom_in</span>
+<span class="w-[1px] h-4 bg-outline-variant/30"></span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">print</span>
+</div>
+</div>
+<!-- Document Canvas -->
+<div class="flex-1 bg-surface-dim p-12 overflow-y-auto custom-scrollbar flex justify-center">
+<div class="w-full max-w-3xl bg-white shadow-sm p-16 min-h-[1000px] font-serif text-[#2a3439] relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/20"></div>
+<div class="text-center mb-12">
+<p class="text-xs uppercase tracking-widest font-bold text-slate-400 mb-4">Universidad Nacional de Altos Estudios</p>
+<h2 class="text-2xl font-bold tracking-tight">TÍTULO IV: DE LOS REQUISITOS DE EGRESO</h2>
+</div>
+<div class="space-y-6 text-base leading-relaxed">
+<p class="font-bold">Artículo 84. De la Tesis Doctoral.</p>
+<p>Para la obtención del grado académico de Doctor, el estudiante deberá sustentar y aprobar una tesis original y de autoría propia, que represente un aporte significativo al conocimiento en su área de especialización. Dicha tesis deberá haber sido supervisada por un asesor acreditado por la Escuela de Posgrado.</p>
+<p>El proceso de revisión consta de las siguientes fases:</p>
+<ul class="list-disc pl-5 space-y-2">
+<li>Designación de jurado informante.</li>
+<li>Emisión de dictamen de conformidad.</li>
+<li>Levantamiento de observaciones técnicas.</li>
+<li>Acto público de defensa de tesis.</li>
+</ul>
+<p>Los revisores externos tendrán un plazo máximo de treinta (30) días calendario para la emisión de sus observaciones desde la recepción formal del documento a través del sistema de El Libro Académico.</p>
+<div class="mt-12 p-8 border-l-4 border-primary bg-slate-50 italic text-slate-600">
+                                        "Se recomienda ajustar la redacción del párrafo anterior para incluir la modalidad de sustentación virtual bajo los lineamientos de emergencia vigentes." - <span class="font-bold">Dr. Carlos Mendoza (Revisor Jurídico)</span>
+</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Workflow and Observations -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-8">
+<!-- ESTADO DEL FLUJO Card -->
+<div class="bg-surface-container rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest font-label">Estado del Flujo</h3>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black tracking-tighter uppercase">65% Completado</span>
+</div>
+<div class="space-y-4">
+<!-- Step 1: Signed -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Secretaría General</p>
+<p class="text-xs text-slate-500">Conformidad otorgada el 12/03/2024</p>
+</div>
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-full text-[10px] font-bold">SIGNED</span>
+</div>
+<!-- Step 2: In Review (Active User) -->
+<div class="flex items-center gap-4 relative">
+<div class="absolute left-4 top-8 bottom-0 w-0.5 bg-outline-variant/30"></div>
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">edit</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Dirección Académica (Usted)</p>
+<p class="text-xs text-primary font-medium italic">En revisión actual</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px] font-bold">IN REVIEW</span>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-center gap-4 opacity-50">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Rectorado</p>
+<p class="text-xs text-slate-500">Esperando revisión anterior</p>
+</div>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded-full text-[10px] font-bold">OBSERVED</span>
+</div>
+</div>
+</div>
+<!-- OBSERVACIONES Section -->
+<div class="bg-surface-container-low rounded-xl p-6 flex flex-col gap-6 flex-1">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest font-label">Observaciones Colaborativas</h3>
+<!-- List of Observations -->
+<div class="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+<!-- Observation Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden">
+<img alt="Avatar Dr. Mendoza" class="w-full h-full object-cover" data-alt="professional headshot of a middle-aged academic man with glasses and a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQJXoKGOOaO7ZUTGMQkivOgSYoDapqy2tIOKI-DYCBXuAWUlfveTwFyg1cmrKSR3qNAL-p4Nq_I93sn_FI9g0vCSZ3Xxiec9IP9MvjV6LMCOjiLiYhOmx5Kn-e_DL8kjo-V7EhQd6YUMHQM03YC5HsKiZeUMcIo5lJLGJQP9l1xPGlOsmQhqubp-wCgEW7NqHiPNH8Z45775JNul5tQZnjyk1oh8k-Uxh6sqtXmTStjT5OC9aKIHD3HlzLIsv-TPv5dLGEn7bGZaTX"/>
+</div>
+<span class="text-xs font-bold text-on-surface">Dr. Carlos Mendoza</span>
+</div>
+<span class="text-[10px] text-slate-400">Hace 2h</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                                    El Artículo 84 debe mencionar explícitamente los protocolos de sustentación por videoconferencia para cumplir con la Resolución Directiva 2023-R.
+                                </p>
+</div>
+<!-- Observation Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex flex-col gap-2 border-l-4 border-primary-container">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden">
+<img alt="Avatar Dra. Ortiz" class="w-full h-full object-cover" data-alt="professional portrait of a confident woman in a business suit against a plain office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaO5eAiVfT5CBf-mHKPedEU9KDlnnkXgP8wBbid7rGsQYM0cHKKf2aVMFYfIkMWv_Jnp88GULSTBj2iULdt-6SUqSTG78K_Bmuy3y4Fej-l3PNlnVjrALS-zh0pa8fKhJuqOxUu3VfybLIDC0fcZQg2PRMmMSnghZ9kcNhgMXiNRXkp-cNnAmHmFhD4tjMiXEiiAtYx4A3-Xtn5Zjs0V-ZcJNPHxG3t_kWyy4N1GewsxVp9ZOPfX22-jmhQPBnOqMONBw-YPUSvp3a"/>
+</div>
+<span class="text-xs font-bold text-on-surface">Dra. Elena Ortiz</span>
+</div>
+<span class="text-[10px] text-slate-400">Ayer, 16:45</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                                    ¿Se ha verificado la compatibilidad con el sistema de turnitin para este nuevo reglamento?
+                                </p>
+</div>
+</div>
+<!-- Add New Observation Form -->
+<div class="flex flex-col gap-4 mt-auto">
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface uppercase tracking-tighter">Agregar una observación específica</label>
+<textarea class="w-full bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface focus:ring-2 focus:ring-primary placeholder:text-slate-300 resize-none p-3 shadow-sm" placeholder="Escriba aquí los puntos técnicos a observar..." rows="3"></textarea>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3">
+<button class="w-full bg-surface-container-high text-on-primary-container py-3 rounded-xl font-bold text-sm hover:bg-surface-container-highest transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">add_comment</span>
+                                    AÑADIR OBSERVACIÓN
+                                </button>
+<button class="w-full bg-gradient-to-r from-primary to-primary-dim text-white py-4 rounded-xl font-bold text-sm shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    APROBAR CONFORMIDAD
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Suppressed on large screens, visible on mobile as per design rules) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container flex justify-around items-center py-4 px-6 z-50">
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] mt-1 font-bold">Inicio</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="text-[10px] mt-1 font-bold">Revisión</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">add_box</span>
+<span class="text-[10px] mt-1 font-bold">Nuevo</span>
+</div>
+<div class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] mt-1 font-bold">Archivo</span>
+</div>
+</nav>
+</body></html>
