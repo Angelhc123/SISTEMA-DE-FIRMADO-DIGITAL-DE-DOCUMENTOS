@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,55 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Validación de sesión desactivada temporalmente para pruebas
+            // if (Session["IdUsuario"] == null)
+            // {
+            //     Response.Redirect("~/frmLogin.aspx");
+            //     return;
+            // }
 
+            if (!IsPostBack)
+            {
+                CargarDatosUsuario();
+            }
+        }
+
+        private void CargarDatosUsuario()
+        {
+            Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
+            Image imgPerfil = (Image)FindControl("imgPerfil");
+
+            if (Session["Nombres"] != null && lblNombreUsuario != null)
+            {
+                lblNombreUsuario.Text = Session["Nombres"].ToString();
+            }
+
+            if (Session["UrlFoto"] != null && !string.IsNullOrEmpty(Session["UrlFoto"].ToString()) && imgPerfil != null)
+            {
+                imgPerfil.ImageUrl = Session["UrlFoto"].ToString();
+            }
+        }
+
+        protected void btnFirmarPrioritario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Formularios/Firma/frmPortalFirma.aspx?id=1");
+        }
+
+        protected void btnRevisarPrioritario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Formularios/Firma/frmPortalFirma.aspx?id=1&mode=view");
+        }
+
+        protected void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Formularios/Firma/frmMisDocumentosFirmante.aspx?all=true");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/frmLogin.aspx");
         }
     }
 }

@@ -1,20 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmMisDocumentosRevisor.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Revision.frmMisDocumentosRevisor" %>
 <!DOCTYPE html>
 
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SDF ZOFRATACNA - Mis Documentos</title>
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Theme Configuration -->
-<script id="tailwind-config">
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SDF ZOFRATACNA - Mis Documentos</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -85,220 +82,220 @@
     </script>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased flex h-screen overflow-hidden selection:bg-primary-container selection:text-white">
-<!-- SideNavBar -->
-<aside class="bg-white dark:bg-slate-950 h-screen w-72 fixed left-0 top-0 border-r-0 shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50">
-<div class="flex flex-col h-full py-8">
-<!-- Brand -->
-<div class="px-8 mb-12">
-<h1 class="text-lg font-black tracking-tighter text-[#001E40] dark:text-white uppercase">SDF ZOFRATACNA</h1>
-<p class="text-xs text-on-surface-variant font-medium tracking-wide">Sistema de Firmado Digital</p>
-</div>
-<!-- Navigation -->
-<nav class="flex-1 space-y-1 font-public-sans tracking-tight text-sm font-medium">
-<!-- Inactive Tab -->
-<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">dashboard</span>
-                    Dashboard
-                </a>
-<!-- Active Tab -->
-<a class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] translate-x-1 duration-150" href="#">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
-                    Mis Documentos
-                </a>
-<!-- Inactive Tabs -->
-<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">add_box</span>
-                    Registrar Nuevo
-                </a>
-<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">archive</span>
-                    Archivo
-                </a>
-<div class="mt-8 mb-4 px-6">
-<p class="text-[10px] font-bold text-outline-variant uppercase tracking-widest">Sistema</p>
-</div>
-<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-                    Ajustes
-                </a>
-<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">support_agent</span>
-                    Soporte
-                </a>
-</nav>
-<!-- User Profile Snippet -->
-<div class="px-6 mt-auto">
-<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/20">
-<img alt="Avatar de Usuario" class="w-9 h-9 rounded-full object-cover" data-alt="professional headshot of a man in a modern office setting, bright natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlWAp-oLnMuVAoGrFmM_6OZfOpawQJp86iuO_Hw1dtkPndj--0lvry3HxF0cOFXzdV5exUmrE_U3-PRmZ5yhZ8BT2dVRZpvkyfNe3xiojudqYk7zoFPcO-cFk6dh1S_CTTGHBu5cnS4FvjOTP59yzlvmuGZvkSLid4eIv6dAW-Ow_vNdaUqdj8cM2nu42OdfESLq9ZcO7LWzExtl7F0d2-jerUVhotulqbb4by4sKKpHafcmFr5Dk3O-pH1GGY930GQeFejPfBgLKa"/>
-<div>
-<p class="text-sm font-bold text-primary-container">E. Revisor</p>
-<p class="text-xs text-on-surface-variant">Gerencia Legal</p>
-</div>
-</div>
-</div>
-</div>
-</aside>
-<!-- Main Wrapper -->
-<div class="flex-1 ml-72 flex flex-col h-full bg-surface relative">
-<!-- TopNavBar -->
-<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 z-40 shadow-sm dark:shadow-none transition-all duration-300 ease-in-out font-public-sans text-sm tracking-wide text-[#001E40] dark:text-[#d5e3ff]">
-<div class="flex items-center justify-between px-10 h-full w-full">
-<!-- Breadcrumb / Nav -->
-<div class="flex items-center gap-4">
-<span class="text-slate-400 hover:text-[#001E40] transition-colors cursor-pointer">Dashboard</span>
-<span class="text-outline-variant material-symbols-outlined text-[16px]">chevron_right</span>
-<span class="text-[#001E40] font-bold border-b-2 border-[#001E40] pb-1">Mis Documentos</span>
-</div>
-<!-- Trailing Actions -->
-<div class="flex items-center gap-6">
-<button class="text-slate-400 hover:text-[#001E40] transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-                        Cerrar Sesión
-                    </button>
-</div>
-</div>
-</header>
-<!-- Canvas / Main Content -->
-<main class="flex-1 overflow-y-auto pt-28 px-12 pb-20">
-<!-- Page Header -->
-<div class="mb-12 flex justify-between items-end">
-<div>
-<h2 class="text-[32px] font-headline font-extrabold tracking-tight text-primary-container leading-none mb-2">Bandeja de Revisión</h2>
-<p class="text-on-surface-variant text-base">Documentos pendientes de evaluación y firma digital.</p>
-</div>
-<!-- Minimalist Search/Filter -->
-<div class="flex gap-4">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
-<input class="bg-surface-container-highest border-0 border-b-2 border-outline-variant focus:border-primary-container focus:ring-0 pl-10 pr-4 py-2 w-72 text-sm rounded-t-sm transition-colors" placeholder="Buscar por remitente o asunto..." type="text"/>
-</div>
-<button class="bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">filter_list</span>
-                        Filtros
-                    </button>
-</div>
-</div>
-<!-- Summary Stats (Editorial Monoliths) -->
-<div class="grid grid-cols-3 gap-6 mb-12">
-<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32 relative overflow-hidden group">
-<div class="absolute right-0 top-0 w-24 h-24 bg-error/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-<p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider z-10">Alta Prioridad</p>
-<p class="text-4xl font-headline font-black text-error z-10">03</p>
-</div>
-<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32">
-<p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Pendientes Hoy</p>
-<p class="text-4xl font-headline font-black text-primary-container">12</p>
-</div>
-<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-primary-container">
-<p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Próximos a Vencer</p>
-<p class="text-4xl font-headline font-black text-on-surface">05</p>
-</div>
-</div>
-<!-- List Layout (Replacing Standard Table for High-End Aesthetic) -->
-<div class="space-y-4">
-<div class="px-6 pb-2 flex grid grid-cols-12 gap-4 text-xs font-bold text-outline uppercase tracking-wider">
-<div class="col-span-1">Prioridad</div>
-<div class="col-span-3">Remitente</div>
-<div class="col-span-5">Asunto / Referencia</div>
-<div class="col-span-2">Ingreso</div>
-<div class="col-span-1 text-right">Acción</div>
-</div>
-<!-- Item 1 (High Priority) -->
-<div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200 group relative">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-error rounded-l-lg"></div>
-<div class="col-span-1 pl-4">
-<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">
-<span class="material-symbols-outlined text-[12px]">priority_high</span> Alta
-                        </span>
-</div>
-<div class="col-span-3 flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">
-                            JL
+    <form id="form1" runat="server" class="flex w-full h-screen overflow-hidden">
+        <!-- SideNavBar -->
+        <aside class="bg-white dark:bg-slate-950 h-screen w-72 fixed left-0 top-0 border-r-0 shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50">
+            <div class="flex flex-col h-full py-8">
+                <div class="px-8 mb-12">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
                         </div>
-<div>
-<p class="text-sm font-bold text-on-surface leading-tight">Juan López M.</p>
-<p class="text-xs text-on-surface-variant">Logística Interna</p>
-</div>
-</div>
-<div class="col-span-5 pr-4">
-<p class="text-sm font-bold text-primary-container truncate">Aprobación de Contrato Proveedores T3</p>
-<p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: CT-2023-089-LOG</p>
-</div>
-<div class="col-span-2">
-<p class="text-sm text-on-surface font-medium">Hoy, 09:30 AM</p>
-<p class="text-xs text-error font-medium">Vence en 2h</p>
-</div>
-<div class="col-span-1 flex justify-end">
-<button class="bg-gradient-to-br from-primary to-primary-container text-white px-4 py-2 rounded-md text-sm font-bold hover:shadow-lg transition-all flex items-center gap-2">
-                            Revisar
-                        </button>
-</div>
-</div>
-<!-- Item 2 (Normal) -->
-<div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200">
-<div class="col-span-1 pl-4">
-<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">
-                            Media
-                        </span>
-</div>
-<div class="col-span-3 flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">
-                            AC
+                        <div>
+                            <h1 class="text-lg font-black tracking-tighter text-[#001E40] dark:text-white uppercase">SDF ZOFRATACNA</h1>
+                            <p class="text-xs text-on-surface-variant font-medium tracking-wide">Sistema de Firmado Digital</p>
                         </div>
-<div>
-<p class="text-sm font-bold text-on-surface leading-tight">Ana Castro V.</p>
-<p class="text-xs text-on-surface-variant">Recursos Humanos</p>
-</div>
-</div>
-<div class="col-span-5 pr-4">
-<p class="text-sm font-bold text-primary-container truncate">Renovación de Personalización - Octubre</p>
-<p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: RRHH-MEMO-442</p>
-</div>
-<div class="col-span-2">
-<p class="text-sm text-on-surface font-medium">Ayer, 16:45 PM</p>
-<p class="text-xs text-outline font-medium">Hace 18 hrs</p>
-</div>
-<div class="col-span-1 flex justify-end">
-<button class="bg-surface-container-highest text-on-surface hover:bg-surface-variant px-4 py-2 rounded-md text-sm font-bold transition-colors">
-                            Abrir
-                        </button>
-</div>
-</div>
-<!-- Item 3 (Normal) -->
-<div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200">
-<div class="col-span-1 pl-4">
-<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">
-                            Media
-                        </span>
-</div>
-<div class="col-span-3 flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">
-                            MR
+                    </div>
+                </div>
+                <nav class="flex-1 space-y-1 font-public-sans tracking-tight text-sm font-medium">
+                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="~/Formularios/Revision/frmDashboardRevisor.aspx">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        Dashboard
+                    </a>
+                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] translate-x-1 duration-150" href="~/Formularios/Revision/frmMisDocumentosRevisor.aspx">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+                        Mis Documentos
+                    </a>
+                    <a class="flex items-center gap-3 px-6 py-4 text-slate-300 cursor-not-allowed opacity-50">
+                        <span class="material-symbols-outlined text-[20px]">add_box</span>
+                        Registrar Nuevo
+                    </a>
+                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="~/Formularios/Revision/frmArchivoRevisor.aspx">
+                        <span class="material-symbols-outlined text-[20px]">archive</span>
+                        Archivo
+                    </a>
+                    <div class="mt-8 mb-4 px-6">
+                        <p class="text-[10px] font-bold text-outline-variant uppercase tracking-widest">Sistema</p>
+                    </div>
+                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="~/Formularios/Comunes/frmMiPerfil.aspx">
+                        <span class="material-symbols-outlined text-[20px]">settings</span>
+                        Ajustes
+                    </a>
+                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors" href="~/Formularios/Comunes/frmSoporte.aspx">
+                        <span class="material-symbols-outlined text-[20px]">support_agent</span>
+                        Soporte
+                    </a>
+                </nav>
+                <div class="px-6 mt-auto">
+                    <div class="flex items-center gap-3 pt-6 border-t border-outline-variant/20">
+                        <asp:Image ID="imgPerfil" runat="server" CssClass="w-9 h-9 rounded-full object-cover" ImageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuDlWAp-oLnMuVAoGrFmM_6OZfOpawQJp86iuO_Hw1dtkPndj--0lvry3HxF0cOFXzdV5exUmrE_U3-PRmZ5yhZ8BT2dVRZpvkyfNe3xiojudqYk7zoFPcO-cFk6dh1S_CTTGHBu5cnS4FvjOTP59yzlvmuGZvkSLid4eIv6dAW-Ow_vNdaUqdj8cM2nu42OdfESLq9ZcO7LWzExtl7F0d2-jerUVhotulqbb4by4sKKpHafcmFr5Dk3O-pH1GGY930GQeFejPfBgLKa" />
+                        <div>
+                            <asp:Label ID="lblNombreUsuario" runat="server" CssClass="text-sm font-bold text-primary-container" Text="E. Revisor"></asp:Label>
+                            <asp:Label ID="lblRolUsuario" runat="server" CssClass="text-xs text-on-surface-variant block" Text="Gerencia Legal"></asp:Label>
                         </div>
-<div>
-<p class="text-sm font-bold text-on-surface leading-tight">Miguel Ríos</p>
-<p class="text-xs text-on-surface-variant">Dirección General</p>
-</div>
-</div>
-<div class="col-span-5 pr-4">
-<p class="text-sm font-bold text-primary-container truncate">Resolución Directoral 045-2023</p>
-<p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: DIR-RES-045</p>
-</div>
-<div class="col-span-2">
-<p class="text-sm text-on-surface font-medium">24 Oct, 11:20 AM</p>
-<p class="text-xs text-outline font-medium">Hace 2 días</p>
-</div>
-<div class="col-span-1 flex justify-end">
-<button class="bg-surface-container-highest text-on-surface hover:bg-surface-variant px-4 py-2 rounded-md text-sm font-bold transition-colors">
-                            Abrir
-                        </button>
-</div>
-</div>
-</div>
-<!-- Pagination / Load More (Minimalist) -->
-<div class="mt-8 flex justify-center">
-<button class="text-primary-container font-bold text-sm hover:underline tracking-wide">Cargar más documentos (9 restantes)</button>
-</div>
-</main>
-</div>
-</body></html>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="flex-1 ml-72 flex flex-col h-full bg-surface relative">
+            <!-- TopNavBar -->
+            <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 z-40 shadow-sm dark:shadow-none transition-all duration-300 ease-in-out font-public-sans text-sm tracking-wide text-[#001E40] dark:text-[#d5e3ff]">
+                <div class="flex items-center justify-between px-10 h-full w-full">
+                    <div class="flex items-center gap-4">
+                        <span class="text-slate-400 hover:text-[#001E40] transition-colors cursor-pointer">Dashboard</span>
+                        <span class="text-outline-variant material-symbols-outlined text-[16px]">chevron_right</span>
+                        <span class="text-[#001E40] font-bold border-b-2 border-[#001E40] pb-1">Mis Documentos</span>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <asp:LinkButton ID="btnLogout" runat="server" CssClass="text-slate-400 hover:text-[#001E40] transition-colors flex items-center gap-2" OnClick="btnLogout_Click">
+                            <span class="material-symbols-outlined text-[20px]">logout</span>
+                            Cerrar Sesión
+                        </asp:LinkButton>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Canvas / Main Content -->
+            <main class="flex-1 overflow-y-auto pt-28 px-12 pb-20">
+                <div class="mb-12 flex justify-between items-end">
+                    <div>
+                        <h2 class="text-[32px] font-headline font-extrabold tracking-tight text-primary-container leading-none mb-2">Bandeja de Revisión</h2>
+                        <p class="text-on-surface-variant text-base">Documentos pendientes de evaluación y firma digital.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+                            <asp:TextBox ID="txtBuscar" runat="server" CssClass="bg-surface-container-highest border-0 border-b-2 border-outline-variant focus:border-primary-container focus:ring-0 pl-10 pr-4 py-2 w-72 text-sm rounded-t-sm transition-colors" placeholder="Buscar por remitente o asunto..."></asp:TextBox>
+                        </div>
+                        <asp:LinkButton ID="btnFiltrar" runat="server" CssClass="bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors px-4 py-2 rounded-md text-sm font-medium flex items-center gap-2" OnClick="btnFiltrar_Click">
+                            <span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Filtros
+                        </asp:LinkButton>
+                    </div>
+                </div>
+
+                <!-- Summary Stats -->
+                <div class="grid grid-cols-3 gap-6 mb-12">
+                    <div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-error/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider z-10">Alta Prioridad</p>
+                        <asp:Label ID="lblAltaPrioridad" runat="server" CssClass="text-4xl font-headline font-black text-error z-10" Text="03"></asp:Label>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32">
+                        <p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Pendientes Hoy</p>
+                        <asp:Label ID="lblPendientesHoy" runat="server" CssClass="text-4xl font-headline font-black text-primary-container" Text="12"></asp:Label>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-primary-container">
+                        <p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Próximos a Vencer</p>
+                        <asp:Label ID="lblProximosVencer" runat="server" CssClass="text-4xl font-headline font-black text-on-surface" Text="05"></asp:Label>
+                    </div>
+                </div>
+
+                <!-- List Layout -->
+                <div class="space-y-4">
+                    <div class="px-6 pb-2 flex grid grid-cols-12 gap-4 text-xs font-bold text-outline uppercase tracking-wider">
+                        <div class="col-span-1">Prioridad</div>
+                        <div class="col-span-3">Remitente</div>
+                        <div class="col-span-5">Asunto / Referencia</div>
+                        <div class="col-span-2">Ingreso</div>
+                        <div class="col-span-1 text-right">Acción</div>
+                    </div>
+
+                    <!-- Item 1 (High Priority) -->
+                    <div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200 group relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-error rounded-l-lg"></div>
+                        <div class="col-span-1 pl-4">
+                            <span class="inline-flex items-center gap-1 bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[12px]">priority_high</span> Alta
+                            </span>
+                        </div>
+                        <div class="col-span-3 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">JL</div>
+                            <div>
+                                <p class="text-sm font-bold text-on-surface leading-tight">Juan López M.</p>
+                                <p class="text-xs text-on-surface-variant">Logística Interna</p>
+                            </div>
+                        </div>
+                        <div class="col-span-5 pr-4">
+                            <p class="text-sm font-bold text-primary-container truncate">Aprobación de Contrato Proveedores T3</p>
+                            <p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: CT-2023-089-LOG</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-sm text-on-surface font-medium">Hoy, 09:30 AM</p>
+                            <p class="text-xs text-error font-medium">Vence en 2h</p>
+                        </div>
+                        <div class="col-span-1 flex justify-end">
+                            <asp:LinkButton ID="btnRevisar1" runat="server" CssClass="bg-gradient-to-br from-primary to-primary-container text-white px-4 py-2 rounded-md text-sm font-bold hover:shadow-lg transition-all flex items-center gap-2" OnClick="btnRevisar_Click" CommandArgument="1">
+                                Revisar
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Normal) -->
+                    <div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200">
+                        <div class="col-span-1 pl-4">
+                            <span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">Media</span>
+                        </div>
+                        <div class="col-span-3 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">AC</div>
+                            <div>
+                                <p class="text-sm font-bold text-on-surface leading-tight">Ana Castro V.</p>
+                                <p class="text-xs text-on-surface-variant">Recursos Humanos</p>
+                            </div>
+                        </div>
+                        <div class="col-span-5 pr-4">
+                            <p class="text-sm font-bold text-primary-container truncate">Renovación de Personalización - Octubre</p>
+                            <p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: RRHH-MEMO-442</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-sm text-on-surface font-medium">Ayer, 16:45 PM</p>
+                            <p class="text-xs text-outline font-medium">Hace 18 hrs</p>
+                        </div>
+                        <div class="col-span-1 flex justify-end">
+                            <asp:LinkButton ID="btnRevisar2" runat="server" CssClass="bg-surface-container-highest text-on-surface hover:bg-surface-variant px-4 py-2 rounded-md text-sm font-bold transition-colors" OnClick="btnRevisar_Click" CommandArgument="2">
+                                Abrir
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Normal) -->
+                    <div class="bg-surface-container-lowest outline outline-1 outline-outline-variant/20 rounded-lg p-5 grid grid-cols-12 gap-4 items-center hover:bg-surface-container-low hover:shadow-[0_8px_24px_rgba(0,30,64,0.06)] transition-all duration-200">
+                        <div class="col-span-1 pl-4">
+                            <span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wide">Media</span>
+                        </div>
+                        <div class="col-span-3 flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">MR</div>
+                            <div>
+                                <p class="text-sm font-bold text-on-surface leading-tight">Miguel Ríos</p>
+                                <p class="text-xs text-on-surface-variant">Dirección General</p>
+                            </div>
+                        </div>
+                        <div class="col-span-5 pr-4">
+                            <p class="text-sm font-bold text-primary-container truncate">Resolución Directoral 045-2023</p>
+                            <p class="text-xs text-on-surface-variant truncate font-mono mt-0.5">REF: DIR-RES-045</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-sm text-on-surface font-medium">24 Oct, 11:20 AM</p>
+                            <p class="text-xs text-outline font-medium">Hace 2 días</p>
+                        </div>
+                        <div class="col-span-1 flex justify-end">
+                            <asp:LinkButton ID="btnRevisar3" runat="server" CssClass="bg-surface-container-highest text-on-surface hover:bg-surface-variant px-4 py-2 rounded-md text-sm font-bold transition-colors" OnClick="btnRevisar_Click" CommandArgument="3">
+                                Abrir
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8 flex justify-center">
+                    <asp:LinkButton ID="btnCargarMas" runat="server" CssClass="text-primary-container font-bold text-sm hover:underline tracking-wide" OnClick="btnCargarMas_Click">
+                        Cargar más documentos (9 restantes)
+                    </asp:LinkButton>
+                </div>
+            </main>
+        </div>
+    </form>
+</body>
+</html>

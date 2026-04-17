@@ -11,40 +11,58 @@ namespace SDF_ZOFRATACNA.Formularios.Revision
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Validación de sesión desactivada temporalmente para pruebas
+            // if (Session["IdUsuario"] == null)
+            // {
+            //     Response.Redirect("~/frmLogin.aspx");
+            //     return;
+            // }
+
             if (!IsPostBack)
             {
-                // Aquí podrías cargar datos de la base de datos
-                CargarDatosExpediente();
+                CargarDatosUsuario();
             }
         }
 
-        private void CargarDatosExpediente()
+        private void CargarDatosUsuario()
         {
-            // Ejemplo de carga dinámica
-            lblExpedienteTitulo.Text = "Revisión de Expediente #EXP-2026-0012";
-            lblRemitente.Text = "Dra. Ana López (Gerencia)";
+            Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
+            Label lblRolUsuario = (Label)FindControl("lblRolUsuario");
+            Image imgPerfil = (Image)FindControl("imgPerfil");
+
+            if (Session["Nombres"] != null && lblNombreUsuario != null)
+            {
+                lblNombreUsuario.Text = Session["Nombres"].ToString();
+            }
+
+            if (Session["Rol"] != null && lblRolUsuario != null)
+            {
+                lblRolUsuario.Text = Session["Rol"].ToString();
+            }
+
+            if (Session["UrlFoto"] != null && !string.IsNullOrEmpty(Session["UrlFoto"].ToString()) && imgPerfil != null)
+            {
+                imgPerfil.ImageUrl = Session["UrlFoto"].ToString();
+            }
         }
 
         protected void btnAprobar_Click(object sender, EventArgs e)
         {
-            string comentario = txtObservaciones.Text.Trim();
-
-            // Lógica para guardar el Visto Bueno en BD
-            // Response.Write("<script>alert('Expediente aprobado correctamente');</script>");
+            string observaciones = ((TextBox)FindControl("txtObservaciones"))?.Text ?? "";
+            Response.Write($"<script>alert('Documento APROBADO. Observaciones: {observaciones} (simulación).'); window.location='frmMisDocumentosRevisor.aspx';</script>");
         }
 
         protected void btnObservar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtObservaciones.Text))
-            {
-                // Validación: Si observa, debe comentar por qué
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Debe indicar el motivo de la observación');", true);
-                return;
-            }
+            string observaciones = ((TextBox)FindControl("txtObservaciones"))?.Text ?? "";
+            Response.Write($"<script>alert('Documento OBSERVADO. Observaciones: {observaciones} (simulación).'); window.location='frmMisDocumentosRevisor.aspx';</script>");
+        }
 
-            // Lógica para devolver el documento
-            string motivo = txtObservaciones.Text;
-            // Ejecutar procedimiento almacenado...
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/frmLogin.aspx");
         }
     }
 }

@@ -31,7 +31,9 @@
         
         <nav class="bg-white dark:bg-slate-950 text-[#001E40] w-72 border-r shadow-lg flex flex-col py-8 z-50">
             <div class="px-6 mb-10 flex items-center gap-4">
-                <span class="material-symbols-outlined text-3xl">account_balance</span>
+                <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                </div>
                 <div>
                     <h1 class="text-lg font-black tracking-tighter uppercase">SDF ZOFRATACNA</h1>
                     <p class="text-xs text-slate-500">Sistema de Firmado Digital</p>
@@ -39,12 +41,34 @@
             </div>
             
             <div class="flex-1 flex flex-col gap-1">
-                <asp:HyperLink ID="lnkDashboard" runat="server" NavigateUrl="~/Dashboard.aspx" CssClass="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-100 transition-all">
+                <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-100 transition-all" href="~/Formularios/Revision/frmDashboardRevisor.aspx">
                     <span class="material-symbols-outlined">dashboard</span> Dashboard
-                </asp:HyperLink>
-                <asp:HyperLink ID="lnkDocumentos" runat="server" CssClass="flex items-center gap-3 px-6 py-4 text-[#001E40] bg-slate-100 font-bold border-r-4 border-[#001E40]">
+                </a>
+                <a runat="server" class="flex items-center gap-3 px-6 py-4 text-[#001E40] bg-slate-100 font-bold border-r-4 border-[#001E40]" href="~/Formularios/Revision/frmMisDocumentosRevisor.aspx">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span> Mis Documentos
-                </asp:HyperLink>
+                </a>
+                <a class="flex items-center gap-3 px-6 py-4 text-slate-300 cursor-not-allowed opacity-50">
+                    <span class="material-symbols-outlined">add_box</span> Registrar Nuevo
+                </a>
+                <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-100 transition-all" href="~/Formularios/Revision/frmArchivoRevisor.aspx">
+                    <span class="material-symbols-outlined">archive</span> Archivo
+                </a>
+                <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-100 transition-all" href="~/Formularios/Comunes/frmMiPerfil.aspx">
+                    <span class="material-symbols-outlined">settings</span> Ajustes
+                </a>
+                <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-100 transition-all" href="~/Formularios/Comunes/frmSoporte.aspx">
+                    <span class="material-symbols-outlined">support_agent</span> Soporte
+                </a>
+            </div>
+
+            <div class="mt-auto px-6 pt-8 border-t border-slate-100">
+                <div class="flex items-center gap-3">
+                    <asp:Image ID="imgPerfil" runat="server" CssClass="w-8 h-8 rounded-full object-cover" ImageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuAxf9SdqTbPjer2dg9PAupFQONTIQTkgyjwXhbDcnh7zHVP1hXl_iV_DCndzd_WU3RuW9x0ttQzSOCrk7fn1Qv50tKNNyUlRvNTCcWdtuSkp56R2tfwBhIEm6qDfiu_nfGGSwrBORym57Mnl3LsNkwt-xsXe9WifyIJcBOeSrou0z6dzAB9l_TskKlZ1TPBlLVxr-FG2tGng0DIyAFFdttJ_vQKfCzikEFL46SHO33iDbcMavvZSKm1YDbC6SBu1KPrMQ_nfLEs62k2" />
+                    <div class="flex flex-col">
+                        <asp:Label ID="lblNombreUsuario" runat="server" CssClass="text-sm font-bold text-[#001E40]" Text="Revisor"></asp:Label>
+                        <asp:Label ID="lblRolUsuario" runat="server" CssClass="text-xs text-slate-500" Text="Gerencia Legal"></asp:Label>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -55,7 +79,7 @@
                     <asp:Label ID="lblExpedienteTitulo" runat="server" Text="Revisión de Expediente #EXP-2023-0892" CssClass="font-medium text-slate-700"></asp:Label>
                 </div>
                 <div class="flex items-center gap-6">
-                    <asp:LinkButton ID="btnCerrarSesion" runat="server" CssClass="flex items-center gap-2 text-slate-500 hover:text-red-600 transition-colors">
+                    <asp:LinkButton ID="btnCerrarSesion" runat="server" CssClass="flex items-center gap-2 text-slate-500 hover:text-red-600 transition-colors" OnClick="btnCerrarSesion_Click">
                         <span class="material-symbols-outlined">logout</span> <span class="font-medium">Cerrar Sesión</span>
                     </asp:LinkButton>
                 </div>
@@ -64,14 +88,14 @@
             <main class="flex-1 flex overflow-hidden">
                 <div class="flex-1 bg-gray-200 overflow-y-auto p-8 flex justify-center">
                     <div class="w-full max-w-4xl bg-white shadow-2xl p-16 min-h-[1100px] border">
-                         <h2 class="text-2xl font-bold border-b-2 pb-4 mb-6 text-primary-container">RESOLUCIÓN DIRECTORAL</h2>
-                         <div class="text-justify leading-relaxed space-y-4">
-                             <p><strong>VISTO:</strong> El Informe N° 128-2023-OAJ-ZOFRATACNA...</p>
-                             <p><strong>CONSIDERANDO:</strong> Que, mediante Ley N° 27688...</p>
-                             <div class="bg-blue-50 p-4 border-l-4 border-blue-500 italic text-sm">
-                                 Nota: Revisar el artículo 2 antes de proceder.
-                             </div>
-                         </div>
+                        <h2 class="text-2xl font-bold border-b-2 pb-4 mb-6 text-primary-container">RESOLUCIÓN DIRECTORAL</h2>
+                        <div class="text-justify leading-relaxed space-y-4">
+                            <p><strong>VISTO:</strong> El Informe N° 128-2023-OAJ-ZOFRATACNA...</p>
+                            <p><strong>CONSIDERANDO:</strong> Que, mediante Ley N° 27688...</p>
+                            <div class="bg-blue-50 p-4 border-l-4 border-blue-500 italic text-sm">
+                                Nota: Revisar el artículo 2 antes de proceder.
+                            </div>
+                        </div>
                     </div>
                 </div>
 

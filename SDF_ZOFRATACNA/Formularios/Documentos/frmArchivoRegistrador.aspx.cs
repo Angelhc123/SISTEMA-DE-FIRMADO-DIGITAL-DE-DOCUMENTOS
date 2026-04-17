@@ -11,7 +11,24 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["strUsuario"] == null)
+            {
+                Response.Redirect("~/frmLogin.aspx");
+            }
+            if (!IsPostBack)
+            {
+                if (litUsuario != null)
+                {
+                    litUsuario.Text = Session["strUsuario"].ToString();
+                }
+            }
+        }
 
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/frmLogin.aspx");
         }
     }
 }
