@@ -1,17 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmReporteExhaustivo.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Administracion.frmReporteExhaustivo" %>
 <!DOCTYPE html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Reporte Exhaustivo - SDF ZOFRATACNA</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Reporte Exhaustivo - SDF ZOFRATACNA</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -88,275 +90,286 @@
     </style>
 </head>
 <body class="font-body antialiased flex bg-background min-h-screen">
-<!-- SideNavBar -->
-<nav class="fixed left-0 top-0 h-screen w-72 border-r border-transparent bg-slate-100 dark:bg-slate-900 hidden md:flex flex-col p-4 z-40">
-<div class="mb-8 flex items-center gap-4 px-2 mt-4">
-<div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline font-bold">
-                Z
+    <form id="form1" runat="server" class="flex w-full min-h-screen">
+        <nav class="fixed left-0 top-0 h-screen w-72 border-r border-transparent bg-slate-100 flex flex-col p-4 z-40">
+            <div class="flex items-center gap-4 px-4 py-6 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-[#001e40] font-headline tracking-tight">SDF ZOFRATACNA</h1>
+                    <p class="text-xs text-slate-500 font-label">Arquitectura de Confianza</p>
+                </div>
             </div>
-<div>
-<h2 class="text-xl font-bold text-[#001e40] dark:text-white font-headline tracking-tight">SDF ZOFRATACNA</h2>
-<p class="text-xs text-on-surface-variant font-label">Arquitectura de Confianza</p>
-</div>
-</div>
-<ul class="flex flex-col gap-1 flex-1">
-<!-- Active Tab: Dashboard (Closest intent for Reports) -->
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-[#001e40] dark:text-white font-bold bg-white dark:bg-slate-800 rounded-lg shadow-sm font-public-sans tracking-tight scale-95 transition-transform" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span>Dashboard</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="#">
-<span class="material-symbols-outlined">description</span>
-<span>Mis Documentos</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="#">
-<span class="material-symbols-outlined">add_box</span>
-<span>Registrar Nuevo</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="#">
-<span class="material-symbols-outlined">archive</span>
-<span>Archivo</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span>Ajustes</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="#">
-<span class="material-symbols-outlined">contact_support</span>
-<span>Soporte</span>
-</a>
-</li>
-</ul>
-</nav>
-<!-- TopNavBar -->
-<header class="fixed top-0 right-0 w-full md:w-[calc(100%-18rem)] h-16 z-50 flex items-center justify-between px-8 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm dark:shadow-none font-inter text-sm transition-all">
-<div class="flex-1 flex items-center">
-<!-- Search hidden for structural alignment -->
-</div>
-<div class="flex items-center gap-6 text-[#001e40] dark:text-white">
-<button class="text-slate-600 dark:text-slate-400 hover:text-[#003366] dark:hover:text-blue-300 transition-all opacity-90 hover:opacity-100 flex items-center justify-center">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="text-slate-600 dark:text-slate-400 hover:text-[#003366] dark:hover:text-blue-300 transition-all opacity-90 hover:opacity-100 flex items-center justify-center">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
-<button class="font-semibold text-[#003366] hover:text-[#001e40] transition-colors flex items-center gap-2">
-<span>Cerrar Sesión</span>
-<img alt="Usuario Session" class="w-8 h-8 rounded-full border border-outline-variant/30" data-alt="close up portrait of a professional man in a crisp white shirt against a neutral grey background studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvdMtdE3DO-EPwhOJYSdSTjtVE_cP871X6_fAoICkHD-zt9FGPssRY7Z2iG03AbL1XbKKkSCiwhYTv634oCfNQpPA6WqYshQyypDlIjVQEjFsDn3GNMEyIylgC_g3YMDJNDMwSJqKkRqI1SdZZLEssg6dttJU7rt0lF0gEPhT-4qiQ1-7rMBIzFU_FGbSI8OEr96EaTXYEVowjXfzc0YkyhOMzk3D39HUnIzBI4JNNjN_r8lGFb3MEHYkDEV2bW8RzQVAgKuUL9MSz"/>
-</button>
-</div>
-</header>
-<!-- Main Content Canvas -->
-<main class="w-full md:ml-72 mt-16 p-6 md:p-10 max-w-[1200px] mx-auto flex-1 flex flex-col gap-8">
-<!-- Page Header -->
-<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-<div>
-<h1 class="font-headline font-semibold text-3xl text-primary tracking-tight">Reporte Exhaustivo</h1>
-<p class="font-body text-on-surface-variant mt-2 text-base max-w-2xl leading-relaxed">
-                    Análisis de eficiencia del proceso de firmado digital. Gestione filtros avanzados para evaluar tiempos de respuesta y volumen documental.
-                </p>
-</div>
-<div class="flex gap-3">
-<button class="px-5 py-2.5 bg-secondary-container text-on-secondary-container font-label font-medium rounded-lg hover:bg-secondary-fixed transition-colors duration-200 flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">table_view</span>
-                    Exportar Excel
-                </button>
-<button class="px-5 py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
-                    Generar PDF
-                </button>
-</div>
-</header>
-<!-- Filters Section (Bento Grid Style) -->
-<section class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15">
-<div class="flex items-center gap-2 mb-6 border-b border-outline-variant/15 pb-4">
-<span class="material-symbols-outlined text-primary">tune</span>
-<h3 class="font-headline font-semibold text-lg text-primary">Filtros Avanzados</h3>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Filter Group 1 -->
-<div class="flex flex-col gap-2">
-<label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Rango de Fechas</label>
-<div class="relative">
-<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
-<option>Últimos 30 días</option>
-<option>Este mes</option>
-<option>Trimestre actual</option>
-<option>Personalizado...</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
-</div>
-</div>
-<!-- Filter Group 2 -->
-<div class="flex flex-col gap-2">
-<label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Tipo de Documento</label>
-<div class="relative">
-<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
-<option>Todos los tipos</option>
-<option>Resoluciones</option>
-<option>Contratos Comerciales</option>
-<option>Memorándums</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
-</div>
-</div>
-<!-- Filter Group 3 -->
-<div class="flex flex-col gap-2">
-<label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Estado del Flujo</label>
-<div class="relative">
-<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
-<option>Completados (Firmados)</option>
-<option>Pendientes de Firma</option>
-<option>Observados</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
-</div>
-</div>
-<!-- Filter Group 4 -->
-<div class="flex flex-col gap-2">
-<label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Área / Departamento</label>
-<div class="relative">
-<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
-<option>Todas las áreas</option>
-<option>Gerencia General</option>
-<option>Asesoría Legal</option>
-<option>Operaciones</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
-</div>
-</div>
-</div>
-</section>
-<!-- KPI Metrics Grid -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- KPI 1 -->
-<div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
-<div class="flex items-center justify-between mb-4">
-<h4 class="font-label text-sm text-on-surface-variant font-medium">Tiempo Promedio de Firma</h4>
-<span class="material-symbols-outlined text-secondary p-2 bg-surface-container-low rounded-full">timer</span>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline text-4xl font-bold text-primary">2.4</span>
-<span class="font-body text-sm text-on-surface-variant">horas</span>
-</div>
-<p class="font-body text-xs text-[#2e7d32] mt-3 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">trending_down</span>
-                    15% más rápido que el mes anterior
-                </p>
-</div>
-<!-- KPI 2 -->
-<div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
-<div class="flex items-center justify-between mb-4">
-<h4 class="font-label text-sm text-on-surface-variant font-medium">Documentos Procesados</h4>
-<span class="material-symbols-outlined text-secondary p-2 bg-surface-container-low rounded-full">task_alt</span>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline text-4xl font-bold text-primary">1,482</span>
-</div>
-<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-4 overflow-hidden">
-<div class="bg-gradient-to-r from-primary-fixed-dim to-primary h-full rounded-full" style="width: 82%;"></div>
-</div>
-<p class="font-body text-xs text-on-surface-variant mt-2 text-right">82% completados</p>
-</div>
-<!-- KPI 3 -->
-<div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
-<div class="flex items-center justify-between mb-4">
-<h4 class="font-label text-sm text-on-surface-variant font-medium">Cuello de Botella Detectado</h4>
-<span class="material-symbols-outlined text-error p-2 bg-error-container text-on-error-container rounded-full">warning</span>
-</div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline text-xl font-bold text-on-surface">Asesoría Legal</span>
-</div>
-<p class="font-body text-sm text-on-surface-variant mt-1 leading-relaxed">
-                    Promedio de retención: <strong class="text-tertiary">4.2 horas</strong> por documento.
-                </p>
-</div>
-</section>
-<!-- Charts Section Asymmetric Layout -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-<!-- Main Chart (Spans 2 columns) -->
-<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15">
-<h3 class="font-headline font-semibold text-lg text-primary mb-6">Tendencia de Tiempos de Respuesta</h3>
-<!-- Abstract Representation of a Line Chart -->
-<div class="h-64 w-full bg-surface-container-low rounded-lg relative overflow-hidden flex items-end px-4 pb-8 pt-4 gap-2">
-<!-- Y Axis Labels -->
-<div class="absolute left-2 top-4 bottom-8 flex flex-col justify-between text-xs text-outline font-label">
-<span>4h</span>
-<span>3h</span>
-<span>2h</span>
-<span>1h</span>
-</div>
-<!-- Chart Bars/Lines Abstract -->
-<div class="ml-6 w-full h-full flex items-end justify-between gap-1">
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 40%;"></div>
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 55%;"></div>
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 35%;"></div>
-<div class="w-1/12 bg-primary rounded-t-sm shadow-[0_0_10px_rgba(0,30,64,0.2)]" style="height: 80%;"></div>
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 60%;"></div>
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 45%;"></div>
-<div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 30%;"></div>
-<div class="w-1/12 bg-secondary-fixed-dim rounded-t-sm" style="height: 25%;"></div>
-</div>
-<!-- X Axis Labels -->
-<div class="absolute bottom-2 left-10 right-4 flex justify-between text-xs text-outline font-label">
-<span>Lun</span>
-<span>Mar</span>
-<span>Mié</span>
-<span>Jue</span>
-<span>Vie</span>
-<span>Sáb</span>
-<span>Dom</span>
-</div>
-</div>
-</div>
-<!-- Secondary Chart (1 column) -->
-<div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col">
-<h3 class="font-headline font-semibold text-lg text-primary mb-6">Distribución por Tipo</h3>
-<div class="flex-1 flex flex-col justify-center items-center gap-6">
-<!-- Abstract Doughnut Chart -->
-<div class="relative w-40 h-40 rounded-full bg-surface-container flex items-center justify-center overflow-hidden" style="background: conic-gradient(#001e40 0% 55%, #a7c8ff 55% 80%, #e0e3e5 80% 100%);">
-<div class="w-24 h-24 bg-surface-container-lowest rounded-full flex items-center justify-center shadow-inner">
-<span class="font-headline font-bold text-xl text-primary">100%</span>
-</div>
-</div>
-<!-- Legend -->
-<div class="w-full space-y-3 font-body text-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-primary"></span>
-<span class="text-on-surface-variant">Resoluciones</span>
-</div>
-<span class="font-medium text-on-surface">55%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-primary-fixed-dim"></span>
-<span class="text-on-surface-variant">Contratos</span>
-</div>
-<span class="font-medium text-on-surface">25%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-surface-variant"></span>
-<span class="text-on-surface-variant">Otros</span>
-</div>
-<span class="font-medium text-on-surface">20%</span>
-</div>
-</div>
-</div>
-</div>
-</section>
+            
+            <ul class="flex flex-col gap-1 flex-1">
+                <li>
+                    <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="~/Formularios/Administracion/frmDashboardAdmin.aspx" runat="server">
+                        <span class="material-symbols-outlined font-light">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- Active Tab -->
+                    <a class="flex items-center gap-3 px-4 py-3 text-[#001e40] dark:text-white font-bold bg-white dark:bg-slate-800 rounded-lg shadow-sm font-public-sans tracking-tight scale-95 transition-transform" href="~/Formularios/Administracion/frmReporteExhaustivo.aspx" runat="server">
+                        <span class="material-symbols-outlined font-light">analytics</span>
+                        <span>Reportes y Estadísticas</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="~/Formularios/Administracion/frmConfiguracionAdmin.aspx" runat="server">
+                        <span class="material-symbols-outlined font-light">settings_applications</span>
+                        <span>Configuración de Sistema</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="~/Formularios/Administracion/frmGestionUsuarios.aspx" runat="server">
+                        <span class="material-symbols-outlined font-light">manage_accounts</span>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-[#003366] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-200 font-public-sans font-semibold tracking-tight rounded-lg" href="~/Formularios/Comunes/frmSoporte.aspx" runat="server">
+                        <span class="material-symbols-outlined font-light">contact_support</span>
+                        <span>Soporte</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <header class="fixed top-0 right-0 w-[calc(100%-18rem)] h-16 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/50 shadow-sm flex items-center justify-between px-8 font-inter text-sm">
+            <div class="flex-1 flex items-center">
+                <!-- Search hidden for structural alignment -->
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2 text-slate-600">
+                    <button type="button" class="p-2 rounded-full hover:text-[#003366] hover:bg-surface-container transition-all opacity-90 hover:opacity-100">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <button type="button" class="p-2 rounded-full hover:text-[#003366] hover:bg-surface-container transition-all opacity-90 hover:opacity-100">
+                        <span class="material-symbols-outlined">help_outline</span>
+                    </button>
+                </div>
+                
+                <div class="h-8 w-px bg-outline-variant/30"></div>
+                
+                <div class="flex items-center gap-3">
+                    <img alt="Usuario Session" class="w-8 h-8 rounded-full border border-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvdMtdE3DO-EPwhOJYSdSTjtVE_cP871X6_fAoICkHD-zt9FGPssRY7Z2iG03AbL1XbKKkSCiwhYTv634oCfNQpPA6WqYshQyypDlIjVQEjFsDn3GNMEyIylgC_g3YMDJNDMwSJqKkRqI1SdZZLEssg6dttJU7rt0lF0gEPhT-4qiQ1-7rMBIzFU_FGbSI8OEr96EaTXYEVowjXfzc0YkyhOMzk3D39HUnIzBI4JNNjN_r8lGFb3MEHYkDEV2bW8RzQVAgKuUL9MSz" />
+                    <div class="hidden sm:flex flex-col items-end mr-2">
+                        <span class="text-sm font-semibold text-[#001e40] dark:text-white"><asp:Literal ID="litUsuario" runat="server"></asp:Literal></span>
+                        <span class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Administrador</span>
+                    </div>
+                    <a href="~/Formularios/Comunes/frmMiPerfil.aspx" runat="server" class="text-slate-500 hover:text-[#001e40] dark:hover:text-white transition-all font-medium text-sm flex items-center gap-1 mx-2" title="Mi Perfil">
+                        <span class="material-symbols-outlined text-lg">person</span>
+                    </a>
+                    <asp:LinkButton ID="btnLogout" runat="server" CssClass="text-slate-500 hover:text-red-500 transition-all font-medium text-sm flex items-center gap-1" OnClick="btnLogout_Click" title="Cerrar Sesión">
+                        <span class="material-symbols-outlined text-lg">logout</span>
+                    </asp:LinkButton>
+                </div>
+            </div>
+        </header>
+
+        <main class="ml-72 mt-16 p-10 bg-surface-container-low min-h-screen w-full">
+            <!-- Page Header -->
+            <header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="font-headline font-semibold text-3xl text-primary tracking-tight">Reporte Exhaustivo</h1>
+                    <p class="font-body text-on-surface-variant mt-2 text-base max-w-2xl leading-relaxed">
+                        Análisis de eficiencia del proceso de firmado digital. Gestione filtros avanzados para evaluar tiempos de respuesta y volumen documental.
+                    </p>
+                </div>
+                
+                <div class="flex gap-3">
+                    <button class="px-5 py-2.5 bg-secondary-container text-on-secondary-container font-label font-medium rounded-lg hover:bg-secondary-fixed transition-colors duration-200 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">table_view</span>
+                        Exportar Excel
+                    </button>
+                    <button class="px-5 py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                        Generar PDF
+                    </button>
+                </div>
+            </header>
+            <!-- Filters Section (Bento Grid Style) -->
+            <section class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15">
+                <div class="flex items-center gap-2 mb-6 border-b border-outline-variant/15 pb-4">
+                    <span class="material-symbols-outlined text-primary">tune</span>
+                    <h3 class="font-headline font-semibold text-lg text-primary">Filtros Avanzados</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Filter Group 1 -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Rango de Fechas</label>
+                        <div class="relative">
+                            <select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
+                                <option>Últimos 30 días</option>
+                                <option>Este mes</option>
+                                <option>Trimestre actual</option>
+                                <option>Personalizado...</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- Filter Group 2 -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Tipo de Documento</label>
+                        <div class="relative">
+                            <select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
+                                <option>Todos los tipos</option>
+                                <option>Resoluciones</option>
+                                <option>Contratos Comerciales</option>
+                                <option>Memorándums</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- Filter Group 3 -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Estado del Flujo</label>
+                        <div class="relative">
+                            <select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
+                                <option>Completados (Firmados)</option>
+                                <option>Pendientes de Firma</option>
+                                <option>Observados</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- Filter Group 4 -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-label text-xs uppercase tracking-wider text-outline font-medium">Área / Departamento</label>
+                        <div class="relative">
+                            <select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm text-on-surface focus:ring-2 focus:ring-primary/10 focus:border-primary/30 transition-shadow appearance-none">
+                                <option>Todas las áreas</option>
+                                <option>Gerencia General</option>
+                                <option>Asesoría Legal</option>
+                                <option>Operaciones</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- KPI Metrics Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- KPI 1 -->
+                <div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-label text-sm text-on-surface-variant font-medium">Tiempo Promedio de Firma</h4>
+                        <span class="material-symbols-outlined text-secondary p-2 bg-surface-container-low rounded-full">timer</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="font-headline text-4xl font-bold text-primary">2.4</span>
+                        <span class="font-body text-sm text-on-surface-variant">horas</span>
+                    </div>
+                    <p class="font-body text-xs text-[#2e7d32] mt-3 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">trending_down</span>
+                        15% más rápido que el mes anterior
+                    </p>
+                </div>
+                <!-- KPI 2 -->
+                <div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-label text-sm text-on-surface-variant font-medium">Documentos Procesados</h4>
+                        <span class="material-symbols-outlined text-secondary p-2 bg-surface-container-low rounded-full">task_alt</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="font-headline text-4xl font-bold text-primary">1,482</span>
+                    </div>
+                    <div class="w-full bg-surface-container-high h-1.5 rounded-full mt-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-primary-fixed-dim to-primary h-full rounded-full" style="width: 82%;"></div>
+                    </div>
+                    <p class="font-body text-xs text-on-surface-variant mt-2 text-right">82% completados</p>
+                </div>
+                <!-- KPI 3 -->
+                <div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-label text-sm text-on-surface-variant font-medium">Cuello de Botella Detectado</h4>
+                        <span class="material-symbols-outlined text-error p-2 bg-error-container text-on-error-container rounded-full">warning</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span class="font-headline text-xl font-bold text-on-surface">Asesoría Legal</span>
+                    </div>
+                    <p class="font-body text-sm text-on-surface-variant mt-1 leading-relaxed">
+                        Promedio de retención: <strong class="text-tertiary">4.2 horas</strong> por documento.
+                    </p>
+                </div>
+            </section>
+            <!-- Charts Section Asymmetric Layout -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Chart (Spans 2 columns) -->
+                <div class="lg:col-span-2 bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15">
+                    <h3 class="font-headline font-semibold text-lg text-primary mb-6">Tendencia de Tiempos de Respuesta</h3>
+                    <!-- Abstract Representation of a Line Chart -->
+                    <div class="h-64 w-full bg-surface-container-low rounded-lg relative overflow-hidden flex items-end px-4 pb-8 pt-4 gap-2">
+                        <!-- Y Axis Labels -->
+                        <div class="absolute left-2 top-4 bottom-8 flex flex-col justify-between text-xs text-outline font-label">
+                            <span>4h</span>
+                            <span>3h</span>
+                            <span>2h</span>
+                            <span>1h</span>
+                        </div>
+                        <!-- Chart Bars/Lines Abstract -->
+                        <div class="ml-6 w-full h-full flex items-end justify-between gap-1">
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 40%;"></div>
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 55%;"></div>
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 35%;"></div>
+                            <div class="w-1/12 bg-primary rounded-t-sm shadow-[0_0_10px_rgba(0,30,64,0.2)]" style="height: 80%;"></div>
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 60%;"></div>
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 45%;"></div>
+                            <div class="w-1/12 bg-primary-fixed-dim rounded-t-sm" style="height: 30%;"></div>
+                            <div class="w-1/12 bg-secondary-fixed-dim rounded-t-sm" style="height: 25%;"></div>
+                        </div>
+                        <!-- X Axis Labels -->
+                        <div class="absolute bottom-2 left-10 right-4 flex justify-between text-xs text-outline font-label">
+                            <span>Lun</span>
+                            <span>Mar</span>
+                            <span>Mié</span>
+                            <span>Jue</span>
+                            <span>Vie</span>
+                            <span>Sáb</span>
+                            <span>Dom</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Secondary Chart (1 column) -->
+                <div class="bg-surface-container-lowest rounded-xl environmental-shadow p-6 border border-outline-variant/15 flex flex-col">
+                    <h3 class="font-headline font-semibold text-lg text-primary mb-6">Distribución por Tipo</h3>
+                    <div class="flex-1 flex flex-col justify-center items-center gap-6">
+                        <!-- Abstract Doughnut Chart -->
+                        <div class="relative w-40 h-40 rounded-full bg-surface-container flex items-center justify-center overflow-hidden" style="background: conic-gradient(#001e40 0% 55%, #a7c8ff 55% 80%, #e0e3e5 80% 100%);">
+                            <div class="w-24 h-24 bg-surface-container-lowest rounded-full flex items-center justify-center shadow-inner">
+                                <span class="font-headline font-bold text-xl text-primary">100%</span>
+                            </div>
+                        </div>
+                        <!-- Legend -->
+                        <div class="w-full space-y-3 font-body text-sm">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-primary"></span>
+                                    <span class="text-on-surface-variant">Resoluciones</span>
+                                </div>
+                                <span class="font-medium text-on-surface">55%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-primary-fixed-dim"></span>
+                                    <span class="text-on-surface-variant">Contratos</span>
+                                </div>
+                                <span class="font-medium text-on-surface">25%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-surface-variant"></span>
+                                    <span class="text-on-surface-variant">Otros</span>
+                                </div>
+                                <span class="font-medium text-on-surface">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 </main>
+    </form>
 </body></html>

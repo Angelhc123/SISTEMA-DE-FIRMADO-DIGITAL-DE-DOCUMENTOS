@@ -11,7 +11,27 @@ namespace SDF_ZOFRATACNA.Formularios.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Validación para evitar caídas en el layout/mockup
+                if (Session["strUsuario"] == null)
+                {
+                    Session["strUsuario"] = "Administrador Zofra";
+                }
 
+                // Asignar el nombre del usuario a la barra superior
+                litUsuario.Text = Session["strUsuario"].ToString();
+            }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Limpiar la tupla de sesión
+            Session.Clear();
+            Session.Abandon();
+
+            // Retornar al Login seguro
+            Response.Redirect("~/frmLogin.aspx");
         }
     }
 }

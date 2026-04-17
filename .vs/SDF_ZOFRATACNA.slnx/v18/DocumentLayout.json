@@ -3,11 +3,47 @@
   "WorkspaceRootPath": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmconfiguracionadmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmconfiguracionadmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmreporteexhaustivo.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmreporteexhaustivo.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmgestionusuarios.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmgestionusuarios.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmgestionusuarios.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmgestionusuarios.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\revision\\frminterfazrevisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\revision\\frminterfazrevisor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\revision\\frminterfazrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmconfiguracionadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmconfiguracionadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmdashboardadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmdashboardadmin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\administracion\\frmdashboardadmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\administracion\\frmdashboardadmin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\formularios\\revision\\frminterfazrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\revision\\frminterfazrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,11 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "frmInterfazRevisor.aspx",
               "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx",
@@ -37,12 +73,129 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "frmReporteExhaustivo.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmReporteExhaustivo.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmReporteExhaustivo.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmReporteExhaustivo.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmReporteExhaustivo.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-17T16:37:44.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmGestionUsuarios.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-17T16:37:39.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmConfiguracionAdmin.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAtwA8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:36:17.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmDashboardAdmin.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:31:54.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmLogin.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-17T15:52:22.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmGestionUsuarios.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmGestionUsuarios.aspx.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:41:02.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmDashboardAdmin.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmDashboardAdmin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-17T16:30:12.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmConfiguracionAdmin.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Administracion\\frmConfiguracionAdmin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-17T15:59:33.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "frmLogin.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T15:53:24.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "frmInterfazRevisor.aspx.cs",
               "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx.cs",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx.cs",
               "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx.cs",
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Revision\\frmInterfazRevisor.aspx.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBMAAABPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-17T15:38:24.758Z",
               "EditorCaption": ""
