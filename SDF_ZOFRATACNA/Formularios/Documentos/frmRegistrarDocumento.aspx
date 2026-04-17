@@ -1,0 +1,290 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmRegistrarDocumento.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Documentos.frmRegistrarDocumento" %>
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDF ZOFRATACNA - Registrar Nuevo Documento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#44474e",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "surface": "#faf9fc",
+                        "secondary": "#565f6f",
+                        "tertiary-container": "#381300",
+                        "primary-container": "#001e40",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#0e0200",
+                        "secondary-fixed-dim": "#bec7d9",
+                        "surface-tint": "#485f84",
+                        "on-tertiary-fixed-variant": "#6a3a20",
+                        "on-error": "#ffffff",
+                        "primary": "#000511",
+                        "surface-container": "#efedf1",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#3f4756",
+                        "on-primary-fixed": "#001b3b",
+                        "surface-container-high": "#e9e7eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#b47858",
+                        "inverse-surface": "#2f3033",
+                        "surface-bright": "#faf9fc",
+                        "secondary-container": "#d7e0f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbd9dd",
+                        "inverse-primary": "#afc8f2",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "tertiary-fixed-dim": "#fdb793",
+                        "surface-container-highest": "#e3e2e5",
+                        "outline": "#74777f",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#6f87ae",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-fixed": "#131c2a",
+                        "surface-container-low": "#f4f3f6",
+                        "on-secondary-container": "#5a6373",
+                        "inverse-on-surface": "#f2f0f4",
+                        "on-primary-fixed-variant": "#2f476b",
+                        "background": "#faf9fc",
+                        "surface-variant": "#e3e2e5",
+                        "primary-fixed-dim": "#afc8f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Public Sans"],
+                        "label": ["Public Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="h-screen w-72 fixed left-0 top-0 border-r-0 bg-white shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50">
+<div class="flex flex-col h-full py-8">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="assured_workload" data-weight="fill" style="font-variation-settings: 'FILL' 1;">assured_workload</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-tighter text-[#001E40] uppercase">SDF ZOFRATACNA</h1>
+<p class="text-xs text-on-surface-variant">Sistema de Firmado Digital</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1 font-public-sans tracking-tight text-sm font-medium">
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                            Dashboard
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                            Mis Documentos
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-[#001E40] bg-slate-100 font-bold border-r-4 border-[#001E40] Active: translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="add_box" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_box</span>
+                            Registrar Nuevo
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+                            Archivo
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                            Ajustes
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                            Soporte
+                        </a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-72 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-72 h-16 z-40 bg-white/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center justify-between px-10 h-full w-full">
+<div class="flex-1">
+<!-- Nav links hidden per spec, focusing on layout -->
+<span class="font-public-sans text-sm tracking-wide text-[#001E40] font-bold border-b-2 border-[#001E40] pb-1">Registrar Nuevo Documento</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-medium text-slate-400 hover:text-[#001E40] transition-colors">Cerrar Sesión</button>
+<img alt="Avatar de Usuario" class="w-8 h-8 rounded-full ring-2 ring-surface-container-highest" data-alt="Professional headshot of a person wearing a business shirt, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhMt8J6vmqBx5-YEeZgXg-BlcVR8T8fvIiHl1cDOIFakS28St-WeD78vSrdH7dN6SKQa0Lk_snp4gMLUP68nKFmIK-aKk9KfJ4BQtpC9AJuCRhfPLwB6Xr6q-5dIkHfL8ltUp7ZsE4pQGvjpJyXhAwwhYZQk4oEGQmQeCHP8Y-RIC0i2b3iijzv5G7uHDH8S7vsdZnObmlZJe47hKTFo2qa4rUCPirqAo04w-JY3nqGYSPnUWarijsGrUbExfwW81jtHIkoR1COOtS"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 pt-24 px-10 pb-12 bg-surface">
+<div class="max-w-4xl mx-auto space-y-8">
+<div class="mb-8">
+<h2 class="text-3xl font-bold tracking-tight text-primary-container font-headline">Nuevo Documento</h2>
+<p class="text-on-surface-variant mt-2 font-body text-base">Complete los metadatos y configure el flujo de firmas para el nuevo archivo.</p>
+</div>
+<form class="space-y-8">
+<!-- Sección Metadatos -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_24px_rgba(0,30,64,0.04)] ring-1 ring-outline-variant/20">
+<h3 class="text-lg font-bold text-primary-container mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-surface-tint" data-icon="info">info</span>
+                            Información General
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Asunto del Documento</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body" placeholder="Ej: Resolución Jefatural N° 045-2023" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Tipo de Documento</label>
+<select class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body">
+<option>Resolución</option>
+<option>Memorándum</option>
+<option>Informe Técnico</option>
+<option>Oficio</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Área Responsable</label>
+<select class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body">
+<option>Gerencia General</option>
+<option>Asesoría Legal</option>
+<option>Administración</option>
+<option>Operaciones</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Fecha de Emisión</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body" type="date"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Código de Referencia</label>
+<input class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body" placeholder="REF-2023-XYZ" type="text"/>
+</div>
+</div>
+</div>
+<!-- Dropzone -->
+<div class="bg-surface-container-low p-8 rounded-lg border-2 border-dashed border-outline-variant hover:border-primary-container transition-colors duration-300 text-center cursor-pointer">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-2xl text-primary-container" data-icon="upload_file">upload_file</span>
+</div>
+<h4 class="text-base font-bold text-on-surface mb-2 font-headline">Cargar Documento PDF</h4>
+<p class="text-sm text-on-surface-variant mb-4 font-body">Arrastre y suelte el archivo aquí, o haga clic para examinar.</p>
+<span class="inline-flex items-center justify-center px-4 py-2 bg-surface-container-highest text-on-surface rounded-md text-sm font-medium hover:bg-surface-variant transition-colors">
+                            Seleccionar Archivo
+                        </span>
+</div>
+<!-- Flujo de Firmas -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_24px_rgba(0,30,64,0.04)] ring-1 ring-outline-variant/20">
+<h3 class="text-lg font-bold text-primary-container mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-surface-tint" data-icon="route">route</span>
+                            Configuración de Flujo
+                        </h3>
+<div class="space-y-6">
+<!-- Revisores -->
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3 font-label">Revisores (Opcional)</label>
+<div class="flex items-center gap-2 mb-3">
+<select class="flex-1 bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-2 text-sm text-on-surface font-body">
+<option>Seleccionar Revisor...</option>
+<option>Juan Pérez - Legal</option>
+<option>María Gómez - Finanzas</option>
+</select>
+<button class="w-10 h-10 bg-surface-container-highest text-primary-container rounded flex items-center justify-center hover:bg-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-surface-container text-on-surface text-xs font-medium rounded-sm border border-outline-variant/30">
+                                        Juan Pérez - Legal
+                                        <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error" data-icon="close">close</span>
+</span>
+</div>
+</div>
+<hr class="border-t border-outline-variant/20 my-6"/>
+<!-- Secuencia Firmantes -->
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3 font-label">Secuencia de Firmantes</label>
+<div class="space-y-3 mb-4">
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-md border border-outline-variant/20">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-sm font-bold shrink-0">1</div>
+<div class="flex-1">
+<p class="font-medium text-on-surface text-sm">Carlos Ruiz</p>
+<p class="text-xs text-on-surface-variant">Gerente de Operaciones</p>
+</div>
+<span class="material-symbols-outlined text-outline hover:text-error cursor-pointer" data-icon="delete">delete</span>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-md border border-outline-variant/20">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-sm font-bold shrink-0">2</div>
+<div class="flex-1">
+<p class="font-medium text-on-surface text-sm">Ana Silva</p>
+<p class="text-xs text-on-surface-variant">Gerente General</p>
+</div>
+<span class="material-symbols-outlined text-outline hover:text-error cursor-pointer" data-icon="delete">delete</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<select class="flex-1 bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-2 text-sm text-on-surface font-body">
+<option>Añadir Firmante...</option>
+<option>Carlos Ruiz - Operaciones</option>
+<option>Ana Silva - Gerencia General</option>
+</select>
+<button class="px-4 py-2 bg-surface-container-highest text-primary-container font-medium text-sm rounded hover:bg-surface-variant transition-colors" type="button">
+                                        Añadir
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Acciones -->
+<div class="flex items-center justify-end gap-4 pt-6 border-t border-outline-variant/20">
+<button class="px-6 py-3 text-primary-container font-medium text-sm rounded-md hover:bg-surface-container-highest transition-colors" type="button">
+                            Cancelar
+                        </button>
+<button class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm rounded-md shadow-md hover:shadow-lg transition-all flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+                            Registrar y Enviar
+                        </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDF ZOFRATACNA - Mi Perfil</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#44474e",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "surface": "#faf9fc",
+                        "secondary": "#565f6f",
+                        "tertiary-container": "#381300",
+                        "primary-container": "#001e40",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#0e0200",
+                        "secondary-fixed-dim": "#bec7d9",
+                        "surface-tint": "#485f84",
+                        "on-tertiary-fixed-variant": "#6a3a20",
+                        "on-error": "#ffffff",
+                        "primary": "#000511",
+                        "surface-container": "#efedf1",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#3f4756",
+                        "on-primary-fixed": "#001b3b",
+                        "surface-container-high": "#e9e7eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#b47858",
+                        "inverse-surface": "#2f3033",
+                        "surface-bright": "#faf9fc",
+                        "secondary-container": "#d7e0f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbd9dd",
+                        "inverse-primary": "#afc8f2",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "tertiary-fixed-dim": "#fdb793",
+                        "surface-container-highest": "#e3e2e5",
+                        "outline": "#74777f",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#6f87ae",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-fixed": "#131c2a",
+                        "surface-container-low": "#f4f3f6",
+                        "on-secondary-container": "#5a6373",
+                        "inverse-on-surface": "#f2f0f4",
+                        "on-primary-fixed-variant": "#2f476b",
+                        "background": "#faf9fc",
+                        "surface-variant": "#e3e2e5",
+                        "primary-fixed-dim": "#afc8f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Public Sans"],
+                        "body": ["Public Sans"],
+                        "label": ["Public Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="h-screen w-72 fixed left-0 top-0 border-r-0 bg-white dark:bg-slate-950 bg-slate-50 dark:bg-slate-900/50 shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50 flex flex-col h-full py-8">
+<div class="px-6 mb-8">
+<h1 class="text-lg font-black tracking-tighter text-[#001E40] dark:text-white uppercase">SDF ZOFRATACNA</h1>
+<p class="text-sm text-slate-500">Sistema de Firmado Digital</p>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Mis Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Registrar Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Archivo</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] Active: translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Ajustes</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-public-sans tracking-tight text-sm font-medium">Soporte</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-72 flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-72 h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl bg-slate-50 dark:bg-slate-900 shadow-sm dark:shadow-none flex items-center justify-between px-10 w-full transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-6">
+<!-- Breadcrumb/Title Area if needed -->
+<span class="text-[#001E40] dark:text-[#d5e3ff] font-public-sans text-sm tracking-wide font-bold border-b-2 border-[#001E40] pb-1">Ajustes de Perfil</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-[#001E40] transition-colors hover:text-[#001E40] dark:hover:text-white font-public-sans text-sm tracking-wide">
+                    Cerrar Sesión
+                </button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 mt-16 p-10 max-w-7xl mx-auto w-full">
+<div class="mb-12">
+<h2 class="text-[32px] leading-tight font-bold tracking-[-0.02em] text-on-surface mb-2">Configuración de Perfil</h2>
+<p class="text-on-surface-variant text-base">Gestione su información de contacto, credenciales y firmas digitales.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Columna Izquierda: Perfil Visual y Firma -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Tarjeta de Perfil -->
+<div class="bg-surface-container-lowest rounded-lg p-6 relative overflow-hidden ring-1 ring-outline-variant/20 shadow-[0_8px_24px_rgba(0,30,64,0.06)]">
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-6">
+<img alt="Avatar del usuario" class="w-28 h-28 rounded-full object-cover shadow-sm" data-alt="professional corporate headshot placeholder profile image in a circular crop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVKJxpGvKZZn3lzg0Va6mHh-_UZm7njpHKBfpTeluBAyK8tkg_VF0ZF-R1kEe0mOvLGKRZ0MlA829mTqNJuryaKD2JlxIJcqG340-q4TLNZfhqAabVMOUsBFsdZA6nZKW0H1t0lRueAEc2rt6fEk9Vj5hD0_J3U3fbFK9pVrWFyahAM72Sm8ht1Gw2xvxmos04pA67qFVgOnQycDGK4XCaICV088uzaukAGe7B2QE4twmvyz26E2kyo-xGAVMcT7ACCOLX-lvWov-D"/>
+<button class="absolute bottom-0 right-0 bg-primary-container text-white p-2 rounded-full shadow-md hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Juan Pérez</h3>
+<p class="text-on-surface-variant text-sm mb-4">Especialista Aduanero</p>
+<div class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+                                Usuario Verificado
+                            </div>
+<p class="text-sm text-outline w-full text-left border-t border-surface-container-highest pt-4">
+<span class="block text-xs uppercase tracking-widest text-on-surface-variant font-semibold mb-1">ID Empleado</span>
+                                SDF-849201
+                            </p>
+</div>
+</div>
+<!-- Tarjeta de Firma Digital -->
+<div class="bg-surface-container-low rounded-lg p-6 relative overflow-hidden">
+<h4 class="text-sm uppercase tracking-widest font-semibold text-on-surface-variant mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="draw">draw</span>
+                            Firma Digital
+                        </h4>
+<div class="bg-surface-container-lowest h-32 rounded flex items-center justify-center border border-surface-variant mb-4 overflow-hidden relative group">
+<img alt="Firma Digital" class="opacity-80" data-alt="abstract flowing cursive signature in dark blue ink on a pristine white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5cI4ddXxVQh-5uQA_er-f6ZZcGec2xLNcxMFXbHhqm3fuUXQU0aRm6ipZwR94NzNVyYorVLMqUYqjs_z_m-KszTyS3rLoJDjAXd_P_qz1cGpCi21i43MpiwsWlAhtjdo5BQYnSSf3MLFrk7eTpuKNbBU4W4BLzS7dT1rgd4RJJ8VwAGB0xPWEB3r2Hv5hW7zve_Auks3lFVGhWDhmekmaV4CnyQ6VQtHC9TINP-zVXhk4LkJ41TV2q09Lvp8dTaIVmSo5BcXkBBU9"/>
+<div class="absolute inset-0 bg-surface/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-primary-container font-medium text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="update">update</span>
+                                    Actualizar Firma
+                                 </button>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-on-surface-variant">
+<span>Estado del Certificado:</span>
+<span class="text-primary-container font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                                Activo
+                            </span>
+</div>
+<p class="text-xs text-outline mt-2">Válido hasta: 15 Oct 2025</p>
+</div>
+</div>
+<!-- Columna Derecha: Formularios e Historial -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Información de Contacto -->
+<div class="bg-surface-container-lowest rounded-lg p-8 ring-1 ring-outline-variant/20 shadow-[0_8px_24px_rgba(0,30,64,0.06)]">
+<h3 class="text-lg font-bold text-on-surface mb-6 border-b border-surface-container-highest pb-4">Información de Contacto</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Nombres</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" type="text" value="Juan"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Apellidos</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" type="text" value="Pérez"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Correo Electrónico Oficial</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" disabled="" type="email" value="jperez@zofratacna.gob.pe"/>
+<p class="text-[11px] text-outline mt-1">El correo oficial no puede ser modificado.</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Teléfono Anexo</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" type="tel" value="1234"/>
+</div>
+</div>
+<div class="pt-4 flex justify-end">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white rounded-md px-6 py-2.5 text-sm font-medium hover:shadow-lg transition-all" type="button">
+                                    Guardar Cambios
+                                </button>
+</div>
+</form>
+</div>
+<!-- Seguridad y Contraseña -->
+<div class="bg-surface-container-lowest rounded-lg p-8 ring-1 ring-outline-variant/20 shadow-[0_8px_24px_rgba(0,30,64,0.06)]">
+<h3 class="text-lg font-bold text-on-surface mb-6 border-b border-surface-container-highest pb-4">Seguridad</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Contraseña Actual</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Nueva Contraseña</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" type="password"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-xs uppercase tracking-wider font-semibold text-on-surface-variant">Confirmar Nueva Contraseña</label>
+<input class="bg-surface-container-high border-0 border-b-2 border-surface-variant focus:border-outline focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface w-full transition-colors" type="password"/>
+</div>
+</div>
+<!-- Indicadores de Complejidad -->
+<div class="bg-surface-container-low rounded p-5 flex flex-col justify-center">
+<h4 class="text-sm font-semibold text-on-surface mb-4">Requisitos de la contraseña:</h4>
+<ul class="space-y-3 text-sm">
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+                                            Mínimo 8 caracteres
+                                        </li>
+<li class="flex items-center gap-2 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+                                            Al menos una letra mayúscula
+                                        </li>
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+                                            Al menos un número
+                                        </li>
+<li class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+                                            Al menos un símbolo (ej. !@#$%)
+                                        </li>
+</ul>
+</div>
+</div>
+<div class="pt-4 flex justify-end">
+<button class="bg-surface-container-highest text-on-surface rounded-md px-6 py-2.5 text-sm font-medium hover:bg-surface-variant transition-colors" type="button">
+                                    Actualizar Contraseña
+                                </button>
+</div>
+</form>
+</div>
+<!-- Historial de Accesos -->
+<div class="bg-surface-container-lowest rounded-lg p-8 ring-1 ring-outline-variant/20 shadow-[0_8px_24px_rgba(0,30,64,0.06)]">
+<div class="flex items-center justify-between mb-6 border-b border-surface-container-highest pb-4">
+<h3 class="text-lg font-bold text-on-surface">Historial de Accesos Recientes</h3>
+<button class="text-primary-container text-sm font-medium flex items-center gap-1 hover:underline">
+                                Ver todo
+                                <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-0">
+<!-- Fila de Historial -->
+<div class="flex items-center justify-between py-4 hover:bg-surface-container-low transition-colors px-2 -mx-2 rounded">
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-highest p-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="login">login</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface">Inicio de sesión exitoso</p>
+<p class="text-xs text-on-surface-variant">IP: 192.168.1.105 • Windows / Chrome</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-on-surface">Hoy</p>
+<p class="text-xs text-outline">08:45 AM</p>
+</div>
+</div>
+<!-- Fila de Historial -->
+<div class="flex items-center justify-between py-4 hover:bg-surface-container-low transition-colors px-2 -mx-2 rounded">
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-highest p-2 rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface">Documento firmado (Exp. 4920)</p>
+<p class="text-xs text-on-surface-variant">IP: 192.168.1.105 • Windows / Chrome</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-on-surface">Hoy</p>
+<p class="text-xs text-outline">09:12 AM</p>
+</div>
+</div>
+<!-- Fila de Historial -->
+<div class="flex items-center justify-between py-4 hover:bg-surface-container-low transition-colors px-2 -mx-2 rounded">
+<div class="flex items-center gap-4">
+<div class="bg-error-container text-on-error-container p-2 rounded-full">
+<span class="material-symbols-outlined text-[20px]" data-icon="warning">warning</span>
+</div>
+<div>
+<p class="text-sm font-medium text-on-surface">Intento de acceso fallido</p>
+<p class="text-xs text-on-surface-variant">IP: 200.12.45.8 • Mac / Safari</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-on-surface">Ayer</p>
+<p class="text-xs text-outline">18:30 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

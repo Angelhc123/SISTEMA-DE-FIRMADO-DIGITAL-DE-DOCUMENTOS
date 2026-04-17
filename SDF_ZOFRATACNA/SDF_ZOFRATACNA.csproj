@@ -1,0 +1,347 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C45DC478-0483-4129-8645-8C7FDF446611}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SDF_ZOFRATACNA</RootNamespace>
+    <AssemblyName>SDF_ZOFRATACNA</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\SDF_ZOFRATACNA.dll" />
+    <Content Include="bin\SDF_ZOFRATACNA.pdb" />
+    <Content Include="Formularios\Administracion\frmConfiguracionAdmin.aspx" />
+    <Content Include="Formularios\Administracion\frmDashboardAdmin.aspx" />
+    <Content Include="Formularios\Administracion\frmGestionUsuarios.aspx" />
+    <Content Include="Formularios\Administracion\frmReporteExhaustivo.aspx" />
+    <Content Include="Formularios\Documentos\frmArchivoRegistrador.aspx" />
+    <Content Include="Formularios\Documentos\frmDashboardRegistrador.aspx" />
+    <Content Include="Formularios\Documentos\frmDirectorio.aspx" />
+    <Content Include="Formularios\Documentos\frmMisDocumentos.aspx" />
+    <Content Include="Formularios\Documentos\frmRegistrarDocumento.aspx" />
+    <Content Include="Formularios\Documentos\frmSeguimientoAuditoria.aspx" />
+    <Content Include="Formularios\Firma\frmArchivoFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmDashboardFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmMisDocumentosFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmPortalFirma.aspx" />
+    <Content Include="Formularios\Revision\frmArchivoRevisor.aspx" />
+    <Content Include="Formularios\Revision\frmDashboardRevisor.aspx" />
+    <Content Include="Formularios\Revision\frmInterfazRevisor.aspx" />
+    <Content Include="Formularios\Revision\frmMisDocumentosRevisor.aspx" />
+    <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\SDF_ZOFRATACNA.dll" />
+    <Content Include="obj\Debug\SDF_ZOFRATACNA.pdb" />
+    <Content Include="frmLogin.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Formularios\Administracion\frmConfiguracionAdmin.aspx.cs">
+      <DependentUpon>frmConfiguracionAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmConfiguracionAdmin.aspx.designer.cs">
+      <DependentUpon>frmConfiguracionAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmDashboardAdmin.aspx.cs">
+      <DependentUpon>frmDashboardAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmDashboardAdmin.aspx.designer.cs">
+      <DependentUpon>frmDashboardAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmGestionUsuarios.aspx.cs">
+      <DependentUpon>frmGestionUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmGestionUsuarios.aspx.designer.cs">
+      <DependentUpon>frmGestionUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmReporteExhaustivo.aspx.cs">
+      <DependentUpon>frmReporteExhaustivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Administracion\frmReporteExhaustivo.aspx.designer.cs">
+      <DependentUpon>frmReporteExhaustivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmArchivoRegistrador.aspx.cs">
+      <DependentUpon>frmArchivoRegistrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmArchivoRegistrador.aspx.designer.cs">
+      <DependentUpon>frmArchivoRegistrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmDashboardRegistrador.aspx.cs">
+      <DependentUpon>frmDashboardRegistrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmDashboardRegistrador.aspx.designer.cs">
+      <DependentUpon>frmDashboardRegistrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmDirectorio.aspx.cs">
+      <DependentUpon>frmDirectorio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmDirectorio.aspx.designer.cs">
+      <DependentUpon>frmDirectorio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmMisDocumentos.aspx.cs">
+      <DependentUpon>frmMisDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmMisDocumentos.aspx.designer.cs">
+      <DependentUpon>frmMisDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmRegistrarDocumento.aspx.cs">
+      <DependentUpon>frmRegistrarDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmRegistrarDocumento.aspx.designer.cs">
+      <DependentUpon>frmRegistrarDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmSeguimientoAuditoria.aspx.cs">
+      <DependentUpon>frmSeguimientoAuditoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Documentos\frmSeguimientoAuditoria.aspx.designer.cs">
+      <DependentUpon>frmSeguimientoAuditoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmArchivoFirmante.aspx.cs">
+      <DependentUpon>frmArchivoFirmante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmArchivoFirmante.aspx.designer.cs">
+      <DependentUpon>frmArchivoFirmante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmDashboardFirmante.aspx.cs">
+      <DependentUpon>frmDashboardFirmante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmDashboardFirmante.aspx.designer.cs">
+      <DependentUpon>frmDashboardFirmante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmMisDocumentosFirmante.aspx.cs">
+      <DependentUpon>frmMisDocumentosFirmante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmMisDocumentosFirmante.aspx.designer.cs">
+      <DependentUpon>frmMisDocumentosFirmante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmPortalFirma.aspx.cs">
+      <DependentUpon>frmPortalFirma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmPortalFirma.aspx.designer.cs">
+      <DependentUpon>frmPortalFirma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmArchivoRevisor.aspx.cs">
+      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmArchivoRevisor.aspx.designer.cs">
+      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmDashboardRevisor.aspx.cs">
+      <DependentUpon>frmDashboardRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmDashboardRevisor.aspx.designer.cs">
+      <DependentUpon>frmDashboardRevisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmInterfazRevisor.aspx.cs">
+      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmInterfazRevisor.aspx.designer.cs">
+      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmMisDocumentosRevisor.aspx.cs">
+      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Revision\frmMisDocumentosRevisor.aspx.designer.cs">
+      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="frmLogin.aspx.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLogin.aspx.designer.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\SDF_ZOFRATACNA.dll.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.CoreCompileInputs.cache" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\BLL\" />
+    <Folder Include="App_Code\DAL\" />
+    <Folder Include="App_Code\Entidades\" />
+    <Folder Include="Controles\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Recursos\Estilos\" />
+    <Folder Include="Recursos\Imagenes\" />
+    <Folder Include="Recursos\JS\" />
+    <Folder Include="Reportes\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53705</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53705/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+</Project>

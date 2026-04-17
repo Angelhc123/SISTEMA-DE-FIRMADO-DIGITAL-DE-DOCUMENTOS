@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interfaz de Revisión - SDF ZOFRATACNA</title>
+<!-- Google Fonts: Public Sans & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#44474e",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "surface": "#faf9fc",
+                        "secondary": "#565f6f",
+                        "tertiary-container": "#381300",
+                        "primary-container": "#001e40",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#0e0200",
+                        "secondary-fixed-dim": "#bec7d9",
+                        "surface-tint": "#485f84",
+                        "on-tertiary-fixed-variant": "#6a3a20",
+                        "on-error": "#ffffff",
+                        "primary": "#000511",
+                        "surface-container": "#efedf1",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#3f4756",
+                        "on-primary-fixed": "#001b3b",
+                        "surface-container-high": "#e9e7eb",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#b47858",
+                        "inverse-surface": "#2f3033",
+                        "surface-bright": "#faf9fc",
+                        "secondary-container": "#d7e0f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbd9dd",
+                        "inverse-primary": "#afc8f2",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "tertiary-fixed-dim": "#fdb793",
+                        "surface-container-highest": "#e3e2e5",
+                        "outline": "#74777f",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#6f87ae",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-fixed": "#131c2a",
+                        "surface-container-low": "#f4f3f6",
+                        "on-secondary-container": "#5a6373",
+                        "inverse-on-surface": "#f2f0f4",
+                        "on-primary-fixed-variant": "#2f476b",
+                        "background": "#faf9fc",
+                        "surface-variant": "#e3e2e5",
+                        "primary-fixed-dim": "#afc8f2"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "sm": "0.125rem",
+                        "md": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body h-screen w-screen overflow-hidden flex antialiased">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-white dark:bg-slate-950 text-[#001E40] dark:text-[#d5e3ff] font-public-sans tracking-tight text-sm font-medium h-screen w-72 fixed left-0 top-0 border-r-0 shadow-[8px_0_24px_rgba(0,30,64,0.04)] flex flex-col h-full py-8 z-50">
+<!-- Header / Logo Area -->
+<div class="px-6 mb-10 flex items-center gap-4">
+<div class="h-10 w-10 bg-surface-container-high rounded-md flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+<span class="material-symbols-outlined text-[#001E40] dark:text-white" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-tighter text-[#001E40] dark:text-white uppercase leading-tight">SDF ZOFRATACNA</h1>
+<p class="text-xs text-slate-500 font-normal">Sistema de Firmado Digital</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Active State: Mis Documentos (assuming review is part of this flow) -->
+<a class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span>Mis Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span>Registrar Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span>Archivo</span>
+</a>
+</div>
+<!-- Bottom Links -->
+<div class="mt-auto flex flex-col gap-1 pt-6 border-t-0 relative before:absolute before:top-0 before:left-6 before:right-6 before:h-px before:bg-slate-50 dark:before:bg-slate-900/50">
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Ajustes</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span>Soporte</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-72 flex flex-col h-screen relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl text-[#001E40] dark:text-[#d5e3ff] font-public-sans text-sm tracking-wide fixed top-0 right-0 left-72 h-16 z-40 shadow-sm dark:shadow-none flex items-center justify-between px-10 transition-all duration-300 ease-in-out border-b-0 bg-slate-50 dark:bg-slate-900">
+<!-- Breadcrumb / Context area instead of just active nav link, to fit context -->
+<div class="flex items-center gap-2 text-slate-400 hover:text-[#001E40] transition-colors">
+<span class="material-symbols-outlined text-lg">folder_open</span>
+<span class="font-medium">Revisión de Expediente #EXP-2023-0892</span>
+</div>
+<!-- User Actions -->
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-slate-500 hover:text-[#001E40] dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium">Cerrar Sesión</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img alt="Avatar de Usuario" class="h-full w-full object-cover" data-alt="professional corporate headshot of a person looking directly at camera with neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxdyNMTS9T1qK6LTMYFBy3v2um386EF0bl3IB9zvAbhWHnogL2Xu22wRGBRh2WsKO2LwFTwn4-vtCQisgmbnys5jT_Owr49YDN1z1SwkZWDmuHW_QAYg0bO7G5H7NdIZG1ExJ2GAtcqdZF8dTeh0EFE33bOkjgU0Y6bQjGEf903vK325QbGJm8Kyac7xsf9iODYw6crVe1hfUqXVxNrPrcY9MIbhjjAW3kqGzr45A-NLUAU5gsE4ym9UZe8HHuP5m3hs1LPTcGlcco"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace (Split View) -->
+<main class="flex-1 pt-16 flex overflow-hidden">
+<!-- Canvas: PDF Viewer Area (Left, mostly space) -->
+<div class="flex-1 bg-surface-container-low overflow-y-auto p-8 flex justify-center relative">
+<!-- PDF Toolbar (Floating) -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 bg-surface-container-lowest/90 backdrop-blur-md px-4 py-2 rounded-lg flex items-center gap-4 shadow-[0_8px_24px_rgba(0,30,64,0.06)] ring-1 ring-outline-variant/20 z-10">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined">zoom_out</span></button>
+<span class="text-sm font-label font-medium text-on-surface">100%</span>
+<button class="text-on-surface-variant hover:text-primary-container transition-colors"><span class="material-symbols-outlined">zoom_in</span></button>
+<div class="w-px h-4 bg-outline-variant/50 mx-2"></div>
+<span class="text-sm font-label text-on-surface-variant">Pág. 1 de 12</span>
+</div>
+<!-- Simulated PDF Document (The Monolith) -->
+<div class="w-full max-w-4xl bg-surface-container-lowest min-h-[150%] shadow-[0_8px_24px_rgba(0,30,64,0.06)] p-16 mt-16 flex flex-col gap-8 relative border border-outline-variant/10">
+<!-- Doc Header -->
+<div class="flex justify-between items-start border-b-2 border-surface-container-high pb-8 mb-4">
+<div>
+<h2 class="font-headline text-2xl font-bold text-primary-container tracking-tight">RESOLUCIÓN DIRECTORAL</h2>
+<p class="text-on-surface-variant font-label text-sm mt-1 uppercase tracking-widest">N° 045-2023-GG-ZOFRATACNA</p>
+</div>
+<div class="text-right">
+<p class="text-sm text-on-surface-variant">Tacna, 15 de Octubre de 2023</p>
+</div>
+</div>
+<!-- Doc Body Simulation -->
+<div class="space-y-6 text-on-surface font-body text-base leading-relaxed text-justify">
+<p><strong>VISTO:</strong> El Informe N° 128-2023-OAJ-ZOFRATACNA de fecha 10 de octubre de 2023, emitido por la Oficina de Asesoría Jurídica, y el Memorándum N° 452-2023-GG referente a la actualización de lineamientos internos de operatividad comercial.</p>
+<p><strong>CONSIDERANDO:</strong> Que, mediante Ley N° 27688, Ley de Zona Franca y Zona Comercial de Tacna, se declara de interés nacional el desarrollo de la Zona Franca de Tacna, con la finalidad de promover las inversiones, la industria, la agroindustria, la maquila y los servicios.</p>
+<p>Que, es política de la actual administración optimizar los procesos administrativos y operativos, requiriéndose la aprobación de nuevos manuales de procedimientos que agilicen la atención a los usuarios del sistema.</p>
+<div class="bg-surface-container-low p-4 rounded-sm border-l-4 border-surface-tint mt-8">
+<p class="text-sm text-on-surface-variant italic">Se ha detectado un posible error tipográfico en el artículo 2, se sugiere revisión del departamento legal antes de la firma final.</p>
+</div>
+<p><strong>SE RESUELVE:</strong></p>
+<p><strong>ARTÍCULO PRIMERO.- APROBAR</strong> la Directiva N° 004-2023-ZOFRATACNA "Normas para el Control de Ingreso y Salida de Mercancías", la misma que como anexo forma parte integrante de la presente Resolución.</p>
+</div>
+</div>
+</div>
+<!-- Panel: Dictamen de Revisión (Right, fixed width) -->
+<aside class="w-[420px] bg-surface-container-lowest shadow-[-8px_0_24px_rgba(0,30,64,0.04)] z-20 flex flex-col relative before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-outline-variant/10">
+<!-- Panel Header -->
+<div class="p-8 pb-6">
+<div class="inline-flex items-center gap-2 bg-primary-fixed px-3 py-1 rounded-full mb-4">
+<span class="material-symbols-outlined text-on-primary-fixed text-sm" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<span class="text-xs font-bold text-on-primary-fixed uppercase tracking-wider">Acción Requerida</span>
+</div>
+<h2 class="font-headline text-2xl font-bold text-primary-container tracking-tight">Dictamen de Revisión</h2>
+<p class="text-on-surface-variant text-sm mt-2">Evalúe el documento adjunto y emita su veredicto institucional.</p>
+</div>
+<!-- Metadata Context -->
+<div class="px-8 py-6 bg-surface-container-low/50">
+<dl class="space-y-4">
+<div>
+<dt class="text-xs font-label text-outline uppercase tracking-wider">Remitente</dt>
+<dd class="text-sm font-medium text-on-surface mt-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-surface-tint text-sm">person</span>
+                                Dr. Carlos Mendoza (Of. Legal)
+                            </dd>
+</div>
+<div>
+<dt class="text-xs font-label text-outline uppercase tracking-wider">Tipo de Documento</dt>
+<dd class="text-sm font-medium text-on-surface mt-1">Resolución Directoral (Proyecto)</dd>
+</div>
+<div>
+<dt class="text-xs font-label text-outline uppercase tracking-wider">Prioridad</dt>
+<dd class="mt-1 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-sm font-medium text-error">Alta - Urgente</span>
+</dd>
+</div>
+</dl>
+</div>
+<!-- Form Area -->
+<div class="p-8 flex-1 flex flex-col gap-6">
+<!-- Observaciones Field -->
+<div class="flex-1 flex flex-col">
+<label class="text-sm font-label font-semibold text-primary-container uppercase tracking-wide mb-2 flex justify-between items-end" for="comentarios">
+                            Comentarios u Observaciones
+                            <span class="text-xs font-normal text-outline normal-case tracking-normal">Obligatorio si es observado</span>
+</label>
+<textarea class="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm resize-none text-on-surface p-4 text-sm font-body transition-colors" id="comentarios" placeholder="Detalle aquí las correcciones necesarias o su conformidad general..." rows="8"></textarea>
+</div>
+<!-- Action Buttons (The Monoliths) -->
+<div class="flex flex-col gap-4 mt-auto">
+<!-- Primary Action: Conforme -->
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-md px-6 py-4 font-label text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-95 transition-opacity shadow-sm group">
+<span class="material-symbols-outlined transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Conforme (Visto Bueno)
+                        </button>
+<!-- Secondary Action: Observado -->
+<button class="w-full bg-surface-container-highest text-on-surface rounded-md px-6 py-4 font-label text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-error transition-transform group-hover:-translate-y-0.5">report</span>
+                            Observado (Devolver)
+                        </button>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

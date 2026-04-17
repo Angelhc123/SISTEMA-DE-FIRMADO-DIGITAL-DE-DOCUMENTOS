@@ -1,0 +1,351 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmDashboardRegistrador.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Documentos.frmDashboardRegistrador" %>
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDF ZOFRATACNA - Panel de Control Registrador</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#44474e",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c4c6cf",
+                      "surface": "#faf9fc",
+                      "secondary": "#565f6f",
+                      "tertiary-container": "#381300",
+                      "primary-container": "#001e40",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#0e0200",
+                      "secondary-fixed-dim": "#bec7d9",
+                      "surface-tint": "#485f84",
+                      "on-tertiary-fixed-variant": "#6a3a20",
+                      "on-error": "#ffffff",
+                      "primary": "#000511",
+                      "surface-container": "#efedf1",
+                      "on-background": "#1a1c1e",
+                      "on-secondary-fixed-variant": "#3f4756",
+                      "on-primary-fixed": "#001b3b",
+                      "surface-container-high": "#e9e7eb",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#b47858",
+                      "inverse-surface": "#2f3033",
+                      "surface-bright": "#faf9fc",
+                      "secondary-container": "#d7e0f3",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#dbd9dd",
+                      "inverse-primary": "#afc8f2",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#dae3f6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#1a1c1e",
+                      "tertiary-fixed-dim": "#fdb793",
+                      "surface-container-highest": "#e3e2e5",
+                      "outline": "#74777f",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#6f87ae",
+                      "on-tertiary-fixed": "#341100",
+                      "primary-fixed": "#d5e3ff",
+                      "on-secondary-fixed": "#131c2a",
+                      "surface-container-low": "#f4f3f6",
+                      "on-secondary-container": "#5a6373",
+                      "inverse-on-surface": "#f2f0f4",
+                      "on-primary-fixed-variant": "#2f476b",
+                      "background": "#faf9fc",
+                      "surface-variant": "#e3e2e5",
+                      "primary-fixed-dim": "#afc8f2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": ["Public Sans", "sans-serif"],
+                      "body": ["Public Sans", "sans-serif"],
+                      "label": ["Public Sans", "sans-serif"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary-container selection:text-white">
+<!-- JSON Component: SideNavBar -->
+<aside class="bg-white dark:bg-slate-950 h-screen w-72 fixed left-0 top-0 border-r-0 shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50 flex flex-col py-8">
+<!-- Brand Header -->
+<div class="px-8 mb-12 flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined fill text-white text-xl">account_balance</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-tighter text-[#001E40] dark:text-white uppercase font-headline leading-tight">SDF ZOFRATACNA</h1>
+<p class="text-xs text-slate-500 font-label tracking-wide uppercase mt-0.5">Sistema de Firmado Digital</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-4 space-y-1 font-public-sans tracking-tight text-sm font-medium">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] rounded-l-xl Active: translate-x-1 duration-150 relative group overflow-hidden" href="#">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-200/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined fill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="relative z-10">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors">description</span>
+<span>Mis Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors">add_box</span>
+<span>Registrar Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors">archive</span>
+<span>Archivo</span>
+</a>
+<!-- Separation Logic (Spacer) -->
+<div class="my-6 h-px bg-slate-50 dark:bg-slate-900/50 mx-6"></div>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors">settings</span>
+<span>Ajustes</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary-container transition-colors">support_agent</span>
+<span>Soporte</span>
+</a>
+</nav>
+<!-- User Footer Area (Optional added for completeness based on standard patterns, adhering to colors) -->
+<div class="px-8 mt-auto flex items-center gap-3">
+<img alt="Avatar de Usuario" class="w-10 h-10 rounded-full border border-outline-variant/30 object-cover" data-alt="professional headshot of a person in a corporate setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqFuOqYVrG90eCaGApElj-q1y7WdMdy_YEmH3YI2VsYAcB2TC0OpBwGkc7Jgu7_yGcU5h0u97G9TWExUur3ZvYfBGkOB6aGP4TiVkMcjuJe2dBLzvFB4lSsjbcp_yIg_HrmccQPuhiSESRkXAxRDhUWZiyChBXyVEOFyyChSNVM5dV15eE8Att5sHVCkoKstwBi1C7lPO1PB2bW0IRz6bgBYAmcAWALKNNfLFcgS0pl8Sq38ZxySe7FmsPM6ZRvp9BPknwcSKooSvf"/>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary-container tracking-tight">R. Martinez</span>
+<span class="text-xs text-on-surface-variant font-label uppercase tracking-widest">Registrador</span>
+</div>
+</div>
+</aside>
+<!-- JSON Component: TopNavBar -->
+<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 z-40 shadow-sm dark:shadow-none flex items-center justify-between px-10 transition-all duration-300 ease-in-out border-b border-surface-container/50">
+<!-- Navigation Links (Breadcrumb style) -->
+<nav class="font-public-sans text-sm tracking-wide text-[#001E40] dark:text-[#d5e3ff] flex items-center gap-4">
+<span class="text-slate-400">Inicio</span>
+<span class="material-symbols-outlined text-sm text-slate-300">chevron_right</span>
+<span class="text-[#001E40] font-bold border-b-2 border-[#001E40] pb-1 translate-y-[2px]">Dashboard</span>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-[#001E40] dark:hover:text-white transition-colors relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<div class="w-px h-6 bg-slate-200"></div>
+<button class="text-sm font-medium text-slate-500 hover:text-error transition-colors flex items-center gap-2 font-label uppercase tracking-wider">
+<span>Cerrar Sesión</span>
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-72 pt-24 px-12 pb-16 min-h-screen">
+<!-- Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-4xl font-headline font-extrabold text-primary-container tracking-tighter mb-2">Panel de Control</h2>
+<p class="text-lg text-secondary font-body">Resumen de actividad y estado de documentos para registro.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 rounded-md shadow-[0_8px_24px_rgba(0,30,64,0.15)] hover:shadow-[0_12px_32px_rgba(0,30,64,0.25)] transition-all flex items-center gap-2 group">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform duration-300">add</span>
+<span class="text-sm font-bold tracking-wide">Nuevo Registro</span>
+</button>
+</div>
+<!-- Bento Grid: Metrics -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+<!-- Metric 1: En Proceso -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/20 relative overflow-hidden group hover:border-primary-container/20 transition-colors">
+<div class="absolute -right-6 -top-6 w-32 h-32 bg-primary-fixed/30 rounded-full blur-3xl group-hover:bg-primary-fixed/50 transition-colors"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">pending_actions</span>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">Activo</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-on-surface-variant font-medium text-sm uppercase tracking-widest font-label mb-1">En Proceso</h3>
+<div class="flex items-baseline gap-3">
+<span class="text-5xl font-headline font-black text-primary-container tracking-tighter">42</span>
+<span class="text-sm font-medium text-secondary bg-surface-container-low px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%
+                        </span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Observados -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/20 relative overflow-hidden group hover:border-error/20 transition-colors">
+<div class="absolute -right-6 -top-6 w-32 h-32 bg-error-container/30 rounded-full blur-3xl group-hover:bg-error-container/50 transition-colors"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-error">assignment_return</span>
+</div>
+<span class="bg-error-container text-on-error-container text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">Atención Req.</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-on-surface-variant font-medium text-sm uppercase tracking-widest font-label mb-1">Observados</h3>
+<div class="flex items-baseline gap-3">
+<span class="text-5xl font-headline font-black text-primary-container tracking-tighter">07</span>
+<span class="text-sm font-medium text-error bg-error-container/30 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Revisar
+                        </span>
+</div>
+</div>
+</div>
+<!-- Metric 3: Finalizados -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/20 relative overflow-hidden group hover:border-secondary-fixed/50 transition-colors">
+<div class="absolute -right-6 -top-6 w-32 h-32 bg-secondary-fixed/30 rounded-full blur-3xl group-hover:bg-secondary-fixed/50 transition-colors"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">task_alt</span>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">Hoy</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-on-surface-variant font-medium text-sm uppercase tracking-widest font-label mb-1">Finalizados</h3>
+<div class="flex items-baseline gap-3">
+<span class="text-5xl font-headline font-black text-primary-container tracking-tighter">128</span>
+<span class="text-sm font-medium text-secondary bg-surface-container-low px-2 py-0.5 rounded">
+                            Lote #4A
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Activity List (Editorial / Premium layout) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/20 overflow-hidden shadow-[0_4px_24px_rgba(0,30,64,0.02)]">
+<div class="px-8 py-6 border-b border-surface-container flex justify-between items-center bg-surface-bright">
+<h3 class="text-xl font-headline font-bold text-primary-container tracking-tight">Actividad Reciente</h3>
+<button class="text-sm font-bold text-primary-container hover:text-primary transition-colors flex items-center gap-1">
+                    Ver todo <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex flex-col">
+<!-- Activity Item 1 -->
+<div class="px-8 py-5 flex items-center gap-6 hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent hover:border-primary-container">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/50 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed text-[20px]">edit_document</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<span class="font-bold text-on-surface tracking-tight">EXP-2023-0892</span>
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-label">En Proceso</span>
+</div>
+<p class="text-sm text-secondary font-medium">Contrato de Arrendamiento Lote 4B - Actualización de firmas requerida.</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-sm font-bold text-on-surface">Hace 10 min</p>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Por J. Perez</p>
+</div>
+<div class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center hover:bg-outline-variant/30 text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Spacer instead of border -->
+<div class="h-4 bg-surface/30"></div>
+<!-- Activity Item 2 -->
+<div class="px-8 py-5 flex items-center gap-6 hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent hover:border-error">
+<div class="w-10 h-10 rounded-full bg-error-container/50 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-error-container text-[20px]">assignment_return</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<span class="font-bold text-on-surface tracking-tight">DOC-2023-1104</span>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-label">Observado</span>
+</div>
+<p class="text-sm text-secondary font-medium">Declaración Jurada Anual - Falta anexo B debidamente sellado.</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-sm font-bold text-on-surface">Hace 2 horas</p>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Por M. Soto</p>
+</div>
+<div class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center hover:bg-outline-variant/30 text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Spacer instead of border -->
+<div class="h-4 bg-surface/30"></div>
+<!-- Activity Item 3 -->
+<div class="px-8 py-5 flex items-center gap-6 hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent hover:border-secondary">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<span class="font-bold text-on-surface tracking-tight">RES-2023-0045</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-label">Finalizado</span>
+</div>
+<p class="text-sm text-secondary font-medium">Resolución de Gerencia - Aprobación de expediente técnico.</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-sm font-bold text-on-surface">Ayer, 16:30</p>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Sistema</p>
+</div>
+<div class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center hover:bg-outline-variant/30 text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Spacer instead of border -->
+<div class="h-4 bg-surface/30"></div>
+<!-- Activity Item 4 -->
+<div class="px-8 py-5 flex items-center gap-6 hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent hover:border-primary-container">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/50 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed text-[20px]">edit_document</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<span class="font-bold text-on-surface tracking-tight">EXP-2023-0891</span>
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-label">En Proceso</span>
+</div>
+<p class="text-sm text-secondary font-medium">Solicitud de Ingreso de Mercancía - Verificación aduanera pendiente.</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-sm font-bold text-on-surface">Ayer, 11:15</p>
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Por L. Gómez</p>
+</div>
+<div class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center hover:bg-outline-variant/30 text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
