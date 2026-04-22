@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmArchivoRevisor.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Revision.frmArchivoRevisor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmArchivoRevisor.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Firma.frmArchivoRevisor" %>
 <!DOCTYPE html>
 
 <html class="light" lang="es">
@@ -85,57 +85,86 @@
 </head>
 <body class="bg-surface text-on-surface antialiased flex h-screen overflow-hidden">
     <form id="form1" runat="server" class="flex w-full h-screen overflow-hidden">
-        <!-- SideNavBar -->
-        <nav class="h-screen w-72 fixed left-0 top-0 border-r-0 bg-white shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50">
-            <div class="flex flex-col h-full py-8">
-                <div class="px-6 mb-10">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
-                        </div>
-                        <div>
-                            <h1 class="text-lg font-black tracking-tighter text-[#001E40] uppercase">SDF ZOFRATACNA</h1>
-                            <p class="font-public-sans tracking-tight text-sm font-medium text-slate-500">Sistema de Firmado Digital</p>
-                        </div>
-                    </div>
+        <!-- SideNavBar Unificada -->
+<nav class="bg-white dark:bg-slate-900 fixed left-0 top-0 h-screen w-72 border-r border-outline-variant/20 z-40 shadow-[4px_0_20px_rgba(0,30,64,0.03)]">
+    <div class="flex flex-col h-full">
+        <div class="mb-8 px-6 pt-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-md">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
                 </div>
-                <div class="flex flex-col gap-2 flex-grow">
-                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors hover:bg-slate-100 transition-all duration-200" href="~/Formularios/Revision/frmDashboardRevisor.aspx">
-                        <span class="material-symbols-outlined text-xl">dashboard</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Dashboard</span>
-                    </a>
-                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors hover:bg-slate-100 transition-all duration-200" href="~/Formularios/Revision/frmMisDocumentosRevisor.aspx">
-                        <span class="material-symbols-outlined text-xl">description</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Mis Documentos</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-6 py-4 text-slate-300 cursor-not-allowed opacity-50">
-                        <span class="material-symbols-outlined text-xl">add_box</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Registrar Nuevo</span>
-                    </a>
-                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-[#001E40] bg-slate-100 font-bold border-r-4 border-[#001E40] hover:bg-slate-100 transition-all duration-200" href="~/Formularios/Revision/frmArchivoRevisor.aspx">
-                        <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">archive</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Archivo</span>
-                    </a>
-                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors hover:bg-slate-100 transition-all duration-200" href="~/Formularios/Comunes/frmMiPerfil.aspx">
-                        <span class="material-symbols-outlined text-xl">settings</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Ajustes</span>
-                    </a>
-                    <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 hover:bg-slate-50 transition-colors hover:bg-slate-100 transition-all duration-200" href="~/Formularios/Comunes/frmSoporte.aspx">
-                        <span class="material-symbols-outlined text-xl">support_agent</span>
-                        <span class="font-public-sans tracking-tight text-sm font-medium">Soporte</span>
-                    </a>
-                </div>
-                <div class="mt-auto px-6 pt-8 border-t border-slate-100">
-                    <div class="flex items-center gap-3">
-                        <asp:Image ID="imgPerfil" runat="server" CssClass="rounded-full w-8 h-8 object-cover" ImageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuANPhjev2yZp9wji6ZSi1rOteuSPDdwY8iTN3MfFmcADEMkS3bJCNoYBM2A38u1XxX7roH4aGBZEqT1sss88hDivT_p_vojxh4JXFDr6cbGeeTKujJDZ8J34ZLRtGRA7BUPaQY5cbbVnW3cWzMO_ddYS8HiUGg2XJC7QXGvVRY0rTk_FZfFAZhjQy17QETsUa2h2E18IeJq_W9Lei4QCOGqE8_ZVRITloGFKc5yL6VeH37LDFNsPwcS3HGSj8b6Lxj8AS9Pd1_rn1az" />
-                        <div class="flex flex-col">
-                            <asp:Label ID="lblNombreUsuario" runat="server" CssClass="font-public-sans tracking-tight text-sm font-bold text-[#001E40]" Text="Juan Pérez"></asp:Label>
-                            <asp:Label ID="lblRolUsuario" runat="server" CssClass="font-public-sans tracking-tight text-xs font-medium text-slate-500" Text="Revisor"></asp:Label>
-                        </div>
-                    </div>
+                <div>
+                    <h1 class="text-xl font-bold text-primary font-headline">SDF ZOFRATACNA</h1>
+                    <p class="text-xs text-on-surface-variant font-body">Plataforma de Confianza Digital</p>
                 </div>
             </div>
-        </nav>
+        </div>
+        
+        <div class="flex-1 px-3 space-y-1">
+            <p class="px-3 text-[10px] font-bold text-outline uppercase tracking-wider mt-2 mb-2">Principal</p>
+            
+            <!-- Dashboard (Activo) -->
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary-fixed/30 font-semibold" href="~/Formularios/Firma/frmDashboardFirmante.aspx">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            
+            <!-- Mis Documentos (Firmar) -->
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Firma/frmMisDocumentosFirmante.aspx">
+                <span class="material-symbols-outlined">draw</span>
+                <span>Por Firmar</span>
+                <span class="ml-auto bg-error-container text-error text-xs font-bold px-2 py-0.5 rounded-full">4</span>
+            </a>
+            
+            <!-- Mis Documentos (Revisar) -->
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Firma/frmMisDocumentosRevisor.aspx">
+                <span class="material-symbols-outlined">rate_review</span>
+                <span>Por Revisar</span>
+                <span class="ml-auto bg-tertiary-fixed text-tertiary text-xs font-bold px-2 py-0.5 rounded-full">12</span>
+            </a>
+            
+            <div class="h-px bg-outline-variant/30 my-4 mx-2"></div>
+            <p class="px-3 text-[10px] font-bold text-outline uppercase tracking-wider mt-2 mb-2">Archivos</p>
+            
+            <!-- Archivo Firmante -->
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Firma/frmArchivoFirmante.aspx">
+                <span class="material-symbols-outlined">checklist</span>
+                <span>Documentos Firmados</span>
+            </a>
+            
+            <!-- Archivo Revisor -->
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Firma/frmArchivoRevisor.aspx">
+                <span class="material-symbols-outlined">history</span>
+                <span>Historial de Revisiones</span>
+            </a>
+            
+            <div class="h-px bg-outline-variant/30 my-4 mx-2"></div>
+            <p class="px-3 text-[10px] font-bold text-outline uppercase tracking-wider mt-2 mb-2">Sistema</p>
+            
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Comunes/frmMiPerfil.aspx">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Ajustes</span>
+            </a>
+            <a runat="server" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" href="~/Formularios/Comunes/frmSoporte.aspx">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span>Soporte</span>
+            </a>
+        </div>
+        
+        <div class="mt-auto p-4 border-t border-outline-variant/20">
+            <div class="flex items-center gap-3">
+                <asp:Image ID="imgPerfil" runat="server" CssClass="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" ImageUrl="https://ui-avatars.com/api/?background=001e40&color=fff&name=Usuario" />
+                <div class="flex-1">
+                    <asp:Label ID="lblNombreUsuario" runat="server" CssClass="text-sm font-semibold text-primary block" Text="Usuario"></asp:Label>
+                    <asp:Label ID="lblRolUsuario" runat="server" CssClass="text-xs text-on-surface-variant" Text="Firmante / Revisor"></asp:Label>
+                </div>
+                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="text-outline hover:text-error transition-colors" OnClick="btnLogout_Click">
+                    <span class="material-symbols-outlined">logout</span>
+                </asp:LinkButton>
+            </div>
+        </div>
+    </div>
+</nav>
 
         <!-- Main Content Area -->
         <div class="flex-1 ml-72 flex flex-col h-screen relative bg-surface">

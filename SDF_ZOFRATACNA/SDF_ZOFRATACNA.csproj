@@ -121,13 +121,13 @@
     <Content Include="Formularios\Documentos\frmRegistrarDocumento.aspx" />
     <Content Include="Formularios\Documentos\frmSeguimientoAuditoria.aspx" />
     <Content Include="Formularios\Firma\frmArchivoFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmArchivoRevisor.aspx" />
     <Content Include="Formularios\Firma\frmDashboardFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmInterfazRevisor.aspx" />
     <Content Include="Formularios\Firma\frmMisDocumentosFirmante.aspx" />
+    <Content Include="Formularios\Firma\frmMisDocumentosRevisor.aspx" />
     <Content Include="Formularios\Firma\frmPortalFirma.aspx" />
-    <Content Include="Formularios\Revision\frmArchivoRevisor.aspx" />
     <Content Include="Formularios\Revision\frmDashboardRevisor.aspx" />
-    <Content Include="Formularios\Revision\frmInterfazRevisor.aspx" />
-    <Content Include="Formularios\Revision\frmMisDocumentosRevisor.aspx" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.dll" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.pdb" />
@@ -213,12 +213,26 @@
     <Compile Include="Formularios\Firma\frmArchivoFirmante.aspx.designer.cs">
       <DependentUpon>frmArchivoFirmante.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Firma\frmArchivoRevisor.aspx.cs">
+      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmArchivoRevisor.aspx.designer.cs">
+      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Firma\frmDashboardFirmante.aspx.cs">
       <DependentUpon>frmDashboardFirmante.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formularios\Firma\frmDashboardFirmante.aspx.designer.cs">
       <DependentUpon>frmDashboardFirmante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmInterfazRevisor.aspx.cs">
+      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmInterfazRevisor.aspx.designer.cs">
+      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Firma\frmMisDocumentosFirmante.aspx.cs">
       <DependentUpon>frmMisDocumentosFirmante.aspx</DependentUpon>
@@ -227,6 +241,13 @@
     <Compile Include="Formularios\Firma\frmMisDocumentosFirmante.aspx.designer.cs">
       <DependentUpon>frmMisDocumentosFirmante.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Firma\frmMisDocumentosRevisor.aspx.cs">
+      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Firma\frmMisDocumentosRevisor.aspx.designer.cs">
+      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Firma\frmPortalFirma.aspx.cs">
       <DependentUpon>frmPortalFirma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,33 +255,12 @@
     <Compile Include="Formularios\Firma\frmPortalFirma.aspx.designer.cs">
       <DependentUpon>frmPortalFirma.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Revision\frmArchivoRevisor.aspx.cs">
-      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Revision\frmArchivoRevisor.aspx.designer.cs">
-      <DependentUpon>frmArchivoRevisor.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\Revision\frmDashboardRevisor.aspx.cs">
       <DependentUpon>frmDashboardRevisor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formularios\Revision\frmDashboardRevisor.aspx.designer.cs">
       <DependentUpon>frmDashboardRevisor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Revision\frmInterfazRevisor.aspx.cs">
-      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Revision\frmInterfazRevisor.aspx.designer.cs">
-      <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Revision\frmMisDocumentosRevisor.aspx.cs">
-      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\Revision\frmMisDocumentosRevisor.aspx.designer.cs">
-      <DependentUpon>frmMisDocumentosRevisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
