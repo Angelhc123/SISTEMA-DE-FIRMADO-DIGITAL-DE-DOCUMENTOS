@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// Archivo .cs para frmArchivoRevisor.aspx
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SDF_ZOFRATACNA.Formularios.Revision
+namespace SDF_ZOFRATACNA.Formularios.Firma
 {
     public partial class frmArchivoRevisor : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Validación de sesión desactivada temporalmente para pruebas
-            // if (Session["IdUsuario"] == null)
-            // {
-            //     Response.Redirect("~/frmLogin.aspx");
-            //     return;
-            // }
-
             if (!IsPostBack)
             {
                 CargarDatosUsuario();
@@ -26,43 +17,35 @@ namespace SDF_ZOFRATACNA.Formularios.Revision
 
         private void CargarDatosUsuario()
         {
-            Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
-            Label lblRolUsuario = (Label)FindControl("lblRolUsuario");
-            Image imgPerfil = (Image)FindControl("imgPerfil");
-            Image imgAvatar = (Image)FindControl("imgAvatar");
-
-            if (Session["Nombres"] != null && lblNombreUsuario != null)
+            try
             {
-                lblNombreUsuario.Text = Session["Nombres"].ToString();
+                string nombreUsuario = Session["Nombres"]?.ToString() ?? "Usuario Demo";
+                string urlFoto = Session["UrlFoto"]?.ToString() ?? "https://ui-avatars.com/api/?background=001e40&color=fff&name=" + Uri.EscapeDataString(nombreUsuario);
+
+                Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
+                if (lblNombreUsuario != null) lblNombreUsuario.Text = nombreUsuario;
+
+                Image imgPerfil = (Image)FindControl("imgPerfil");
+                if (imgPerfil != null) imgPerfil.ImageUrl = urlFoto;
             }
-
-            if (Session["Rol"] != null && lblRolUsuario != null)
+            catch (Exception ex)
             {
-                lblRolUsuario.Text = Session["Rol"].ToString();
-            }
-
-            if (Session["UrlFoto"] != null && !string.IsNullOrEmpty(Session["UrlFoto"].ToString()))
-            {
-                if (imgPerfil != null) imgPerfil.ImageUrl = Session["UrlFoto"].ToString();
-                if (imgAvatar != null) imgAvatar.ImageUrl = Session["UrlFoto"].ToString();
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            // Simulación de filtro
             Response.Write("<script>alert('Filtro aplicado (simulación).');</script>");
         }
 
         protected void btnAnterior_Click(object sender, EventArgs e)
         {
-            // Simulación de paginación
             Response.Write("<script>alert('Página anterior (simulación).');</script>");
         }
 
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
-            // Simulación de paginación
             Response.Write("<script>alert('Página siguiente (simulación).');</script>");
         }
 
