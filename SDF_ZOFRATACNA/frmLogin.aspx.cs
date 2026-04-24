@@ -1,93 +1,147 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using SDF_ZOFRATACNA.App_Code.DAL;
 
-namespace SDF_ZOFRATACNA.Recursos
+// ============================================================
+// Nombre del programa  : frmLogin
+// Descripción          : Panel de simulación de acceso al SDF.
+//                        En lugar de conectar con el SAS de ZOFRATACNA,
+//                        cada botón establece manualmente las variables
+//                        de sesión de un perfil de usuario y redirige
+//                        al panel correspondiente. Usado exclusivamente
+//                        para demostraciones y pruebas de flujo.
+// Fecha desarrollo     : 24/04/2026
+// Desarrollador        : Equipo TI ZOFRATACNA
+// Fecha mantenimiento  :
+// Persona que lo realizó:
+// Nro. solicitud mant. :
+// Descripción mant.    :
+// ============================================================
+
+namespace SDF_ZOFRATACNA
 {
     public partial class frmLogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Opcional: Limpiar mensajes al cargar
-            lblMessage.Visible = false;
+            // Limpiar sesión anterior al cargar el simulador
+            if (!IsPostBack)
+            {
+                Session.Clear();
+            }
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        // ── Método privado central ──────────────────────────────────────────
+        // Carga las variables de sesión manualmente (simula respuesta del SAS)
+        // y redirige al panel del rol indicado.
+        // ─────────────────────────────────────────────────────────────────────
+        private void SimularAcceso(
+            string strIdUsuario,
+            string strNombres,
+            string strLoginUsuario,
+            string strRol,
+            string strUnidadOrganica,
+            string strUrlDestino)
         {
-            string rolSeleccionado = ddlRol.SelectedValue;
-            string correo = txtUsername.Text.Trim();
-            string clave = txtPassword.Text.Trim();
+            // Poblar variables de sesión con los mismos nombres usados en todos los formularios
+            Session["IdUsuario"]       = strIdUsuario;
+            Session["Nombres"]         = strNombres;
+            Session["strUsuario"]      = strLoginUsuario;   // Compatibilidad con estándar SAS
+            Session["Rol"]             = strRol;
+            Session["UnidadOrganica"]  = strUnidadOrganica;
+            Session["UrlFoto"]         = "";                // Sin foto en modo demo
 
-            // Validación simple de campos vacíos
-            if (string.IsNullOrEmpty(rolSeleccionado) || string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(clave))
-            {
-                lblMessage.Text = "Por favor, complete todos los campos.";
-                lblMessage.Visible = true;
-                return;
-            }
+            // Redirigir al panel del rol
+            Response.Redirect(strUrlDestino);
+        }
 
-            try
-            {
-                // Parámetros para el Procedimiento Almacenado
-                System.Data.SqlClient.SqlParameter[] pars = new System.Data.SqlClient.SqlParameter[]
-                {
-                    new System.Data.SqlClient.SqlParameter("@Correo", correo),
-                    new System.Data.SqlClient.SqlParameter("@Clave", clave)
-                };
+        // ── Administrador ────────────────────────────────────────────────────
 
-                // Ejecución mediante la DAL (Capa de Acceso a Datos)
-                System.Data.DataTable dtUsuario = ConexionBD.EjecutarConsultaFirma("USP_FIR_Usuario_Login", pars);
+        protected void cmdAdminUno_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "admin01",
+                strNombres:         "Administrador Zofra",
+                strLoginUsuario:    "admin01",
+                strRol:             "ADMIN",
+                strUnidadOrganica:  "Gerencia TI",
+                strUrlDestino:      "~/Formularios/Administracion/frmDashboardAdmin.aspx"
+            );
+        }
 
-                if (dtUsuario != null && dtUsuario.Rows.Count > 0)
-                {
-                    string idUsuario = dtUsuario.Rows[0]["IDUsuario"].ToString();
-                    string rolBD = dtUsuario.Rows[0]["Rol"].ToString();
+        // ── Registradores ────────────────────────────────────────────────────
 
-                    // Opcional: Validar que el rol en BD coincida con el seleccionado (o usar el de la BD directamente)
-                    // Para este ejemplo, usaremos el de la BD para redirigir
-                    
-                    Session["IDUsuario"] = idUsuario;
-                    Session["Correo"] = correo;
-                    Session["Rol"] = rolBD;
+        protected void cmdRegistradorUno_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "reg01",
+                strNombres:         "Maria Quispe Ramos",
+                strLoginUsuario:    "mquispe",
+                strRol:             "REG",
+                strUnidadOrganica:  "Secretaria General",
+                strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
+            );
+        }
 
-                    // Redirección basada en el ROL de la Base de Datos
-                    switch (rolBD.ToUpper())
-                    {
-                        case "ADMIN":
-                        case "ADMINISTRADOR":
-                            Response.Redirect("/Formularios/Administracion/frmDashboardAdmin.aspx");
-                            break;
-                        case "REG":
-                        case "REGISTRADOR":
-                            Response.Redirect("/Formularios/Documentos/frmDashboardRegistrador.aspx");
-                            break;
-                        case "FIR":
-                        case "FIRMATE":
-                        case "FIRMADOR":
-                        case "SIG":
-                            Response.Redirect("/Formularios/Firma/frmDashboardFirmante.aspx");
-                            break;
-                        default:
-                            lblMessage.Text = "Su rol no tiene un panel asignado.";
-                            lblMessage.Visible = true;
-                            break;
-                    }
-                }
-                else
-                {
-                    lblMessage.Text = "Credenciales incorrectas o cuenta inactiva.";
-                    lblMessage.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = "Error técnico: " + ex.Message;
-                lblMessage.Visible = true;
-            }
+        protected void cmdRegistradorDos_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "reg02",
+                strNombres:         "Pedro Vargas Torres",
+                strLoginUsuario:    "pvargas",
+                strRol:             "REG",
+                strUnidadOrganica:  "Sub-Gerencia Administrativa",
+                strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
+            );
+        }
+
+        protected void cmdRegistradorTres_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "reg03",
+                strNombres:         "Rosa Condori Mamani",
+                strLoginUsuario:    "rcondori",
+                strRol:             "REG",
+                strUnidadOrganica:  "Operaciones",
+                strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
+            );
+        }
+
+        // ── Firmantes ────────────────────────────────────────────────────────
+
+        protected void cmdFirmanteUno_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "firm01",
+                strNombres:         "Jorge Apaza Huanca",
+                strLoginUsuario:    "japaza",
+                strRol:             "FIR",
+                strUnidadOrganica:  "Gerencia General",
+                strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
+            );
+        }
+
+        protected void cmdFirmanteDos_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "firm02",
+                strNombres:         "Ana Ccoa Flores",
+                strLoginUsuario:    "accoa",
+                strRol:             "FIR",
+                strUnidadOrganica:  "Sub-Gerencia Legal",
+                strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
+            );
+        }
+
+        protected void cmdFirmanteTres_Click(object sender, EventArgs e)
+        {
+            SimularAcceso(
+                strIdUsuario:       "firm03",
+                strNombres:         "Luis Huanca Pari",
+                strLoginUsuario:    "lhuanca",
+                strRol:             "FIR",
+                strUnidadOrganica:  "Presidencia Ejecutiva",
+                strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
+            );
         }
     }
 }

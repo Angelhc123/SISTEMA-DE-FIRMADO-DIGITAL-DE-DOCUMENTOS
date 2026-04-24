@@ -1,9 +1,24 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
+// ============================================================
+// Nombre del programa  : frmGestionUsuarios
+// Descripción          : Formulario de gestión de accesos y roles
+//                        de usuarios del sistema SDF. Permite al
+//                        Administrador asignar roles, resetear
+//                        contraseñas y activar/desactivar cuentas
+//                        consultando la vista VW_EmpleadosActivos.
+// Fecha desarrollo     : 24/04/2026
+// Desarrollador        : Equipo TI ZOFRATACNA
+// Fecha mantenimiento  :
+// Persona que lo realizó:
+// Nro. solicitud mant. :
+// Descripción mant.    :
+// ============================================================
 
 namespace SDF_ZOFRATACNA.Formularios.Administracion
 {
@@ -13,28 +28,33 @@ namespace SDF_ZOFRATACNA.Formularios.Administracion
         {
             if (!IsPostBack)
             {
-                // Validar la sesión según instructivo (evitar caídas en mockup)
-                if (Session["strUsuario"] == null)
+                // Compatibilidad mockup: sesión por defecto para navegación fluida
+                if (Session["Nombres"] == null)
                 {
-                    // Mockup: establecemos una sesión por defecto para navegación fluida
-                    Session["strUsuario"] = "Administrador Zofra";
+                    Session["Nombres"] = "Administrador Zofra";
                 }
 
-                litUsuario.Text = Session["strUsuario"].ToString();
+                // Mostrar nombre del usuario autenticado en la interfaz
+                litUsuario.Text = Session["Nombres"].ToString();
 
-                // Aquí iría el llamado a BLL/DAL para cargar la tabla desde BD (ej. VW_EmpleadosActivos)
+                // Cargar la lista de usuarios desde la BD
+                // En producción: llama al SP o vista VW_EmpleadosActivos mediante la DAL
                 CargarListaUsuarios();
             }
         }
 
+        /// <summary>
+        /// Carga la lista de usuarios del sistema.
+        /// TODO: Conectar al SP USP_FIR_Usuario_Listar o a la vista VW_EmpleadosActivos.
+        /// </summary>
         private void CargarListaUsuarios()
         {
-            // Lógica para enlazar la tabla HTML (idealmente un GridView o ListView) a la base de datos
+            // Lógica de enlace a GridView/ListView (pendiente de implementar con DAL)
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            // Lógica transversal solicitada en el informe_vistas: limpiar sesión y salir
+            // Limpiar sesión y redirigir al login (transversal a todos los formularios)
             Session.Clear();
             Session.Abandon();
             Response.Redirect("~/frmLogin.aspx");
@@ -42,15 +62,16 @@ namespace SDF_ZOFRATACNA.Formularios.Administracion
 
         protected void btnNewUser_Click(object sender, EventArgs e)
         {
-            // Lógica para registrar un nuevo usuario (posible redirección a otra vista .aspx o modal)
+            // TODO: Redirigir al formulario de registro de nuevo usuario o abrir modal
         }
 
         protected void ddlFiltros_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Captura los cambios en los combos de Rol o Estado para recargar los datos
-            string rolSeleccionado = ddlRoleFilter.SelectedValue;
-            string estadoSeleccionado = ddlStatusFilter.SelectedValue;
+            // Captura los filtros seleccionados en los combos (string → prefijo str)
+            string strRolSeleccionado    = ddlRoleFilter.SelectedValue;
+            string strEstadoSeleccionado = ddlStatusFilter.SelectedValue;
 
+            // Recargar lista con los filtros aplicados
             CargarListaUsuarios();
         }
     }

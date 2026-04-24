@@ -1,6 +1,21 @@
-﻿using System;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
+// ============================================================
+// Nombre del programa  : frmMisDocumentosFirmante
+// Descripción          : Formulario que lista los documentos
+//                        pendientes de firma asignados al
+//                        usuario Firmante. Muestra el documento
+//                        prioritario y permite navegar al
+//                        portal de firma digital.
+// Fecha desarrollo     : 24/04/2026
+// Desarrollador        : Equipo TI ZOFRATACNA
+// Fecha mantenimiento  :
+// Persona que lo realizó:
+// Nro. solicitud mant. :
+// Descripción mant.    :
+// ============================================================
 
 namespace SDF_ZOFRATACNA.Formularios.Firma
 {
@@ -8,6 +23,13 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Validación de sesión: redirige al login si no está autenticado
+            if (Session["IdUsuario"] == null)
+            {
+                Response.Redirect("~/frmLogin.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarDatosUsuario();
@@ -15,70 +37,82 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             }
         }
 
+        /// <summary>
+        /// Carga los datos del usuario autenticado en los controles de perfil.
+        /// </summary>
         private void CargarDatosUsuario()
         {
             try
             {
-                string nombre = Session["Nombres"]?.ToString() ?? "Carlos Mendoza";
-                string rol = Session["Rol"]?.ToString() ?? "Firmante / Revisor";
-                string urlFoto = Session["UrlFoto"]?.ToString() ?? "https://ui-avatars.com/api/?background=001e40&color=fff&name=" + Uri.EscapeDataString(nombre);
+                // Recuperar datos de sesión (string → prefijo str)
+                string strNombre  = Session["Nombres"]?.ToString() ?? "Firmante Demo";
+                string strRol     = Session["Rol"]?.ToString() ?? "Firmante";
+                string strUrlFoto = Session["UrlFoto"]?.ToString()
+                                    ?? "https://ui-avatars.com/api/?background=001e40&color=fff&name="
+                                    + Uri.EscapeDataString(strNombre);
 
-                // Buscar los controles en la página
-                Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
-                Label lblRolUsuario = (Label)FindControl("lblRolUsuario");
-                Image imgPerfil = (Image)FindControl("imgPerfil");
+                // Controles del panel principal (FindControl para compatibilidad con designer)
+                Label lblNombreUsuario  = (Label)FindControl("lblNombreUsuario");
+                Label lblRolUsuario     = (Label)FindControl("lblRolUsuario");
+                Image imgPerfil         = (Image)FindControl("imgPerfil");
 
-                // También para el sidebar
-                Label Label1 = (Label)FindControl("Label1");
-                Image Image1 = (Image)FindControl("Image1");
+                // Controles del sidebar de navegación
+                Label lblNombreSidebar  = (Label)FindControl("lblNombreSidebar");
+                Image imgPerfilSidebar  = (Image)FindControl("imgPerfilSidebar");
 
-                if (lblNombreUsuario != null) lblNombreUsuario.Text = nombre;
-                if (lblRolUsuario != null) lblRolUsuario.Text = rol;
-                if (imgPerfil != null) imgPerfil.ImageUrl = urlFoto;
-                if (Label1 != null) Label1.Text = nombre;
-                if (Image1 != null) Image1.ImageUrl = urlFoto;
+                if (lblNombreUsuario != null)  lblNombreUsuario.Text  = strNombre;
+                if (lblRolUsuario    != null)  lblRolUsuario.Text     = strRol;
+                if (imgPerfil        != null)  imgPerfil.ImageUrl     = strUrlFoto;
+                if (lblNombreSidebar != null)  lblNombreSidebar.Text  = strNombre;
+                if (imgPerfilSidebar != null)  imgPerfilSidebar.ImageUrl = strUrlFoto;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error cargando usuario: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("Error cargando usuario en Mis Documentos Firmante: " + ex.Message);
             }
         }
 
+        /// <summary>
+        /// Carga el resumen de documentos pendientes y el documento prioritario.
+        /// TODO: Conectar al SP USP_FIR_Documentos_PendientesFirmante.
+        /// </summary>
         private void CargarDocumentosPendientes()
         {
-            // Cargar datos en los labels del resumen
-            Label lblPorFirmar = (Label)FindControl("lblPorFirmar");
-            Label lblFirmadosHoy = (Label)FindControl("lblFirmadosHoy");
-            Label lblDocumentoPrioritario = (Label)FindControl("lblDocumentoPrioritario");
-            Label lblDescripcionPrioritario = (Label)FindControl("lblDescripcionPrioritario");
+            // Buscar controles de estadísticas y del documento prioritario
+            Label lblPorFirmar             = (Label)FindControl("lblPorFirmar");
+            Label lblFirmadosHoy           = (Label)FindControl("lblFirmadosHoy");
+            Label lblDocumentoPrioritario  = (Label)FindControl("lblDocumentoPrioritario");
+            Label lblDescripcionPrioritario= (Label)FindControl("lblDescripcionPrioritario");
 
-            if (lblPorFirmar != null) lblPorFirmar.Text = "04";
-            if (lblFirmadosHoy != null) lblFirmadosHoy.Text = "12";
-            if (lblDocumentoPrioritario != null) lblDocumentoPrioritario.Text = "Resolución Directoral N° 145-2023-ZOFRATACNA";
+            // Valores de demostración (en producción consultar BD via DAL)
+            if (lblPorFirmar            != null) lblPorFirmar.Text             = "04";
+            if (lblFirmadosHoy          != null) lblFirmadosHoy.Text           = "12";
+            if (lblDocumentoPrioritario != null) lblDocumentoPrioritario.Text  = "Resolución Directoral N° 145-2023-ZOFRATACNA";
             if (lblDescripcionPrioritario != null) lblDescripcionPrioritario.Text = "Aprobación de la modificación del Plan Operativo Institucional (POI)";
         }
 
-        // ✅ Botón Firmar Prioritario
+        // Navegar al portal de firma para el documento prioritario
         protected void btnFirmarPrioritario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmFirmaDigital.aspx?id=145");
+            Response.Redirect("~/Formularios/Firma/frmPortalFirma.aspx?id=145");
         }
 
-        // ✅ Botón Revisar Prioritario (AGREGADO)
+        // Navegar al portal de firma para previsualizar el documento prioritario
         protected void btnRevisarPrioritario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmVerDocumento.aspx?id=145");
+            Response.Redirect("~/Formularios/Firma/frmPortalFirma.aspx?id=145&modo=revision");
         }
 
-        // ✅ Botón Ver Todos (AGREGADO)
+        // Ver todos los documentos pendientes del firmante
         protected void btnVerTodos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmListaDocumentos.aspx");
+            // Redirige a la misma página recargada (el listado completo está en este formulario)
+            Response.Redirect("~/Formularios/Firma/frmMisDocumentosFirmante.aspx");
         }
 
-        // ✅ Cierre de sesión
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            // Limpiar sesión y redirigir al login
             Session.Clear();
             Session.Abandon();
             Response.Redirect("~/frmLogin.aspx");

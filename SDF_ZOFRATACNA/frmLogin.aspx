@@ -1,121 +1,239 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmLogin.aspx.cs" Inherits="SDF_ZOFRATACNA.Recursos.frmLogin"
-    %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmLogin.aspx.cs" Inherits="SDF_ZOFRATACNA.frmLogin" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDF ZOFRATACNA — Simulador de Acceso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!DOCTYPE html>
-    <html lang="es">
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #001e40 0%, #003366 60%, #00509e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
 
-    <head runat="server">
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>SDF ZOFRATACNA - Iniciar Sesión</title>
+        /* ── Tarjeta principal ── */
+        .card-simulador {
+            background: rgba(255,255,255,0.97);
+            border-radius: 1.25rem;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.28);
+            width: 100%;
+            max-width: 760px;
+            overflow: hidden;
+        }
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Public+Sans:wght@400;600;700&display=swap"
-            rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
-            rel="stylesheet" />
-        <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+        /* ── Encabezado ── */
+        .card-header {
+            background: linear-gradient(90deg, #001e40, #003d82);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .card-header .material-symbols-outlined { font-size: 2.2rem; }
+        .card-header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.02em; }
+        .card-header p  { font-size: 0.78rem; opacity: 0.75; margin-top: 2px; }
 
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            "primary": "#001e40",
-                            "primary-container": "#003366",
-                            "surface": "#f8f9fb"
-                        }
-                    }
-                }
-            }
-        </script>
-    </head>
+        /* ── Aviso de simulación ── */
+        .aviso-sim {
+            background: #fff8e1;
+            border-left: 4px solid #f59e0b;
+            margin: 1.5rem 2rem 0;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            color: #92400e;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .aviso-sim .material-symbols-outlined { font-size: 1.1rem; margin-top: 1px; flex-shrink: 0; }
 
-    <body
-        class="bg-[#f8f9fb] font-sans text-[#191c1e] antialiased min-h-screen flex items-center justify-center relative overflow-hidden">
+        /* ── Secciones de rol ── */
+        .roles-wrapper { padding: 1.5rem 2rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
 
-        <div class="absolute inset-0 z-0 bg-gradient-to-br from-slate-200/90 to-slate-50/95 backdrop-blur-sm"></div>
+        .rol-group { border: 1px solid #e2e8f0; border-radius: 0.75rem; overflow: hidden; }
 
-        <main class="relative z-10 w-full max-w-[28rem] mx-4">
-            <form id="form1" runat="server"
-                class="bg-white rounded-xl shadow-[0_20px_40px_rgba(25,28,30,0.06)] border border-slate-200 overflow-hidden">
+        .rol-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.65rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .rol-group-header .material-symbols-outlined { font-size: 1rem; }
 
-                <div class="px-8 pt-10 pb-6 flex flex-col items-center border-b border-slate-100">
-                    <div
-                        class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4 shadow-sm border border-slate-200">
-                        <span class="material-symbols-outlined text-primary text-3xl"
-                            style="font-variation-settings: 'FILL' 1;">shield_person</span>
-                    </div>
-                    <h1 class="font-bold text-2xl text-primary tracking-tight text-center leading-tight">SDF ZOFRATACNA
-                    </h1>
-                    <p class="text-sm text-slate-500 mt-1.5 text-center italic">Arquitectura de Confianza</p>
-                </div>
+        .rol-group-header.admin   { background: #eff6ff; color: #1d4ed8; border-bottom: 1px solid #dbeafe; }
+        .rol-group-header.reg     { background: #f0fdf4; color: #15803d; border-bottom: 1px solid #bbf7d0; }
+        .rol-group-header.firmante{ background: #fdf4ff; color: #7e22ce; border-bottom: 1px solid #e9d5ff; }
 
-                <div class="p-8 space-y-6">
+        .rol-group-body { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1rem; }
 
-                    <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-slate-700 block">Rol de Usuario</label>
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">badge</span>
-                            <asp:DropDownList ID="ddlRol" runat="server"
-                                CssClass="block w-full pl-10 pr-10 py-3 text-sm bg-slate-50 border border-slate-200 rounded-lg appearance-none focus:ring-2 focus:ring-primary/10 transition-all">
-                                <asp:ListItem Text="Seleccione su rol" Value="" Selected="True" />
-                                <asp:ListItem Text="Administrador" Value="ADMIN" />
-                                <asp:ListItem Text="Registrador" Value="REG" />
-                                <asp:ListItem Text="Firmador" Value="FIR" />
-                            </asp:DropDownList>
-                        </div>
-                    </div>
+        /* ── Botones de simulación ── */
+        .btn-sim {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            border-radius: 0.6rem;
+            padding: 0.65rem 1.2rem;
+            font-size: 0.83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+        .btn-sim:hover  { transform: translateY(-2px); opacity: 0.92; }
+        .btn-sim:active { transform: translateY(0);    box-shadow: none !important; }
+        .btn-sim .material-symbols-outlined { font-size: 1.05rem; }
 
-                    <div class="space-y-1.5">
-                        <label class="text-sm font-medium text-slate-700 block">Usuario</label>
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">person</span>
-                            <asp:TextBox ID="txtUsername" runat="server"
-                                CssClass="block w-full pl-10 pr-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/10"
-                                placeholder="Ingrese su identificador"></asp:TextBox>
-                        </div>
-                    </div>
+        .btn-admin   { background: #1d4ed8; color: #fff; box-shadow: 0 4px 12px rgba(29,78,216,0.3); }
+        .btn-reg     { background: #16a34a; color: #fff; box-shadow: 0 4px 12px rgba(22,163,74,0.3); }
+        .btn-firmante{ background: #7c3aed; color: #fff; box-shadow: 0 4px 12px rgba(124,58,237,0.3); }
 
-                    <div class="space-y-1.5">
-                        <div class="flex items-center justify-between">
-                            <label class="text-sm font-medium text-slate-700 block">Contraseña</label>
-                            <asp:LinkButton ID="btnOlvido" runat="server"
-                                CssClass="text-xs font-medium text-primary hover:underline">¿Olvidó su contraseña?
-                            </asp:LinkButton>
-                        </div>
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">lock</span>
-                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"
-                                CssClass="block w-full pl-10 pr-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/10"
-                                placeholder="••••••••"></asp:TextBox>
-                        </div>
-                    </div>
+        /* ── Etiqueta de usuario simulado ── */
+        .user-tag {
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0.75;
+            display: block;
+            margin-top: 1px;
+        }
 
-                    <div class="pt-2">
-                        <asp:LinkButton ID="btnLogin" runat="server" OnClick="btnLogin_Click"
-                            CssClass="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#001e40] to-[#003366] text-white font-semibold text-sm py-3.5 rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all">
-                            Ingresar al Sistema
-                            <span class="material-symbols-outlined text-[18px]">login</span>
-                        </asp:LinkButton>
-                    </div>
+        /* ── Mensaje de error ── */
+        .msg-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            padding: 0.6rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            margin: 0 2rem 1rem;
+        }
 
-                    <asp:Label ID="lblMessage" runat="server" CssClass="text-xs text-red-600 text-center block mt-2"
-                        Visible="false"></asp:Label>
-                </div>
-
-                <div class="bg-slate-50 py-4 px-8 border-t border-slate-100 text-center">
-                    <p class="text-[11px] text-slate-400">Acceso restringido a personal autorizado.</p>
-                </div>
-            </form>
-
-            <div class="mt-6 text-center">
-                <p class="text-xs text-slate-400/70 italic">© 2026 ZOFRATACNA. Sistema de Firma Digital v2.1</p>
+        /* ── Footer ── */
+        .card-footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 0.75rem 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-simulador">
+        <!-- Encabezado -->
+        <div class="card-header">
+            <span class="material-symbols-outlined">shield_person</span>
+            <div>
+                <h1>SDF ZOFRATACNA — Panel de Simulación</h1>
+                <p>Seleccione un perfil de usuario para iniciar el flujo de trabajo</p>
             </div>
-        </main>
-    </body>
+        </div>
 
-    </html>
+        <form id="frmSimulador" runat="server">
+
+            <!-- Aviso de modo simulación -->
+            <div class="aviso-sim">
+                <span class="material-symbols-outlined">info</span>
+                <span>
+                    <strong>Modo de demostración.</strong> No se requiere contraseña.
+                    Al presionar un botón, las variables de sesión se establecen manualmente
+                    y se redirige al panel correspondiente, simulando la autenticación del SAS de ZOFRATACNA.
+                </span>
+            </div>
+
+            <!-- Mensaje de error (oculto por defecto) -->
+            <asp:Label ID="lblError" runat="server" CssClass="msg-error" Visible="false" />
+
+            <div class="roles-wrapper">
+
+                <!-- ── Administrador ── -->
+                <div class="rol-group">
+                    <div class="rol-group-header admin">
+                        <span class="material-symbols-outlined">manage_accounts</span>
+                        Administrador
+                    </div>
+                    <div class="rol-group-body">
+                        <asp:Button ID="cmdAdminUno" runat="server"
+                            CssClass="btn-sim btn-admin"
+                            Text="&#xe8a3; Administrador 1"
+                            OnClick="cmdAdminUno_Click"
+                            ToolTip="Inicia sesión como Administrador Zofra" />
+                    </div>
+                </div>
+
+                <!-- ── Registrador ── -->
+                <div class="rol-group">
+                    <div class="rol-group-header reg">
+                        <span class="material-symbols-outlined">edit_document</span>
+                        Registrador
+                    </div>
+                    <div class="rol-group-body">
+                        <asp:Button ID="cmdRegistradorUno" runat="server"
+                            CssClass="btn-sim btn-reg"
+                            Text="Registrador 1"
+                            OnClick="cmdRegistradorUno_Click"
+                            ToolTip="Maria Quispe Ramos" />
+                        <asp:Button ID="cmdRegistradorDos" runat="server"
+                            CssClass="btn-sim btn-reg"
+                            Text="Registrador 2"
+                            OnClick="cmdRegistradorDos_Click"
+                            ToolTip="Pedro Vargas Torres" />
+                        <asp:Button ID="cmdRegistradorTres" runat="server"
+                            CssClass="btn-sim btn-reg"
+                            Text="Registrador 3"
+                            OnClick="cmdRegistradorTres_Click"
+                            ToolTip="Rosa Condori Mamani" />
+                    </div>
+                </div>
+
+                <!-- ── Firmante ── -->
+                <div class="rol-group">
+                    <div class="rol-group-header firmante">
+                        <span class="material-symbols-outlined">draw</span>
+                        Firmante
+                    </div>
+                    <div class="rol-group-body">
+                        <asp:Button ID="cmdFirmanteUno" runat="server"
+                            CssClass="btn-sim btn-firmante"
+                            Text="Firmante 1"
+                            OnClick="cmdFirmanteUno_Click"
+                            ToolTip="Jorge Apaza Huanca" />
+                        <asp:Button ID="cmdFirmanteDos" runat="server"
+                            CssClass="btn-sim btn-firmante"
+                            Text="Firmante 2"
+                            OnClick="cmdFirmanteDos_Click"
+                            ToolTip="Ana Ccoa Flores" />
+                        <asp:Button ID="cmdFirmanteTres" runat="server"
+                            CssClass="btn-sim btn-firmante"
+                            Text="Firmante 3"
+                            OnClick="cmdFirmanteTres_Click"
+                            ToolTip="Luis Huanca Pari" />
+                    </div>
+                </div>
+
+            </div><!-- /roles-wrapper -->
+        </form>
+
+        <div class="card-footer">
+            &copy; 2026 ZOFRATACNA &mdash; Sistema de Firma Digital &mdash; <em>Modo Demo</em>
+        </div>
+    </div>
+</body>
+</html>
