@@ -223,7 +223,6 @@ CREATE TABLE dbo.FIR_DocumentoFirmante (
     FechaModificacion     SMALLDATETIME NULL,
     CONSTRAINT pk_FIR_DocumentoFirmante PRIMARY KEY (IDFirmante),
     CONSTRAINT fk_FIR_DocumentoFirmante_Documento FOREIGN KEY (IDDocumento) REFERENCES dbo.FIR_Documento(IDDocumento),
-    CONSTRAINT fk_FIR_DocumentoFirmante_Usuario FOREIGN KEY (IDUsuarioFirmante) REFERENCES dbo.FIR_Usuario(IDUsuario),
     CONSTRAINT fk_FIR_DocumentoFirmante_RolFirmante FOREIGN KEY (IDRolFirmante) REFERENCES dbo.FIR_Maestro(IDMaestro),
     CONSTRAINT fk_FIR_DocumentoFirmante_EstadoFirma FOREIGN KEY (IDEstadoFirma) REFERENCES dbo.FIR_Maestro(IDMaestro),
     CONSTRAINT fk_FIR_DocumentoFirmante_DocVersion FOREIGN KEY (IDDocVersionFirmada) REFERENCES dbo.FIR_DocumentoVersion(IDDocVersion),
@@ -291,7 +290,6 @@ CREATE TABLE dbo.FIR_Alerta (
     FechaModificacion     SMALLDATETIME NULL,
     CONSTRAINT pk_FIR_Alerta PRIMARY KEY (IDAlerta),
     CONSTRAINT fk_FIR_Alerta_Documento FOREIGN KEY (IDDocumento) REFERENCES dbo.FIR_Documento(IDDocumento),
-    CONSTRAINT fk_FIR_Alerta_Usuario FOREIGN KEY (IDUsuario) REFERENCES dbo.FIR_Usuario(IDUsuario),
     CONSTRAINT fk_FIR_Alerta_TipoAlerta FOREIGN KEY (IDTipoAlerta) REFERENCES dbo.FIR_Maestro(IDMaestro)
 );
 GO
@@ -636,30 +634,9 @@ END;
 GO
 
 -- ==============================================================================
--- 5. LOGIN DE USUARIO
+-- (Login administrado externamente)
 -- ==============================================================================
-IF OBJECT_ID('dbo.USP_FIR_Usuario_Login', 'P') IS NOT NULL DROP PROCEDURE dbo.USP_FIR_Usuario_Login;
-GO
-CREATE PROCEDURE dbo.USP_FIR_Usuario_Login
-    @Correo VARCHAR(100),
-    @Clave VARCHAR(50)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    -- Retorna los datos del usuario si las credenciales son correctas y está activo.
-    -- El campo 'Rol' determinará si es 'Administrador', 'Registrador', 'Firmante', o 'Revisor'
-    SELECT 
-        IDUsuario,
-        Correo,
-        Rol,
-        Activo
-    FROM FIR_Usuario
-    WHERE Correo = @Correo 
-      AND Clave = @Clave
-      AND Activo = 1;
-END;
-GO
+
 
 -- ==============================================================================
 -- BLOQUE C: Datos semilla FIR_Maestro
@@ -693,31 +670,6 @@ BEGIN
 END;
 GO
 
--- ==============================================================================
--- BLOQUE E: Vista FIR_VW_EmpleadosActivos
--- DESCRIPCION: Lista empleados activos desde la BD Administracion de ZOFRATACNA.
---              Usada para designar revisores y firmantes en el registro de documentos.
--- Usado por: frmRegistrarDocumento.aspx, frmGestionUsuarios.aspx
--- Nota: Requiere linked server o estar en la misma instancia SQL.
--- ==============================================================================
-IF OBJECT_ID('dbo.FIR_VW_EmpleadosActivos','V') IS NOT NULL DROP VIEW dbo.FIR_VW_EmpleadosActivos;
-GO
-CREATE VIEW dbo.FIR_VW_EmpleadosActivos AS
-SELECT
-    e.IDEmpleado,
-    e.CodigoPersonal,
-    e.Apellido,
-    e.Nombre,
-    e.Apellido + ', ' + e.Nombre AS NombreCompleto,
-    e.LoginUsuario,
-    ISNULL(e.Email, e.LoginUsuario + '@zofratacna.com.pe') AS Email,
-    e.IDUnidadOrganica,
-    e.IDCargo,
-    e.IDSede,
-    e.IdRol
-FROM [administracion].[dbo].[Empleado] e
-WHERE e.ActivoAsist = 1;
-GO
 
 -- ==============================================================================
 -- BLOQUE F: Vista FIR_VW_DocumentosPendientes
