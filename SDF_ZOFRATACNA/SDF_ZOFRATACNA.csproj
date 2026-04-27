@@ -229,7 +229,6 @@
     </Compile>
     <Compile Include="Formularios\Firma\frmInterfazRevisor.aspx.cs">
       <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formularios\Firma\frmInterfazRevisor.aspx.designer.cs">
       <DependentUpon>frmInterfazRevisor.aspx</DependentUpon>

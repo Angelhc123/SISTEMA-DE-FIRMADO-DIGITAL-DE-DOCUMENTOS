@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmMisDocumentosRevisor.aspx.cs" Inherits="SDF_ZOFRATACNA.Formularios.Firma.frmMisDocumentosRevisor" %>
 <!DOCTYPE html>
 <html class="light" lang="es">
-<head>
+<head runat="server">
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>SDF ZOFRATACNA - Mis Documentos para Revisar</title>
@@ -100,8 +100,11 @@
                 <span class="material-symbols-outlined text-[20px]">dashboard</span> Dashboard
             </a>
             <a href="#"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-container/10 text-primary-container font-semibold text-sm">
-                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;">task</span> Mis Documentos
+               class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-primary-container/10 text-primary-container font-semibold text-sm transition-all">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;">task</span> Mis Documentos
+                </div>
+                <asp:Label ID="lblCountSidebar" runat="server" CssClass="bg-primary-container/20 px-1.5 py-0.5 rounded text-[10px]" Text="0"></asp:Label>
             </a>
             <a href="~/Formularios/Firma/frmArchivoFirmante.aspx" runat="server"
                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container font-medium text-sm transition-colors">

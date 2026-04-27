@@ -86,6 +86,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                     SELECT 
                         vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
                         vd.AreaResponsable, vd.FechaCreacionDoc,
+                        vd.IDUsuarioCreador,
                         vd.EstadoDocumento, vd.TipoDocumento,
                         vd.RutaArchivo,
                         f.IDFirmante, f.Orden, f.FechaCreacion AS FechaAsignacion,
@@ -105,12 +106,19 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                 Panel pnlTabla = (Panel)FindControl("pnlTabla");
                 Repeater rptDocumentos = (Repeater)FindControl("rptDocumentos");
 
+                // Etiquetas de estadísticas (Sidebar solamente)
+                Label lblCountSidebar = (Label)FindControl("lblCountSidebar");
+
                 if (dt == null || dt.Rows.Count == 0)
                 {
                     if (pnlSinDocumentos != null) pnlSinDocumentos.Visible = true;
                     if (pnlTabla != null) pnlTabla.Visible = false;
+                    
+                    if (lblCountSidebar != null) lblCountSidebar.Text = "0";
                     return;
                 }
+
+                if (lblCountSidebar != null) lblCountSidebar.Text = dt.Rows.Count.ToString();
 
                 if (pnlTabla != null) pnlTabla.Visible = true;
                 if (pnlSinDocumentos != null) pnlSinDocumentos.Visible = false;
@@ -365,50 +373,75 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             
             if (dtDoc.Rows.Count > 0)
             {
-                int idDoc = Convert.ToInt32(dtDoc.Rows[0][0]);
+                int idDoc = Convert.ToInt32(dtDoc.Rows[0]["IDDocumento"]);
 
                 if (!esAprobado)
                 {
-                    // Si ALGUIEN observa, el documento pasa a estado OBSERVADO (ID 2)
-                    string sqlUpdateDoc = "UPDATE FIR_Documento SET IDEstadoDoc = 2 WHERE IDDocumento = @IDDoc";
-                    ConexionBD.EjecutarAccionFirmaSQL(sqlUpdateDoc, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
+                    // Si cualquiera observa, el documento pasa a estado OBSERVADO (3)
+                    ActualizarEstadoGlobalDocumento(idDoc, 3, loginUsuario);
                 }
                 else
                 {
-                    // Si es APROBADO, verificamos si TODOS los demás ya aprobaron también
-                    string sqlCheckAll = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDoc AND (EsAprobado IS NULL OR EsAprobado = 0)";
-                    DataTable dtCheck = ConexionBD.EjecutarConsultaFirmaSQL(sqlCheckAll, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
-                    
-                    int pendientesOAprobados = Convert.ToInt32(dtCheck.Rows[0][0]);
-                    if (pendientesOAprobados == 0)
+                    // Si aprueba, verificamos si faltan otros por aprobar
+                    if (TodosHanAprobado(idDoc))
                     {
-                        // Si ya no hay pendientes ni observaciones, pasa a APROBADO PARA FIRMA (ID 3)
-                        string sqlUpdateDoc = "UPDATE FIR_Documento SET IDEstadoDoc = 3 WHERE IDDocumento = @IDDoc";
-                        ConexionBD.EjecutarAccionFirmaSQL(sqlUpdateDoc, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
+                        // Si todos aprobaron, el documento pasa a estado APROBADO (2)
+                        ActualizarEstadoGlobalDocumento(idDoc, 2, loginUsuario);
                     }
                 }
             }
         }
 
-        // ── UI helpers ───────────────────────────────────────────────────────
+        private bool TodosHanAprobado(int idDocumento)
+        {
+            // Un documento está aprobado totalmente si no hay ningún firmante 
+            // que tenga EsAprobado en NULL o en 0 (false)
+            string sql = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDoc AND (EsAprobado IS NULL OR EsAprobado = 0)";
+            SqlParameter[] p = { new SqlParameter("@IDDoc", idDocumento) };
+            DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, p);
 
-        private void MostrarMensaje(string msg, bool esError = true)
+            return (Convert.ToInt32(dt.Rows[0][0]) == 0);
+        }
+
+        private void ActualizarEstadoGlobalDocumento(int idDocumento, int idEstadoNuevo, string loginUsuario)
+        {
+            string sql = @"
+                UPDATE FIR_Documento 
+                SET IDEstadoDoc = @IDEstado, 
+                    IDUsuarioModificador = @IDUsuario, 
+                    FechaModificacion = GETDATE() 
+                WHERE IDDocumento = @IDDoc";
+
+            SqlParameter[] p = {
+                new SqlParameter("@IDEstado", idEstadoNuevo),
+                new SqlParameter("@IDUsuario", loginUsuario),
+                new SqlParameter("@IDDoc",     idDocumento)
+            };
+
+            ConexionBD.EjecutarAccionFirmaSQL(sql, p);
+        }
+
+        private void MostrarMensaje(string texto, bool esError = true)
         {
             Panel pnlMensaje = (Panel)FindControl("pnlMensaje");
             Label lblMensaje = (Label)FindControl("lblMensaje");
-            if (pnlMensaje != null) pnlMensaje.Visible = true;
-            if (lblMensaje != null)
+
+            if (pnlMensaje != null && lblMensaje != null)
             {
-                lblMensaje.Text = msg;
-                lblMensaje.CssClass = esError ? "text-sm text-error font-medium" : "text-sm text-on-surface font-medium";
+                pnlMensaje.Visible = true;
+                lblMensaje.Text = texto;
+                pnlMensaje.CssClass = esError 
+                    ? "bg-red-900/20 border border-red-500/30 rounded-2xl p-4 flex items-center gap-3"
+                    : "bg-emerald-900/20 border border-emerald-500/30 rounded-2xl p-4 flex items-center gap-3 text-emerald-400";
             }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Session.Clear();
             Session.Abandon();
             Response.Redirect("~/frmLogin.aspx");
         }
     }
 }
+
+ 
