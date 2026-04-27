@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -37,8 +37,7 @@
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T14:32:29.381Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T14:32:29.381Z"
             },
             {
               "$type": "Document",
@@ -50,8 +49,7 @@
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2026-04-27T14:32:27.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T14:32:27.421Z"
             },
             {
               "$type": "Document",

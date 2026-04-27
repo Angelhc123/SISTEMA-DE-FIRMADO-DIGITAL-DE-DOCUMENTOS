@@ -265,17 +265,6 @@
                                             ErrorMessage="Código de referencia obligatorio"
                                             CssClass="text-xs text-error mt-1" Display="Dynamic" />
                                     </div>
-                                    <div>
-                                        <label
-                                            class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Días
-                                            máx. revisión</label>
-                                        <asp:TextBox ID="txtDiasMaxRevision" runat="server" Text="5"
-                                            CssClass="w-full bg-surface-container-high border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 rounded-t-sm px-4 py-3 text-on-surface font-body" />
-                                        <asp:RangeValidator ID="rvDias" runat="server"
-                                            ControlToValidate="txtDiasMaxRevision" MinimumValue="1" MaximumValue="30"
-                                            Type="Integer" ErrorMessage="Debe ser entre 1 y 30 días"
-                                            CssClass="text-xs text-error mt-1" Display="Dynamic" />
-                                    </div>
                                 </div>
                             </div>
 

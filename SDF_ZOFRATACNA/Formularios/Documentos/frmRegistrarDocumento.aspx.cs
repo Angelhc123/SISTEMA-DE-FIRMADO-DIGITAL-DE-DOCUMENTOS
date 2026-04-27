@@ -161,17 +161,21 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
 
             try
             {
-                // Guardar Archivo
-                string uploadsFolder = Server.MapPath("~/Documentos/Uploads/");
-                if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+                // Guardar Archivo temporalmente
+                string tempFolder = Server.MapPath("~/Temp/");
+                if (!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
                 
-                string nuevoNombre = Guid.NewGuid().ToString() + ".pdf";
-                string rutaRelativa = "~/Documentos/Uploads/" + nuevoNombre;
-                fileUploadPDF.SaveAs(Path.Combine(uploadsFolder, nuevoNombre));
+                string tipoDoc = ddlTipoDoc.SelectedItem.Text.Replace(" ", "_");
+                string areaResp = ddlAreaResponsable.SelectedItem.Value.Replace(" ", "_");
+                string fechaStr = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                
+                string nuevoNombre = $"{tipoDoc}_{areaResp}_{fechaStr}.pdf";
+                string rutaRelativa = "~/Temp/" + nuevoNombre;
+                
+                fileUploadPDF.SaveAs(Path.Combine(tempFolder, nuevoNombre));
 
                 // Configurar JSON para Revisores
                 string jsonRevisores = "[]"; // Ya no se usan pero el SP lo espera vacío para no romper firma
-                int diasMaxRev = int.Parse(txtDiasMaxRevision.Text);
 
                 // Configurar JSON para Firmantes
                 List<FirmanteData> firData = new List<FirmanteData>();
@@ -192,7 +196,6 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
                     new SqlParameter("@FechaCreacionDoc", Convert.ToDateTime(txtFechaEmision.Text)),
                     new SqlParameter("@CodigoDocumento", txtCodigoReferencia.Text.Trim()),
                     new SqlParameter("@RutaArchivo", rutaRelativa),
-                    new SqlParameter("@DiasMaxRevision", diasMaxRev),
                     new SqlParameter("@IDUsuarioCreador", Session["strUsuario"].ToString()),
                     new SqlParameter("@IDEquipo", Request.UserHostAddress ?? "127.0.0.1"),
                     new SqlParameter("@JsonRevisores", jsonRevisores),

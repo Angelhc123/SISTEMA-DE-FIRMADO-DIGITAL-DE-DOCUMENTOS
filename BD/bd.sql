@@ -86,15 +86,13 @@ CREATE TABLE dbo.FIR_Documento (
     FechaCreacionDoc   DATE          NOT NULL,
     CodigoDocumento    VARCHAR(50)   NOT NULL,
     IDEstadoDoc        INT           NOT NULL,
-    DiasMaxRevision    INT           NOT NULL CONSTRAINT df_FIR_Documento_DiasMaxRevision DEFAULT(5),
     IDUsuarioCreador      VARCHAR(15)   NOT NULL,
     FechaCreacion         SMALLDATETIME NOT NULL,
     IDUsuarioModificador  VARCHAR(15)   NULL,
     FechaModificacion     SMALLDATETIME NULL,
     CONSTRAINT pk_FIR_Documento PRIMARY KEY (IDDocumento),
     CONSTRAINT fk_FIR_Documento_TipoDoc   FOREIGN KEY (IDTipoDoc)   REFERENCES dbo.FIR_Maestro(IDMaestro),
-    CONSTRAINT fk_FIR_Documento_EstadoDoc FOREIGN KEY (IDEstadoDoc) REFERENCES dbo.FIR_Maestro(IDMaestro),
-    CONSTRAINT ch_FIR_Documento_DiasMaxRevision CHECK (DiasMaxRevision > 0)
+    CONSTRAINT fk_FIR_Documento_EstadoDoc FOREIGN KEY (IDEstadoDoc) REFERENCES dbo.FIR_Maestro(IDMaestro)
 );
 GO
 
@@ -107,7 +105,6 @@ CREATE TABLE dbo.FIR_DocumentoAuditoria (
     FechaCreacionDoc      DATE          NOT NULL,
     CodigoDocumento       VARCHAR(50)   NOT NULL,
     IDEstadoDoc           INT           NOT NULL,
-    DiasMaxRevision       INT           NOT NULL,
     IDUsuarioCreador      VARCHAR(15)   NOT NULL,
     FechaCreacion         SMALLDATETIME NOT NULL,
     IDUsuarioModificador  VARCHAR(15)   NULL,
@@ -167,7 +164,6 @@ CREATE TABLE dbo.FIR_DocumentoRevision (
     IDEstadoRevision   INT           NOT NULL,
     Correccion         VARCHAR(1000) NULL,
     FechaRevision      SMALLDATETIME NULL,
-    DiasMaxRevision    INT           NOT NULL CONSTRAINT df_FIR_DocumentoRevision_Dias DEFAULT(5),
     IDUsuarioCreador      VARCHAR(15)   NOT NULL,
     FechaCreacion         SMALLDATETIME NOT NULL,
     IDUsuarioModificador  VARCHAR(15)   NULL,
@@ -176,8 +172,7 @@ CREATE TABLE dbo.FIR_DocumentoRevision (
     CONSTRAINT fk_FIR_DocumentoRevision_DocVersion FOREIGN KEY (IDDocVersion) REFERENCES dbo.FIR_DocumentoVersion(IDDocVersion),
     -- FK a FIR_Usuario eliminada: IDUsuarioRevisor corresponde al LoginUsuario del SAS
     CONSTRAINT fk_FIR_DocumentoRevision_EstadoRevision FOREIGN KEY (IDEstadoRevision) REFERENCES dbo.FIR_Maestro(IDMaestro),
-    CONSTRAINT uq_FIR_DocumentoRevision_DocRevisor UNIQUE (IDDocVersion, IDUsuarioRevisor),
-    CONSTRAINT ch_FIR_DocumentoRevision_Dias CHECK (DiasMaxRevision > 0)
+    CONSTRAINT uq_FIR_DocumentoRevision_DocRevisor UNIQUE (IDDocVersion, IDUsuarioRevisor)
 );
 GO
 
@@ -189,7 +184,6 @@ CREATE TABLE dbo.FIR_DocumentoRevisionAuditoria (
     IDEstadoRevision   INT           NOT NULL,
     Correccion         VARCHAR(1000) NULL,
     FechaRevision      SMALLDATETIME NULL,
-    DiasMaxRevision    INT           NOT NULL,
     IDUsuarioCreador      VARCHAR(15)   NOT NULL,
     FechaCreacion         SMALLDATETIME NOT NULL,
     IDUsuarioModificador  VARCHAR(15)   NULL,
@@ -327,7 +321,7 @@ CREATE PROCEDURE dbo.USP_FIR_Documento_Registrar
     @FechaCreacionDoc DATE,
     @CodigoDocumento VARCHAR(50),
     @RutaArchivo VARCHAR(500),
-    @DiasMaxRevision INT,
+    
     @IDUsuarioCreador VARCHAR(15),
     @IDEquipo VARCHAR(15),
     @JsonRevisores NVARCHAR(MAX), -- Formato: [{"IDUsuarioRevisor": "usr1", "DiasMax": 5}]
@@ -350,15 +344,15 @@ BEGIN
 
         -- 1. Insertar Documento
         DECLARE @T_Doc TABLE (ID INT);
-        INSERT INTO FIR_Documento (Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion)
+        INSERT INTO FIR_Documento (Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, IDUsuarioCreador, FechaCreacion)
         OUTPUT INSERTED.IDDocumento INTO @T_Doc
-        VALUES (@Asunto, @IDTipoDoc, @AreaResponsable, @FechaCreacionDoc, @CodigoDocumento, @IDEstadoEnRevision, @DiasMaxRevision, @IDUsuarioCreador, @FechaActual);
+        VALUES (@Asunto, @IDTipoDoc, @AreaResponsable, @FechaCreacionDoc, @CodigoDocumento, @IDEstadoEnRevision, @IDUsuarioCreador, @FechaActual);
 
         DECLARE @IDDocumento INT = (SELECT TOP 1 ID FROM @T_Doc);
 
         -- Auditoria Documento
-        INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        VALUES (@IDDocumento, @Asunto, @IDTipoDoc, @AreaResponsable, @FechaCreacionDoc, @CodigoDocumento, @IDEstadoEnRevision, @DiasMaxRevision, @IDUsuarioCreador, @FechaActual, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual);
+        INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        VALUES (@IDDocumento, @Asunto, @IDTipoDoc, @AreaResponsable, @FechaCreacionDoc, @CodigoDocumento, @IDEstadoEnRevision, @IDUsuarioCreador, @FechaActual, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual);
 
         -- Historial
         INSERT INTO FIR_HistorialEstado (IDDocumento, IDEstadoAnterior, IDEstadoNuevo, Observacion, IDUsuarioCreador, FechaCreacion)
@@ -377,12 +371,12 @@ BEGIN
         VALUES (@IDDocVersion, @IDDocumento, @RutaArchivo, 1, @FechaActual, @IDUsuarioCreador, @FechaActual, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual);
 
         -- 3. Insertar Revisores
-        INSERT INTO FIR_DocumentoRevision (IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion)
-        SELECT @IDDocVersion, JSON_VALUE(value, '$.IDUsuarioRevisor'), @IDEstadoRevPendiente, CAST(JSON_VALUE(value, '$.DiasMax') AS INT), @IDUsuarioCreador, @FechaActual
+        INSERT INTO FIR_DocumentoRevision (IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, IDUsuarioCreador, FechaCreacion)
+        SELECT @IDDocVersion, JSON_VALUE(value, '$.IDUsuarioRevisor'), @IDEstadoRevPendiente, @IDUsuarioCreador, @FechaActual
         FROM OPENJSON(@JsonRevisores);
 
-        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision,  IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision,  IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual
         FROM FIR_DocumentoRevision WHERE IDDocVersion = @IDDocVersion;
 
         -- 4. Insertar Firmantes
@@ -436,8 +430,8 @@ BEGIN
         WHERE IDRevision = @IDRevision;
 
         -- Auditoria Revisión
-        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, Correccion, FechaRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, Correccion, FechaRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, Correccion, FechaRevision,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, Correccion, FechaRevision,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
         FROM FIR_DocumentoRevision WHERE IDRevision = @IDRevision;
 
         -- Verificar si todos revisaron
@@ -467,8 +461,8 @@ BEGIN
             WHERE IDDocumento = @IDDocumento;
 
             -- Auditoria Documento
-            INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-            SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
+            INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+            SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
             FROM FIR_Documento WHERE IDDocumento = @IDDocumento;
 
             -- Historial
@@ -522,12 +516,12 @@ BEGIN
         DECLARE @IDEstadoRevPendiente INT;
         SELECT @IDEstadoRevPendiente = IDMaestro FROM FIR_Maestro WHERE Tipo = 'ESTADO_REVISION' AND Codigo = 'PENDIENTE';
 
-        INSERT INTO FIR_DocumentoRevision (IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion)
-        SELECT @NuevoIDDocVersion, IDUsuarioRevisor, @IDEstadoRevPendiente, DiasMaxRevision, @IDUsuarioModificador, @FechaActual
+        INSERT INTO FIR_DocumentoRevision (IDDocVersion, IDUsuarioRevisor, IDEstadoRevision,  IDUsuarioCreador, FechaCreacion)
+        SELECT @NuevoIDDocVersion, IDUsuarioRevisor, @IDEstadoRevPendiente,  @IDUsuarioModificador, @FechaActual
         FROM FIR_DocumentoRevision WHERE IDDocVersion = @IDDocVersionAnterior;
 
-        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioModificador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoRevisionAuditoria (IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision,  IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDRevision, IDDocVersion, IDUsuarioRevisor, IDEstadoRevision,  IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioModificador, @IDEquipo, @FechaActual
         FROM FIR_DocumentoRevision WHERE IDDocVersion = @NuevoIDDocVersion;
 
         -- 3. Cambiar estado de documento a EN_REVISION
@@ -541,8 +535,8 @@ BEGIN
             FechaModificacion = @FechaActual
         WHERE IDDocumento = @IDDocumento;
 
-        INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
         FROM FIR_Documento WHERE IDDocumento = @IDDocumento;
 
         INSERT INTO FIR_HistorialEstado (IDDocumento, IDEstadoAnterior, IDEstadoNuevo, Observacion, IDUsuarioCreador, FechaCreacion)
@@ -616,8 +610,8 @@ BEGIN
                 FechaModificacion = @FechaActual
             WHERE IDDocumento = @IDDocumento;
 
-            INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-            SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc, DiasMaxRevision, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
+            INSERT INTO FIR_DocumentoAuditoria (IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+            SELECT IDDocumento, Asunto, IDTipoDoc, AreaResponsable, FechaCreacionDoc, CodigoDocumento, IDEstadoDoc,  IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
             FROM FIR_Documento WHERE IDDocumento = @IDDocumento;
 
             INSERT INTO FIR_HistorialEstado (IDDocumento, IDEstadoAnterior, IDEstadoNuevo, Observacion, IDUsuarioCreador, FechaCreacion)
@@ -685,7 +679,6 @@ SELECT
     d.CodigoDocumento,
     d.AreaResponsable,
     d.FechaCreacionDoc,
-    d.DiasMaxRevision,
     d.IDUsuarioCreador,
     meDoc.Descripcion   AS EstadoDocumento,
     meDoc.Codigo        AS CodigoEstadoDoc,
@@ -768,7 +761,7 @@ BEGIN
         vd.AreaResponsable, vd.FechaCreacionDoc,
         vd.EstadoDocumento, vd.TipoDocumento,
         vd.IDDocVersion, vd.RutaArchivo,
-        r.IDRevision, r.DiasMaxRevision, r.FechaCreacion AS FechaAsignacion
+        r.IDRevision, r.FechaCreacion AS FechaAsignacion
     FROM dbo.FIR_DocumentoRevision r
     INNER JOIN dbo.FIR_VW_DocumentosPendientes vd ON vd.IDDocVersion = r.IDDocVersion
     INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = r.IDEstadoRevision
