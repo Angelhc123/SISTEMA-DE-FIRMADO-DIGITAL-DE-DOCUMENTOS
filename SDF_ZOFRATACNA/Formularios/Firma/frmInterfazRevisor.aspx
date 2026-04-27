@@ -138,24 +138,17 @@
         <div class="flex-1 flex flex-col md:ml-72 relative w-full h-screen overflow-hidden">
             <main class="flex-1 flex overflow-hidden pt-16">
                 <!-- Panel Izquierdo: Visualizador del Documento -->
-                <div class="flex-1 bg-gray-100 overflow-y-auto p-6 flex justify-center">
-                    <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-10 min-h-[600px] border">
-                        <div class="flex items-center justify-between mb-6 border-b pb-4">
-                            <h2 class="text-2xl font-bold text-primary">RESOLUCIÓN DIRECTORAL</h2>
-                            <asp:Label ID="lblExpedienteTitulo" runat="server" Text="EXP-2023-0892" CssClass="text-sm bg-gray-100 px-3 py-1 rounded-full text-gray-600"></asp:Label>
-                        </div>
-                        <div class="text-justify leading-relaxed space-y-4">
-                            <p><strong>VISTO:</strong> El Informe N° 128-2023-OAJ-ZOFRATACNA, mediante el cual se solicita la aprobación del Plan Operativo Anual para el ejercicio fiscal 2024, presentado por la Gerencia de Planificación y Desarrollo.</p>
-                            <p><strong>CONSIDERANDO:</strong> Que, mediante Ley N° 27688, se establece el marco normativo para la gestión administrativa de ZOFRATACNA, otorgando facultades a la Dirección Ejecutiva para aprobar los instrumentos de gestión.</p>
-                            <p>Que, el artículo 15° del Reglamento de Organización y Funciones (ROF) establece que toda resolución directoral debe contar con la revisión y visto bueno de la Oficina de Asesoría Jurídica previo a su emisión.</p>
-                            <div class="bg-blue-50 p-4 border-l-4 border-blue-500 italic text-sm">
-                                <strong>Nota del Remitente:</strong> Revisar el artículo 2 del proyecto de resolución, específicamente la cláusula referente a los plazos de implementación del POI 2024.
-                            </div>
-                            <p><strong>POR TANTO:</strong> En uso de las facultades conferidas por la Ley N° 27688 y el Estatuto de ZOFRATACNA;</p>
-                            <p class="mt-4"><strong>SE RESUELVE:</strong></p>
-                            <p>Artículo 1°.- APROBAR el Plan Operativo Institucional (POI) para el ejercicio fiscal 2024, que consta de 128 páginas y forma parte integrante de la presente resolución.</p>
-                            <p>Artículo 2°.- ENCARGAR a la Gerencia de Planificación la implementación del POI 2024, debiendo reportar trimestralmente los avances a esta Dirección.</p>
-                        </div>
+                <div class="flex-1 bg-gray-100 overflow-hidden flex flex-col relative w-full h-full">
+                    <div class="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm z-10 shrink-0">
+                        <h2 class="text-xl font-bold text-primary flex items-center gap-2">
+                            <span class="material-symbols-outlined text-error">picture_as_pdf</span>
+                            <asp:Label ID="lblAsuntoPdf" runat="server" Text="Documento PDF"></asp:Label>
+                        </h2>
+                        <asp:Label ID="lblExpedienteTitulo" runat="server" Text="EXP-2023-XYZ" CssClass="text-sm font-bold bg-surface-container-low px-3 py-1 rounded-md text-on-surface-variant border border-outline-variant/30"></asp:Label>
+                    </div>
+                    
+                    <div class="flex-1 w-full bg-[#525659] h-full overflow-hidden">
+                        <iframe id="iframePdf" runat="server" class="w-full h-full border-none shadow-inner" style="min-height: calc(100vh - 140px);"></iframe>
                     </div>
                 </div>
 
@@ -173,18 +166,12 @@
                     <div class="px-6 py-4 bg-surface-container-low/20 space-y-4">
                         <div>
                             <span class="text-[10px] text-outline font-bold uppercase tracking-wider">Remitente</span>
-                            <p class="text-sm font-semibold text-on-surface">Dr. Carlos Mendoza</p>
-                            <p class="text-xs text-on-surface-variant">Oficina de Asesoría Jurídica</p>
+                            <asp:Label ID="lblRemitenteNombre" runat="server" CssClass="text-sm font-semibold text-on-surface block" Text="Usuario Nombre"></asp:Label>
+                            <asp:Label ID="lblRemitenteArea" runat="server" CssClass="text-xs text-on-surface-variant block" Text="Área"></asp:Label>
                         </div>
                         <div>
-                            <span class="text-[10px] text-outline font-bold uppercase tracking-wider">Prioridad</span>
-                            <div class="flex items-center gap-2 text-error font-bold text-sm mt-1">
-                                <span class="w-2 h-2 rounded-full bg-error"></span> Alta - Urgente (Vence hoy)
-                            </div>
-                        </div>
-                        <div>
-                            <span class="text-[10px] text-outline font-bold uppercase tracking-wider">Fecha Recepción</span>
-                            <p class="text-sm text-on-surface">25 de octubre de 2023 - 09:30 AM</p>
+                            <span class="text-[10px] text-outline font-bold uppercase tracking-wider">Fecha de Emisión</span>
+                            <asp:Label ID="lblFechaEmision" runat="server" CssClass="text-sm text-on-surface block" Text="DD de MM de YYYY"></asp:Label>
                         </div>
                     </div>
 

@@ -288,6 +288,7 @@
     <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
+    <Content Include="Temp\Resolucion_Directoral_Gerencia_General_20260427_110542_395_854e5ced.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

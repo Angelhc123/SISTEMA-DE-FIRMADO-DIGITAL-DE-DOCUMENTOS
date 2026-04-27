@@ -11,10 +11,11 @@ using System.Web.UI;
 //                        para demostraciones y pruebas de flujo.
 // Fecha desarrollo     : 24/04/2026
 // Desarrollador        : Equipo TI ZOFRATACNA
-// Fecha mantenimiento  :
-// Persona que lo realizó:
-// Nro. solicitud mant. :
-// Descripción mant.    :
+// Fecha mantenimiento  : 27/04/2026
+// Persona que lo realizó: Equipo TI ZOFRATACNA
+// Nro. solicitud mant. : SDF-001
+// Descripción mant.    : Se completaron los datos de los firmantes para
+//                        que sean consistentes con el registrador de documentos.
 // ============================================================
 
 namespace SDF_ZOFRATACNA
@@ -33,6 +34,7 @@ namespace SDF_ZOFRATACNA
         // ── Método privado central ──────────────────────────────────────────
         // Carga las variables de sesión manualmente (simula respuesta del SAS)
         // y redirige al panel del rol indicado.
+        // Versión COMPLETA con todos los datos que espera el sistema.
         // ─────────────────────────────────────────────────────────────────────
         private void SimularAcceso(
             string strIdUsuario,
@@ -40,6 +42,8 @@ namespace SDF_ZOFRATACNA
             string strLoginUsuario,
             string strRol,
             string strUnidadOrganica,
+            int intIDRol,
+            string strRolDescripcion,
             string strUrlDestino)
         {
             // Poblar variables de sesión con los mismos nombres usados en todos los formularios
@@ -48,6 +52,8 @@ namespace SDF_ZOFRATACNA
             Session["strUsuario"]      = strLoginUsuario;   // Compatibilidad con estándar SAS
             Session["Rol"]             = strRol;
             Session["UnidadOrganica"]  = strUnidadOrganica;
+            Session["IDRol"]           = intIDRol;          // ← NUEVO: ID del rol en FIR_Maestro
+            Session["RolDescripcion"]  = strRolDescripcion; // ← NUEVO: Descripción del rol
             Session["UrlFoto"]         = "";                // Sin foto en modo demo
 
             // Redirigir al panel del rol
@@ -55,7 +61,6 @@ namespace SDF_ZOFRATACNA
         }
 
         // ── Administrador ────────────────────────────────────────────────────
-
         protected void cmdAdminUno_Click(object sender, EventArgs e)
         {
             SimularAcceso(
@@ -64,12 +69,13 @@ namespace SDF_ZOFRATACNA
                 strLoginUsuario:    "admin01",
                 strRol:             "ADMIN",
                 strUnidadOrganica:  "Gerencia TI",
+                intIDRol:           1,                     // Rol Administrador
+                strRolDescripcion:  "Administrador del Sistema",
                 strUrlDestino:      "~/Formularios/Administracion/frmDashboardAdmin.aspx"
             );
         }
 
         // ── Registradores ────────────────────────────────────────────────────
-
         protected void cmdRegistradorUno_Click(object sender, EventArgs e)
         {
             SimularAcceso(
@@ -78,6 +84,8 @@ namespace SDF_ZOFRATACNA
                 strLoginUsuario:    "mquispe",
                 strRol:             "REG",
                 strUnidadOrganica:  "Secretaria General",
+                intIDRol:           10,                    // Rol Registrador Secretaria
+                strRolDescripcion:  "Registrador de Documentos",
                 strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
             );
         }
@@ -90,6 +98,8 @@ namespace SDF_ZOFRATACNA
                 strLoginUsuario:    "pvargas",
                 strRol:             "REG",
                 strUnidadOrganica:  "Sub-Gerencia Administrativa",
+                intIDRol:           11,                    // Rol Registrador Administrativo
+                strRolDescripcion:  "Registrador de Documentos",
                 strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
             );
         }
@@ -102,12 +112,16 @@ namespace SDF_ZOFRATACNA
                 strLoginUsuario:    "rcondori",
                 strRol:             "REG",
                 strUnidadOrganica:  "Operaciones",
+                intIDRol:           12,                    // Rol Registrador Operaciones
+                strRolDescripcion:  "Registrador de Documentos",
                 strUrlDestino:      "~/Formularios/Documentos/frmDashboardRegistrador.aspx"
             );
         }
 
-        // ── Firmantes ────────────────────────────────────────────────────────
-
+        // ── Firmantes (COMPLETOS y CONSISTENTES con frmRegistrarDocumento) ───
+        // Estos datos coinciden EXACTAMENTE con los definidos en 
+        // CargarUsuariosPrueba() de frmRegistrarDocumento.aspx.cs
+        
         protected void cmdFirmanteUno_Click(object sender, EventArgs e)
         {
             SimularAcceso(
@@ -116,6 +130,8 @@ namespace SDF_ZOFRATACNA
                 strLoginUsuario:    "japaza",
                 strRol:             "FIR",
                 strUnidadOrganica:  "Gerencia General",
+                intIDRol:           17,                    // ← IDRol = Gerente General
+                strRolDescripcion:  "Gerente General",     // ← Coincide con frmRegistrarDocumento
                 strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
             );
         }
@@ -127,11 +143,13 @@ namespace SDF_ZOFRATACNA
                 strNombres:         "Ana Ccoa Flores",
                 strLoginUsuario:    "accoa",
                 strRol:             "FIR",
-                strUnidadOrganica:  "Sub-Gerencia Legal",
+                strUnidadOrganica:  "Sub-Gerencia General",
+                intIDRol:           18,                    // ← IDRol = Sub-Gerente
+                strRolDescripcion:  "Sub-Gerente",         // ← Coincide con frmRegistrarDocumento
                 strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
             );
         }
-
+            
         protected void cmdFirmanteTres_Click(object sender, EventArgs e)
         {
             SimularAcceso(
@@ -139,9 +157,12 @@ namespace SDF_ZOFRATACNA
                 strNombres:         "Luis Huanca Pari",
                 strLoginUsuario:    "lhuanca",
                 strRol:             "FIR",
-                strUnidadOrganica:  "Presidencia Ejecutiva",
+                strUnidadOrganica:  "Jefatura de Area",
+                intIDRol:           19,                    // ← IDRol = Jefe de Area
+                strRolDescripcion:  "Jefe de Area",        // ← Coincide con frmRegistrarDocumento
                 strUrlDestino:      "~/Formularios/Firma/frmDashboardFirmante.aspx"
             );
         }
+        
     }
 }

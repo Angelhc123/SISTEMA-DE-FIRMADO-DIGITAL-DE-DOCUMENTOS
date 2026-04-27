@@ -1,31 +1,17 @@
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-
-// ============================================================
-// Nombre del programa  : frmInterfazRevisor
-// Descripción          : Formulario de revisión de documentos.
-//                        Muestra el visor de PDF embebido y un
-//                        panel lateral para agregar observaciones
-//                        o registrar conformidad sobre el
-//                        expediente asignado al Revisor.
-// Fecha desarrollo     : 24/04/2026
-// Desarrollador        : Equipo TI ZOFRATACNA
-// Fecha mantenimiento  :
-// Persona que lo realizó:
-// Nro. solicitud mant. :
-// Descripción mant.    :
-// ============================================================
+using SDF_ZOFRATACNA.App_Code.DAL;
 
 namespace SDF_ZOFRATACNA.Formularios.Firma
 {
     public partial class frmInterfazRevisor : System.Web.UI.Page
     {
-        // NO declarar controles aquí — ya existen en el .designer.cs
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Validación de sesión: redirige al login si no está autenticado
             if (Session["IdUsuario"] == null)
             {
                 Response.Redirect("~/frmLogin.aspx");
@@ -39,101 +25,146 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             }
         }
 
-        /// <summary>
-        /// Carga los datos del usuario autenticado en los controles del panel de perfil.
-        /// </summary>
         private void CargarDatosUsuario()
         {
             try
             {
-                // Recuperar datos de sesión (string → prefijo str)
-                string strNombre  = Session["Nombres"]?.ToString() ?? "Revisor Demo";
-                string strRol     = Session["Rol"]?.ToString() ?? "Revisor Legal";
+                string strNombre = Session["Nombres"]?.ToString() ?? "Revisor Demo";
+                string strRol = Session["Rol"]?.ToString() ?? "Revisor Legal";
                 string strUrlFoto = Session["UrlFoto"]?.ToString()
                                     ?? "https://ui-avatars.com/api/?background=001e40&color=fff&name="
                                     + Uri.EscapeDataString(strNombre);
 
-                // Usar FindControl para evitar conflictos con el diseñador
                 Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
-                Label lblRolUsuario    = (Label)FindControl("lblRolUsuario");
-                Label lblNombreTop     = (Label)FindControl("lblNombreTop");
-                Image imgPerfil        = (Image)FindControl("imgPerfil");
-                Image imgPerfilTop     = (Image)FindControl("imgPerfilTop");
+                Label lblRolUsuario = (Label)FindControl("lblRolUsuario");
+                Label lblNombreTop = (Label)FindControl("lblNombreTop");
+                Image imgPerfil = (Image)FindControl("imgPerfil");
+                Image imgPerfilTop = (Image)FindControl("imgPerfilTop");
 
                 if (lblNombreUsuario != null) lblNombreUsuario.Text = strNombre;
-                if (lblRolUsuario    != null) lblRolUsuario.Text    = strRol;
-                if (lblNombreTop     != null) lblNombreTop.Text     = strNombre;
-                if (imgPerfil        != null) imgPerfil.ImageUrl    = strUrlFoto;
-                if (imgPerfilTop     != null) imgPerfilTop.ImageUrl = strUrlFoto;
+                if (lblRolUsuario != null) lblRolUsuario.Text = strRol;
+                if (lblNombreTop != null) lblNombreTop.Text = strNombre;
+                if (imgPerfil != null) imgPerfil.ImageUrl = strUrlFoto;
+                if (imgPerfilTop != null) imgPerfilTop.ImageUrl = strUrlFoto;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error cargando usuario en Interfaz Revisor: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
 
-        /// <summary>
-        /// Carga el número de expediente según el parámetro recibido por QueryString.
-        /// </summary>
         private void CargarExpediente()
         {
-            // Número de expediente desde QueryString (string → str)
-            string strId = Request.QueryString["id"];
-            Label lblExpedienteTitulo = (Label)FindControl("lblExpedienteTitulo");
+            string strIdRev = Request.QueryString["idRev"];
 
-            if (lblExpedienteTitulo != null)
+            if (string.IsNullOrEmpty(strIdRev))
             {
-                lblExpedienteTitulo.Text = !string.IsNullOrEmpty(strId)
-                    ? $"EXP-2023-{strId.PadLeft(4, '0')}"
-                    : "EXP-2023-0892";
+                Response.Redirect("~/Formularios/Firma/frmMisDocumentosRevisor.aspx");
+                return;
+            }
+
+            try
+            {
+                SqlParameter[] pars = { new SqlParameter("@IDUsuarioRevisor", Session["IdUsuario"].ToString()) };
+                DataTable dt = ConexionBD.EjecutarConsultaFirma("dbo.USP_FIR_Documento_ListarRevisionPendiente", pars);
+
+                DataRow rowDoc = null;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["IDRevision"].ToString() == strIdRev)
+                    {
+                        rowDoc = row;
+                        break;
+                    }
+                }
+
+                if (rowDoc != null)
+                {
+                    Label lblExpedienteTitulo = (Label)FindControl("lblExpedienteTitulo");
+                    Label lblAsuntoPdf = (Label)FindControl("lblAsuntoPdf");
+                    Label lblRemitenteNombre = (Label)FindControl("lblRemitenteNombre");
+                    Label lblRemitenteArea = (Label)FindControl("lblRemitenteArea");
+                    Label lblFechaEmision = (Label)FindControl("lblFechaEmision");
+                    HtmlGenericControl iframePdf = (HtmlGenericControl)FindControl("iframePdf");
+
+                    if (lblExpedienteTitulo != null) lblExpedienteTitulo.Text = rowDoc["CodigoDocumento"].ToString();
+                    if (lblAsuntoPdf != null) lblAsuntoPdf.Text = rowDoc["Asunto"].ToString();
+                    if (lblRemitenteNombre != null) lblRemitenteNombre.Text = rowDoc["IDUsuarioCreador"].ToString(); 
+                    if (lblRemitenteArea != null) lblRemitenteArea.Text = rowDoc["AreaResponsable"].ToString();
+                    if (lblFechaEmision != null) lblFechaEmision.Text = Convert.ToDateTime(rowDoc["FechaCreacionDoc"]).ToString("dd 'de' MMMM 'de' yyyy");
+
+                    string rutaPdf = rowDoc["RutaArchivo"]?.ToString();
+                    if (!string.IsNullOrEmpty(rutaPdf) && iframePdf != null)
+                    {
+                        iframePdf.Attributes["src"] = ResolveUrl(rutaPdf);
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Formularios/Firma/frmMisDocumentosRevisor.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
         }
 
         protected void btnAprobar_Click(object sender, EventArgs e)
         {
-            // Recuperar observaciones del TextBox mediante FindControl
-            TextBox txtObservaciones  = (TextBox)FindControl("txtObservaciones");
-            string strObservaciones   = (txtObservaciones != null) ? txtObservaciones.Text : "";
-
-            // Script de confirmación y redirección
-            string strScript = $@"<script>
-                alert('✅ DOCUMENTO APROBADO\n\nObservaciones: {strObservaciones.Replace("'", "\\'")}\n\nEl documento ha sido aprobado correctamente.');
-                window.location.href = 'frmMisDocumentosRevisor.aspx';
-            </script>";
-
-            Response.Write(strScript);
+            RegistrarRevision("APROBADO");
         }
 
         protected void btnObservar_Click(object sender, EventArgs e)
         {
-            // Recuperar observaciones del TextBox mediante FindControl
             TextBox txtObservaciones = (TextBox)FindControl("txtObservaciones");
-            string strObservaciones  = (txtObservaciones != null) ? txtObservaciones.Text : "";
-
-            // Validar que se hayan ingresado observaciones antes de devolver
-            if (string.IsNullOrWhiteSpace(strObservaciones))
+            if (txtObservaciones == null || string.IsNullOrWhiteSpace(txtObservaciones.Text))
             {
-                Response.Write("<script>alert('⚠️ ADVERTENCIA: Debe ingresar observaciones para devolver el documento.');</script>");
+                Response.Write("<script>alert('Debe ingresar observaciones para observar el documento.');</script>");
                 return;
             }
+            RegistrarRevision("OBSERVADO");
+        }
 
-            string strScript = $@"<script>
-                alert('⚠️ DOCUMENTO OBSERVADO\n\nObservaciones: {strObservaciones.Replace("'", "\\'")}\n\nEl documento ha sido devuelto para correcciones.');
-                window.location.href = 'frmMisDocumentosRevisor.aspx';
-            </script>";
+        private void RegistrarRevision(string codigoEstado)
+        {
+            try
+            {
+                string idRev = Request.QueryString["idRev"];
+                string idUsuario = Session["IdUsuario"].ToString();
+                
+                TextBox txtObservaciones = (TextBox)FindControl("txtObservaciones");
+                string observaciones = txtObservaciones != null ? txtObservaciones.Text : "";
 
-            Response.Write(strScript);
+                int idEstado = (codigoEstado == "APROBADO") ? 7 : 8;
+
+                SqlParameter[] pars = {
+                    new SqlParameter("@IDRevision", idRev),
+                    new SqlParameter("@IDEstadoRevisionNuevo", idEstado),
+                    new SqlParameter("@Correccion", observaciones),
+                    new SqlParameter("@IDUsuarioModificador", idUsuario),
+                    new SqlParameter("@IDEquipo", Request.UserHostAddress ?? "127.0.0.1")
+                };
+
+                ConexionBD.EjecutarAccionFirma("dbo.USP_FIR_Documento_RegistrarRevision", pars);
+
+                string mensaje = codigoEstado == "APROBADO" ? "Documento aprobado con éxito." : "Documento observado y devuelto.";
+                string script = $"alert('{mensaje}'); window.location.href='frmMisDocumentosRevisor.aspx';";
+                ScriptManager.RegisterStartupScript(this, GetType(), "PopUp", script, true);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error al registrar revisión: " + ex.Message.Replace("'", "") + "');</script>");
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            // Regresar al listado de documentos del Revisor
-            Response.Redirect("~/Formularios/Revision/frmMisDocumentosRevisor.aspx");
+            Response.Redirect("~/Formularios/Firma/frmMisDocumentosRevisor.aspx");
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            // Limpiar sesión y redirigir al login
             Session.Clear();
             Session.Abandon();
             Response.Redirect("~/frmLogin.aspx");

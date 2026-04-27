@@ -123,7 +123,31 @@ namespace SDF_ZOFRATACNA.App_Code.DAL
 
             return intFilasAfectadas;
         }
+        public static DataTable EjecutarConsultaFirmaSQL(string sql, SqlParameter[] pars)
+        {
+            using (SqlConnection cn = new SqlConnection(strRutaConexion))
+            using (SqlCommand cmd = new SqlCommand(sql, cn))
+            {
+                cmd.CommandType = CommandType.Text;
+                if (pars != null) cmd.Parameters.AddRange(pars);
+                cn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
 
+        public static void EjecutarAccionFirmaSQL(string sql, SqlParameter[] pars)
+        {
+            using (SqlConnection cn = new SqlConnection(strRutaConexion))
+            using (SqlCommand cmd = new SqlCommand(sql, cn))
+            {
+                cmd.CommandType = CommandType.Text;
+                if (pars != null) cmd.Parameters.AddRange(pars);
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         #endregion
     }
 }
