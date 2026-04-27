@@ -81,6 +81,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             try
             {
                 // Query que ignora el orden secuencial para permitir revisión simultánea
+                // y filtra los que ya han sido procesados (EsAprobado no es NULL)
                 string sql = @"
                     SELECT 
                         vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
@@ -94,6 +95,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                     INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
                     WHERE f.IDUsuarioFirmante = @IDUsuario
                       AND me.Codigo = 'PENDIENTE'
+                      AND f.EsAprobado IS NULL
                     ORDER BY f.FechaCreacion DESC";
 
                 SqlParameter[] pars = { new SqlParameter("@IDUsuario", loginUsuario) };
@@ -310,42 +312,39 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
 
         private void GuardarObservacionEnFirmante(int idFirmante, string decision, string comentario, string loginUsuario)
         {
-            // Cuando el registrador no cargó revisores formales, guardamos la
-            // observación del firmante en su propio registro.
-            // Si decision = APROBADO simplemente dejamos constancia en el comentario.
-            // Si decision = OBSERVADO se actualiza ObservacionFirma.
+            // El usuario ahora usa campos estructurados: EsAprobado (bool) y Comentario (string)
+            bool esAprobado = (decision == "APROBADO");
+
             string sql = @"
                 UPDATE FIR_DocumentoFirmante
-                SET ObservacionFirma      = @Observacion,
+                SET EsAprobado            = @EsAprobado,
+                    Comentario            = @Comentario,
                     IDUsuarioModificador  = @IDUsuario,
                     FechaModificacion     = GETDATE()
                 WHERE IDFirmante = @IDFirmante
                   AND IDUsuarioFirmante = @IDUsuarioFirmante";
 
-            string textoObservacion = decision == "OBSERVADO"
-                ? "[OBSERVADO] " + comentario
-                : "[REVISADO-APROBADO] " + (string.IsNullOrEmpty(comentario) ? "Sin comentarios." : comentario);
-
             SqlParameter[] p = {
-                new SqlParameter("@Observacion",      textoObservacion),
-                new SqlParameter("@IDUsuario",        loginUsuario),
-                new SqlParameter("@IDFirmante",       idFirmante),
-                new SqlParameter("@IDUsuarioFirmante",loginUsuario)
+                new SqlParameter("@EsAprobado",        esAprobado),
+                new SqlParameter("@Comentario",        (object)comentario ?? DBNull.Value),
+                new SqlParameter("@IDUsuario",         loginUsuario),
+                new SqlParameter("@IDFirmante",        idFirmante),
+                new SqlParameter("@IDUsuarioFirmante", loginUsuario)
             };
 
             ConexionBD.EjecutarAccionFirmaSQL(sql, p);
 
-            // Registrar en historial (auditoria)
+            // Registrar en historial (auditoria) con las nuevas columnas
             string sqlAudit = @"
                 INSERT INTO FIR_DocumentoFirmanteAuditoria
                     (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante,
-                     IDEstadoFirma, ObservacionFirma,
+                     IDEstadoFirma, EsAprobado, Comentario,
                      IDUsuarioCreador, FechaCreacion,
                      IDUsuarioModificador, FechaModificacion,
                      TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
                 SELECT
                     IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante,
-                    IDEstadoFirma, ObservacionFirma,
+                    IDEstadoFirma, EsAprobado, Comentario,
                     IDUsuarioCreador, FechaCreacion,
                     IDUsuarioModificador, FechaModificacion,
                     'M', @IDUsuario, @IDEquipo, GETDATE()
@@ -359,6 +358,36 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             };
 
             ConexionBD.EjecutarAccionFirmaSQL(sqlAudit, pa);
+
+            // Buscamos el IDDocumento para actualizar el estado global
+            string sqlGetDoc = "SELECT IDDocumento FROM FIR_DocumentoFirmante WHERE IDFirmante = @IDFirmante";
+            DataTable dtDoc = ConexionBD.EjecutarConsultaFirmaSQL(sqlGetDoc, new SqlParameter[] { new SqlParameter("@IDFirmante", idFirmante) });
+            
+            if (dtDoc.Rows.Count > 0)
+            {
+                int idDoc = Convert.ToInt32(dtDoc.Rows[0][0]);
+
+                if (!esAprobado)
+                {
+                    // Si ALGUIEN observa, el documento pasa a estado OBSERVADO (ID 2)
+                    string sqlUpdateDoc = "UPDATE FIR_Documento SET IDEstadoDoc = 2 WHERE IDDocumento = @IDDoc";
+                    ConexionBD.EjecutarAccionFirmaSQL(sqlUpdateDoc, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
+                }
+                else
+                {
+                    // Si es APROBADO, verificamos si TODOS los demás ya aprobaron también
+                    string sqlCheckAll = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDoc AND (EsAprobado IS NULL OR EsAprobado = 0)";
+                    DataTable dtCheck = ConexionBD.EjecutarConsultaFirmaSQL(sqlCheckAll, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
+                    
+                    int pendientesOAprobados = Convert.ToInt32(dtCheck.Rows[0][0]);
+                    if (pendientesOAprobados == 0)
+                    {
+                        // Si ya no hay pendientes ni observaciones, pasa a APROBADO PARA FIRMA (ID 3)
+                        string sqlUpdateDoc = "UPDATE FIR_Documento SET IDEstadoDoc = 3 WHERE IDDocumento = @IDDoc";
+                        ConexionBD.EjecutarAccionFirmaSQL(sqlUpdateDoc, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
+                    }
+                }
+            }
         }
 
         // ── UI helpers ───────────────────────────────────────────────────────

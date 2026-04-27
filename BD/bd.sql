@@ -207,7 +207,8 @@ CREATE TABLE dbo.FIR_DocumentoFirmante (
     IDRolFirmante       INT           NOT NULL,
     IDEstadoFirma       INT           NOT NULL,
     FechaFirma          SMALLDATETIME NULL,
-    ObservacionFirma    VARCHAR(500)  NULL,
+    EsAprobado          BIT           NULL,
+    Comentario          VARCHAR(500)  NULL,
     SerieToken          VARCHAR(100)  NULL,
     HuellaCertificado   VARCHAR(200)  NULL,
     IDDocVersionFirmada INT           NULL,
@@ -235,7 +236,8 @@ CREATE TABLE dbo.FIR_DocumentoFirmanteAuditoria (
     IDRolFirmante       INT           NOT NULL,
     IDEstadoFirma       INT           NOT NULL,
     FechaFirma          SMALLDATETIME NULL,
-    ObservacionFirma    VARCHAR(500)  NULL,
+    EsAprobado          BIT           NULL,
+    Comentario          VARCHAR(500)  NULL,
     SerieToken          VARCHAR(100)  NULL,
     HuellaCertificado   VARCHAR(200)  NULL,
     IDDocVersionFirmada INT           NULL,
@@ -384,8 +386,8 @@ BEGIN
         SELECT @IDDocumento, JSON_VALUE(value, '$.IDUsuarioFirmante'), CAST(JSON_VALUE(value, '$.Orden') AS INT), CAST(JSON_VALUE(value, '$.IDRol') AS INT), @IDEstadoFirmaPendiente, @IDUsuarioCreador, @FechaActual
         FROM OPENJSON(@JsonFirmantes);
 
-        INSERT INTO FIR_DocumentoFirmanteAuditoria (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoFirmanteAuditoria (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, EsAprobado, Comentario, IDUsuarioCreador, FechaCreacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, EsAprobado, Comentario, IDUsuarioCreador, FechaCreacion, 'I', @IDUsuarioCreador, @IDEquipo, @FechaActual
         FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDocumento;
 
         COMMIT TRAN;
@@ -582,14 +584,15 @@ BEGIN
             FechaFirma = @FechaActual,
             SerieToken = @SerieToken,
             HuellaCertificado = @HuellaCertificado,
-            ObservacionFirma = @Observacion,
+            EsAprobado = 1,
+            Comentario = @Observacion,
             IDDocVersionFirmada = @IDDocVersionActual,
             IDUsuarioModificador = @IDUsuarioModificador,
             FechaModificacion = @FechaActual
         WHERE IDFirmante = @IDFirmante;
 
-        INSERT INTO FIR_DocumentoFirmanteAuditoria (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, FechaFirma, ObservacionFirma, SerieToken, HuellaCertificado, IDDocVersionFirmada, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-        SELECT IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, FechaFirma, ObservacionFirma, SerieToken, HuellaCertificado, IDDocVersionFirmada, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
+        INSERT INTO FIR_DocumentoFirmanteAuditoria (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, FechaFirma, EsAprobado, Comentario, SerieToken, HuellaCertificado, IDDocVersionFirmada, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
+        SELECT IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, FechaFirma, EsAprobado, Comentario, SerieToken, HuellaCertificado, IDDocVersionFirmada, IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuarioModificador, @IDEquipo, @FechaActual
         FROM FIR_DocumentoFirmante WHERE IDFirmante = @IDFirmante;
 
         -- 2. Validar si todos firmaron
