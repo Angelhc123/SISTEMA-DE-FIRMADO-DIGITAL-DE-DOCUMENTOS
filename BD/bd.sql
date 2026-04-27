@@ -678,6 +678,7 @@ GO
 CREATE VIEW dbo.FIR_VW_DocumentosPendientes AS
 SELECT
     d.IDDocumento,
+    d.IDEstadoDoc,
     d.Asunto,
     d.CodigoDocumento,
     d.AreaResponsable,
@@ -787,7 +788,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT
-        vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
+        vd.IDDocumento, vd.IDEstadoDoc, vd.Asunto, vd.CodigoDocumento,
         vd.AreaResponsable, vd.FechaCreacionDoc,
         vd.EstadoDocumento, vd.TipoDocumento,
         vd.RutaArchivo,
