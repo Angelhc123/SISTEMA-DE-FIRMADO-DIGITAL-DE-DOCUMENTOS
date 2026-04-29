@@ -7,7 +7,15 @@
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -26,8 +34,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmMisDocumentosRevisor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAowJ0AAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T18:12:38.365Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,14 +57,27 @@
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
               "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAwwNcAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABkBAAAAAAAAAAAuwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T20:52:44.038Z",
+              "WhenOpened": "2026-04-29T17:17:58.196Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "frmMisDocumentosFirmante.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-29T16:21:49.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Web.config",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Web.config",
@@ -56,20 +90,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "frmLogin.aspx.cs",
               "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAiwKQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAUwKQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-27T16:54:46.565Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "frmLogin.aspx",
               "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx",

@@ -203,8 +203,8 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                 if (dtDoc.Rows.Count > 0)
                 {
                     int idDoc = Convert.ToInt32(dtDoc.Rows[0]["IDDocumento"]);
-                    if (!esAprobado) ActualizarEstadoGlobal(idDoc, 3, loginUsuario); // Observado
-                    else if (VerificarUnanimidad(idDoc)) ActualizarEstadoGlobal(idDoc, 2, loginUsuario); // Aprobado
+                    if (!esAprobado) ActualizarEstadoGlobal(idDoc, 2, loginUsuario); // Observado
+                    else if (VerificarUnanimidad(idDoc)) ActualizarEstadoGlobal(idDoc, 3, loginUsuario); // Aprobado
                 }
 
                 CargarDocumentosPendientes();

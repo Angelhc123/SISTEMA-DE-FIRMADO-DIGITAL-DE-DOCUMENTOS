@@ -2,15 +2,16 @@ using SDF_ZOFRATACNA.App_Code.DAL;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace SDF_ZOFRATACNA.Formularios.Firma
 {
     public partial class frmMisDocumentosFirmante : System.Web.UI.Page
     {
+        // ──────────────────────────────────────────────────────────────────────
+        //  PAGE LOAD
+        // ──────────────────────────────────────────────────────────────────────
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["strUsuario"] == null)
@@ -26,196 +27,250 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             }
         }
 
+        // ──────────────────────────────────────────────────────────────────────
+        //  CARGAR DATOS USUARIO (sidebar + header)
+        // ──────────────────────────────────────────────────────────────────────
         private void CargarDatosUsuario()
         {
             try
             {
-                string nombre = Session["Nombres"]?.ToString() ?? "Firmante Demo";
-                string urlFoto = "https://ui-avatars.com/api/?background=001e40&color=fff&name=" + Uri.EscapeDataString(nombre);
+                string nombre = Session["Nombres"]?.ToString() ?? "Firmante";
+                string urlFoto = "https://ui-avatars.com/api/?background=001e40&color=fff&name="
+                                 + Uri.EscapeDataString(nombre);
 
-                Label lblNombreUsuario = (Label)FindControl("lblNombreUsuario");
-                Label lblNombreSidebar = (Label)FindControl("lblNombreSidebar");
-                Image imgPerfil = (Image)FindControl("imgPerfil");
-                Image imgPerfilSidebar = (Image)FindControl("imgPerfilSidebar");
+                Label  lblNombreSidebar   = (Label)FindControl("lblNombreSidebar");
+                System.Web.UI.WebControls.Image imgPerfilSidebar = 
+                    (System.Web.UI.WebControls.Image)FindControl("imgPerfilSidebar");
 
-                if (lblNombreUsuario != null) lblNombreUsuario.Text = nombre;
-                if (lblNombreSidebar != null) lblNombreSidebar.Text = nombre;
-                if (imgPerfil != null) imgPerfil.ImageUrl = urlFoto;
-                if (imgPerfilSidebar != null) imgPerfilSidebar.ImageUrl = urlFoto;
+                if (lblNombreSidebar   != null) lblNombreSidebar.Text     = nombre;
+                if (imgPerfilSidebar   != null) imgPerfilSidebar.ImageUrl = urlFoto;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error cargando usuario: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("CargarDatosUsuario: " + ex.Message);
             }
         }
 
+        // ──────────────────────────────────────────────────────────────────────
+        //  BUSCAR (AutoPostBack del TextBox)
+        // ──────────────────────────────────────────────────────────────────────
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarDocumentosPendientes();
+        }
+
+        // ──────────────────────────────────────────────────────────────────────
+        //  CARGAR DOCUMENTOS PENDIENTES
+        // ──────────────────────────────────────────────────────────────────────
         private void CargarDocumentosPendientes()
         {
+            string usuario = Session["strUsuario"]?.ToString();
+
+            TextBox txtBuscar = (TextBox)FindControl("txtBuscar");
+            string filtro = txtBuscar != null ? txtBuscar.Text.Trim() : "";
+
             try
             {
-                if (Session["strUsuario"] == null) return;
-                string usuario = Session["strUsuario"].ToString();
+                // ── QUERY PRINCIPAL ──────────────────────────────────────────
+                // Solo documentos en estado 3 (En Firma) donde el firmante tiene
+                // estado PENDIENTE. Calcula EsMiTurno con la misma lógica
+                // del código original (no existe firmante anterior sin FIRMADO).
+                string sql = @"
+                    SELECT
+                        vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
+                        vd.AreaResponsable, vd.FechaCreacionDoc,
+                        vd.IDUsuarioCreador,
+                        vd.EstadoDocumento, vd.TipoDocumento,
+                        vd.RutaArchivo,
+                        f.IDFirmante, f.Orden, f.FechaCreacion AS FechaAsignacion,
+                        d.IDEstadoDoc,
+                        CAST(CASE WHEN NOT EXISTS (
+                            SELECT 1 FROM dbo.FIR_DocumentoFirmante f2
+                            INNER JOIN dbo.FIR_Maestro me2 ON me2.IDMaestro = f2.IDEstadoFirma
+                            WHERE f2.IDDocumento = f.IDDocumento
+                              AND f2.Orden < f.Orden
+                              AND me2.Codigo <> 'FIRMADO'
+                        ) THEN 1 ELSE 0 END AS BIT) AS EsMiTurno
+                    FROM dbo.FIR_DocumentoFirmante f
+                    INNER JOIN dbo.FIR_VW_DocumentosPendientes vd ON vd.IDDocumento = f.IDDocumento
+                    INNER JOIN dbo.FIR_Documento d ON d.IDDocumento = vd.IDDocumento
+                    INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
+                    WHERE f.IDUsuarioFirmante = @IDUsuario
+                      AND me.Codigo = 'PENDIENTE'
+                      AND d.IDEstadoDoc = 3";
 
-                SqlParameter[] pars = { new SqlParameter("@IDUsuarioFirmante", usuario) };
-                // El SP ya filtra los documentos donde el usuario debe firmar.
-                // Aseguramos que solo mostramos los que están en estado 2 (Aprobado para firma)
-                DataTable dtAll = ConexionBD.EjecutarConsultaFirma("USP_FIR_Documento_ListarFirmaPendiente", pars);
-                
-                // Filtrado por IDEstadoDoc = 2 (Aprobado) según el último cambio del usuario
-                DataTable dt = dtAll.Clone();
-                foreach (DataRow row in dtAll.Rows)
+                if (!string.IsNullOrEmpty(filtro))
                 {
-                    if (row["IDEstadoDoc"] != DBNull.Value && Convert.ToInt32(row["IDEstadoDoc"]) == 2)
-                    {
-                        dt.ImportRow(row);
-                    }
+                    sql += @" AND (vd.Asunto            LIKE @Busqueda
+                                OR vd.CodigoDocumento   LIKE @Busqueda
+                                OR vd.IDUsuarioCreador  LIKE @Busqueda)";
                 }
 
-                Label lblPorFirmar = (Label)FindControl("lblPorFirmar");
-                Label lblBadgeFirmar = (Label)FindControl("lblBadgeFirmar");
-                Label lblDocumentoPrioritario = (Label)FindControl("lblDocumentoPrioritario");
-                Label lblDescripcionPrioritario = (Label)FindControl("lblDescripcionPrioritario");
-                LinkButton btnFirmarPrioritario = (LinkButton)FindControl("btnFirmarPrioritario");
-                HtmlGenericControl pnlColaEspera = (HtmlGenericControl)FindControl("pnlColaEspera");
+                sql += " ORDER BY EsMiTurno DESC, f.Orden ASC, vd.FechaCreacionDoc ASC";
 
-                int totalPendientes = dt.Rows.Count;
-                if (lblPorFirmar != null) lblPorFirmar.Text = totalPendientes.ToString();
-                if (lblBadgeFirmar != null) lblBadgeFirmar.Text = totalPendientes.ToString();
+                SqlParameter[] pars = {
+                    new SqlParameter("@IDUsuario", usuario),
+                    new SqlParameter("@Busqueda",  "%" + filtro + "%")
+                };
 
-                if (dt.Rows.Count == 0)
+                DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, pars);
+
+                // ── ESTADÍSTICAS ─────────────────────────────────────────────
+                int total    = dt.Rows.Count;
+                int miTurno  = 0;
+                foreach (DataRow row in dt.Rows)
+                    if (Convert.ToBoolean(row["EsMiTurno"])) miTurno++;
+
+                Label lblPorFirmar  = (Label)FindControl("lblPorFirmar");
+                Label lblBadge      = (Label)FindControl("lblBadgeFirmar");
+                Label lblMiTurno    = (Label)FindControl("lblMiTurno");
+                Label lblFirmadosHoy= (Label)FindControl("lblFirmadosHoy");
+
+                if (lblPorFirmar  != null) lblPorFirmar.Text  = total.ToString();
+                if (lblBadge      != null) lblBadge.Text      = total.ToString();
+                if (lblMiTurno    != null) lblMiTurno.Text    = miTurno.ToString();
+
+                // Firmados hoy: consulta independiente
+                if (lblFirmadosHoy != null)
                 {
-                    if (lblDocumentoPrioritario != null) lblDocumentoPrioritario.Text = "No hay documentos pendientes de firma";
-                    if (lblDescripcionPrioritario != null) lblDescripcionPrioritario.Text = "";
-                    if (btnFirmarPrioritario != null) btnFirmarPrioritario.Enabled = false;
-                    if (pnlColaEspera != null)
-                    {
-                        pnlColaEspera.Controls.Clear();
-                        pnlColaEspera.Controls.Add(new LiteralControl("<div class='text-center py-8 text-on-surface-variant'>No hay documentos en espera</div>"));
-                    }
-                    return;
+                    string sqlHoy = @"
+                        SELECT COUNT(*) FROM dbo.FIR_DocumentoFirmante f
+                        INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
+                        WHERE f.IDUsuarioFirmante = @IDUsuario
+                          AND me.Codigo = 'FIRMADO'
+                          AND CAST(f.FechaModificacion AS DATE) = CAST(GETDATE() AS DATE)";
+                    DataTable dtHoy = ConexionBD.EjecutarConsultaFirmaSQL(
+                        sqlHoy, new SqlParameter[] { new SqlParameter("@IDUsuario", usuario) });
+                    lblFirmadosHoy.Text = dtHoy.Rows.Count > 0 ? dtHoy.Rows[0][0].ToString() : "0";
                 }
 
-                // El primer documento (orden más bajo) es el prioritario
-                DataRow prioritario = dt.Rows[0];
-                int idFirmantePrioritario = Convert.ToInt32(prioritario["IDFirmante"]);
-                string asunto = prioritario["Asunto"].ToString();
-                string codigo = prioritario["CodigoDocumento"].ToString();
-                string area = prioritario["AreaResponsable"].ToString();
-                int orden = Convert.ToInt32(prioritario["Orden"]);
-                string ruta = ResolveUrl(prioritario["RutaArchivo"].ToString());
-                DateTime fecha = Convert.ToDateTime(prioritario["FechaCreacionDoc"]);
-                string creador = prioritario["IDUsuarioCreador"]?.ToString() ?? "Desconocido";
+                // ── PANELES ──────────────────────────────────────────────────
+                Panel pnlSinDocumentos = (Panel)FindControl("pnlSinDocumentos");
+                Panel pnlTabla         = (Panel)FindControl("pnlTabla");
+                Repeater rpt           = (Repeater)FindControl("rptDocumentos");
 
-                if (lblDocumentoPrioritario != null) lblDocumentoPrioritario.Text = asunto;
-                if (lblDescripcionPrioritario != null) lblDescripcionPrioritario.Text = $"Código: {codigo} | Área: {area} | Orden: {orden} | Remitente: {creador} | Ingresado: {fecha:dd/MM/yyyy}";
-
-                ViewState["IDFirmantePrioritario"] = idFirmantePrioritario;
-                ViewState["RutaPrioritario"] = ruta;
-
-                // Contar firmados hoy (simulado)
-                Label lblFirmadosHoy = (Label)FindControl("lblFirmadosHoy");
-                if (lblFirmadosHoy != null) lblFirmadosHoy.Text = "0";
-
-                // Generar lista de espera (documentos desde el índice 1)
-                GenerarListaEspera(dt);
+                if (total == 0)
+                {
+                    if (pnlSinDocumentos != null) pnlSinDocumentos.Visible = true;
+                    if (pnlTabla         != null) pnlTabla.Visible         = false;
+                }
+                else
+                {
+                    if (pnlSinDocumentos != null) pnlSinDocumentos.Visible = false;
+                    if (pnlTabla         != null) pnlTabla.Visible         = true;
+                    if (rpt              != null) { rpt.DataSource = dt; rpt.DataBind(); }
+                }
             }
             catch (Exception ex)
             {
-                Label lblDocumentoPrioritario = (Label)FindControl("lblDocumentoPrioritario");
-                if (lblDocumentoPrioritario != null) lblDocumentoPrioritario.Text = "Error al cargar: " + ex.Message;
-                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+                MostrarMensaje("Error al cargar documentos: " + ex.Message);
             }
         }
 
-        private void GenerarListaEspera(DataTable dt)
+        // ──────────────────────────────────────────────────────────────────────
+        //  FIRMAR desde el Modal
+        // ──────────────────────────────────────────────────────────────────────
+        protected void btnFirmarDesdeModal_Click(object sender, EventArgs e)
         {
-            HtmlGenericControl pnlColaEspera = (HtmlGenericControl)FindControl("pnlColaEspera");
-            if (pnlColaEspera == null) return;
-            
-            pnlColaEspera.Controls.Clear();
+            HiddenField hfIDFirmante = (HiddenField)FindControl("hfIDFirmante");
+            string idStr = hfIDFirmante?.Value ?? "0";
 
-            if (dt.Rows.Count <= 1)
+            if (!int.TryParse(idStr, out int idFirmante) || idFirmante == 0)
             {
-                pnlColaEspera.Controls.Add(new LiteralControl("<div class='text-center py-8 text-on-surface-variant'>No hay más documentos en espera</div>"));
+                MostrarMensaje("No se encontró el documento a firmar.");
                 return;
             }
 
-            StringBuilder html = new StringBuilder();
+            string usuario = Session["strUsuario"].ToString();
+            string equipo  = Request.UserHostAddress ?? "127.0.0.1";
 
-            for (int i = 1; i < dt.Rows.Count; i++)
-            {
-                DataRow row = dt.Rows[i];
-                string asunto = row["Asunto"].ToString();
-                string codigo = row["CodigoDocumento"].ToString();
-                string area = row["AreaResponsable"].ToString();
-                int orden = Convert.ToInt32(row["Orden"]);
-                DateTime fecha = Convert.ToDateTime(row["FechaCreacionDoc"]);
-                string ruta = ResolveUrl(row["RutaArchivo"].ToString());
-
-                html.Append($@"
-                <div class=""flex flex-col sm:flex-row sm:items-center justify-between p-4 hover:bg-surface-container-high transition-colors rounded-lg gap-4 border-b border-outline-variant/10"">
-                    <div class=""flex items-start gap-4"">
-                        <div class=""w-10 h-10 rounded-lg bg-surface-container flex flex-col items-center justify-center border border-outline-variant/20 flex-shrink-0"">
-                            <span class=""text-[10px] font-label uppercase font-bold"">Ord</span>
-                            <span class=""font-headline font-bold text-sm text-primary"">{orden:D2}</span>
-                        </div>
-                        <div>
-                            <h4 class=""font-body font-medium text-on-surface text-sm mb-1"">{asunto}</h4>
-                            <p class=""font-body text-xs text-on-surface-variant"">{area} • Código: {codigo} • Ingresado: {fecha:dd/MM/yyyy HH:mm}</p>
-                        </div>
-                    </div>
-                    <div class=""flex items-center justify-end gap-2"">
-                        <button type=""button"" onclick=""verPDF('{ruta}')"" class=""bg-surface-container text-primary px-3 py-1.5 rounded text-xs font-medium hover:bg-surface-container-high transition-colors flex items-center gap-1"">
-                            <span class=""material-symbols-outlined text-[16px]"">visibility</span> Ver
-                        </button>
-                        <span class=""bg-surface-container text-on-surface-variant text-[11px] font-semibold px-2 py-1 rounded font-label"">En espera(orden {orden})</span>
-                    </div>
-                </div>");
-            }
-
-            pnlColaEspera.Controls.Add(new LiteralControl(html.ToString()));
-        }
-
-        protected void btnFirmarPrioritario_Click(object sender, EventArgs e)
-        {
             try
             {
-                if (ViewState["IDFirmantePrioritario"] == null) return;
-                int idFirmante = Convert.ToInt32(ViewState["IDFirmantePrioritario"]);
-                string usuario = Session["strUsuario"].ToString();
-                string equipo = Request.UserHostAddress ?? "127.0.0.1";
+                // ── PASO 0: Obtener el IDDocumento directamente (evita subconsultas ambiguas) ──
+                string sqlGetDoc = @"
+                    SELECT TOP 1 IDDocumento 
+                    FROM dbo.FIR_DocumentoFirmante 
+                    WHERE IDFirmante = @IDFirmante";
 
+                DataTable dtDoc = ConexionBD.EjecutarConsultaFirmaSQL(
+                    sqlGetDoc,
+                    new SqlParameter[] { new SqlParameter("@IDFirmante", idFirmante) });
+
+                if (dtDoc.Rows.Count == 0)
+                {
+                    MostrarMensaje("No se encontró el registro de firma.");
+                    return;
+                }
+
+                int idDocumento = Convert.ToInt32(dtDoc.Rows[0]["IDDocumento"]);
+
+                // ── PASO 1: Ejecutar SP de firma ──────────────────────────────
                 SqlParameter[] pars = {
-                    new SqlParameter("@IDFirmante", idFirmante),
-                    new SqlParameter("@SerieToken", "DEMO-" + DateTime.Now.Ticks.ToString()),
-                    new SqlParameter("@HuellaCertificado", "FIRMA-DIGITAL-DEMO"),
-                    new SqlParameter("@Observacion", "Documento firmado digitalmente"),
-                    new SqlParameter("@IDUsuarioModificador", usuario),
-                    new SqlParameter("@IDEquipo", equipo)
+                    new SqlParameter("@IDFirmante",          idFirmante),
+                    new SqlParameter("@SerieToken",          "DEMO-" + DateTime.Now.Ticks),
+                    new SqlParameter("@HuellaCertificado",   "FIRMA-DIGITAL-DEMO"),
+                    new SqlParameter("@Observacion",         "Documento firmado digitalmente"),
+                    new SqlParameter("@IDUsuarioModificador",usuario),
+                    new SqlParameter("@IDEquipo",            equipo)
                 };
-
                 ConexionBD.EjecutarAccionFirma("USP_FIR_Documento_Firmar", pars);
 
-                ClientScript.RegisterStartupScript(this.GetType(), "ok", "<script>alert('Documento firmado correctamente.'); window.location.reload();</script>");
+                // ── PASO 2: Contar firmantes aún PENDIENTES en ese documento ──
+                // Se obtiene el IDMaestro de PENDIENTE una sola vez con TOP 1
+                string sqlPendientes = @"
+                    SELECT COUNT(*) 
+                    FROM dbo.FIR_DocumentoFirmante f
+                    INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
+                    WHERE f.IDDocumento = @IDDocumento
+                      AND me.Codigo    = 'PENDIENTE'";
+
+                int pendientes = Convert.ToInt32(
+                    ConexionBD.EjecutarConsultaFirmaSQL(
+                        sqlPendientes,
+                        new SqlParameter[] { new SqlParameter("@IDDocumento", idDocumento) }
+                    ).Rows[0][0]);
+
+                // ── PASO 3: Si ya no hay pendientes → estado 4 (Completado) ──
+                if (pendientes == 0)
+                {
+                    string sqlCerrar = @"
+                        UPDATE dbo.FIR_Documento
+                        SET IDEstadoDoc       = 4,
+                            FechaModificacion = GETDATE(),
+                            IDUsuarioModificador = @User
+                        WHERE IDDocumento = @IDDocumento";
+
+                    ConexionBD.EjecutarAccionFirmaSQL(sqlCerrar, new SqlParameter[] {
+                        new SqlParameter("@User",        usuario),
+                        new SqlParameter("@IDDocumento", idDocumento)
+                    });
+                }
+
+                // ── PASO 4: Recargar + mensaje ────────────────────────────────
+                CargarDocumentosPendientes();
+                MostrarMensaje("✓ Documento firmado correctamente.", false);
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "err", $"<script>alert('Error al firmar: {ex.Message.Replace("'", "")}');</script>");
+                MostrarMensaje("Error al firmar: " + ex.Message);
             }
         }
 
-        protected void btnRevisarPrioritario_Click(object sender, EventArgs e)
+        // ──────────────────────────────────────────────────────────────────────
+        //  HELPERS
+        // ──────────────────────────────────────────────────────────────────────
+        private void MostrarMensaje(string texto, bool esError = true)
         {
-            string ruta = ViewState["RutaPrioritario"]?.ToString();
-            if (!string.IsNullOrEmpty(ruta))
+            Panel pnlMensaje = (Panel)FindControl("pnlMensaje");
+            Label lblMensaje  = (Label)FindControl("lblMensaje");
+            if (pnlMensaje != null && lblMensaje != null)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "pdf", $"<script>window.open('{ruta}', '_blank');</script>");
+                pnlMensaje.Visible = true;
+                lblMensaje.Text    = texto;
+                pnlMensaje.CssClass = esError
+                    ? "mb-6 bg-red-50 border border-red-200 rounded-2xl p-4 text-red-700"
+                    : "mb-6 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-emerald-700";
             }
-        }
-
-        protected void btnVerTodos_Click(object sender, EventArgs e)
-        {
-            CargarDocumentosPendientes();
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
