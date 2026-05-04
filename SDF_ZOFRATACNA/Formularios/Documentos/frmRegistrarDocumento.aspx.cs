@@ -78,14 +78,15 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
         {
             try
             {
+                var lista = FIR_UnidadOrganica.Listar();
+
                 ddlAreaResponsable.Items.Clear();
                 ddlAreaResponsable.Items.Add(new ListItem("-- Seleccione --", ""));
-                ddlAreaResponsable.Items.Add(new ListItem("Gerencia General", "Gerencia General"));
-                ddlAreaResponsable.Items.Add(new ListItem("Asesoría Legal", "Asesoría Legal"));
-                ddlAreaResponsable.Items.Add(new ListItem("Administración", "Administración"));
-                ddlAreaResponsable.Items.Add(new ListItem("Operaciones", "Operaciones"));
-                ddlAreaResponsable.Items.Add(new ListItem("Sub-Gerencia Administrativa", "Sub-Gerencia Administrativa"));
-                ddlAreaResponsable.Items.Add(new ListItem("Secretaria General", "Secretaria General"));
+
+                foreach (var item in lista)
+                {
+                    ddlAreaResponsable.Items.Add(new ListItem(item.Descripcion, item.Descripcion));
+                }
             }
             catch (Exception ex)
             {

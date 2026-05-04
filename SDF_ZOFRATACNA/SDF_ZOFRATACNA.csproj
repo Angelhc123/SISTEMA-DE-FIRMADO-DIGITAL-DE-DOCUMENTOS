@@ -269,6 +269,7 @@
     <Compile Include="Models\FIR_FirmaDigital.cs" />
     <Compile Include="Models\FIR_Maestro.cs" />
     <Compile Include="Models\FIR_Observacion.cs" />
+    <Compile Include="Models\FIR_UnidadOrganica.cs" />
     <Compile Include="Models\FIR_UsuarioPrueba.cs" />
     <Compile Include="Models\FIR_UsuarioRol.cs" />
     <Compile Include="Models\FIR_VersionDocumento.cs" />
