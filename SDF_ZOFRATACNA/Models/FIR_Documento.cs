@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -127,6 +127,76 @@ namespace SDF_ZOFRATACNA.Models
             {
                 throw new Exception("Error al listar documentos: " + ex.Message);
             }
+        }
+        public static string ObtenerRutaPDF(int idDocumento)
+        {
+            try
+            {
+                string sql = "SELECT RutaArchivoPDF FROM FIR_Documento WHERE IDDocumento = @ID";
+                DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, new SqlParameter[] { new SqlParameter("@ID", idDocumento) });
+                if (dt.Rows.Count > 0)
+                    return dt.Rows[0]["RutaArchivoPDF"].ToString();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener ruta del PDF: " + ex.Message);
+            }
+        }
+
+        public static void SubirCorreccion(int idDocumento, string login, string rutaRelativa)
+        {
+            string sqlTx = @"
+                BEGIN TRY
+                    BEGIN TRANSACTION;
+
+                    DECLARE @NewVersion INT;
+                    SELECT @NewVersion = Version + 1 FROM dbo.FIR_Documento WHERE IDDocumento = @ID;
+
+                    -- Actualizar Documento
+                    UPDATE dbo.FIR_Documento
+                    SET Version = @NewVersion, 
+                        RutaArchivoPDF = @Ruta, 
+                        CodigoEstado = 'EN_REV',
+                        FechaUltimaAccion = GETDATE(),
+                        IDUsuarioModificador = @Login,
+                        FechaModificacion = GETDATE()
+                    WHERE IDDocumento = @ID;
+
+                    -- Insertar en Historial de Versiones
+                    INSERT INTO dbo.FIR_VersionDocumento (IDDocumento, NumeroVersion, RutaArchivo, Motivo, IDUsuarioCreador, FechaCreacion)
+                    VALUES (@ID, @NewVersion, @Ruta, 'Corrección por observaciones', @Login, GETDATE());
+
+                    -- Insertar Auditoría
+                    INSERT INTO dbo.FIR_DocumentoAuditoria (IDDocumento, IDUsuario, TipoOperacion, TipoAccion, Descripcion, FechaCambio)
+                    VALUES (@ID, @Login, 'M', 'CORRECCION', 'Se subió una nueva versión corrigiendo observaciones. Versión: ' + CAST(@NewVersion AS VARCHAR), GETDATE());
+
+                    -- Reiniciar Revisores
+                    UPDATE dbo.FIR_DocumentoRevisor
+                    SET Version = @NewVersion,
+                        Completado = 0,
+                        CodigoResultado = NULL,
+                        FechaRevision = NULL,
+                        IDUsuarioModificador = @Login,
+                        FechaModificacion = GETDATE()
+                    WHERE IDDocumento = @ID;
+
+                    COMMIT TRANSACTION;
+                END TRY
+                BEGIN CATCH
+                    IF @@TRANCOUNT > 0
+                        ROLLBACK TRANSACTION;
+                    THROW;
+                END CATCH
+            ";
+
+            SqlParameter[] pars = {
+                new SqlParameter("@ID", idDocumento),
+                new SqlParameter("@Ruta", rutaRelativa),
+                new SqlParameter("@Login", login)
+            };
+
+            ConexionBD.EjecutarAccionFirmaSQL(sqlTx, pars);
         }
         #endregion
     }

@@ -128,43 +128,72 @@ namespace SDF_ZOFRATACNA.Models
         public static void RegistrarRevision(int idDocumentoFirmante, bool esAprobado, string comentario, string loginUsuario, string idEquipo)
         {
             string sql = @"
-                -- 1. Actualizar estado de aprobación del Revisor
-                UPDATE FIR_DocumentoFirmante
-                SET EsAprobado = @EsAprobado, 
-                    Comentario = @Comentario,
-                    IDUsuarioModificador = @IDUsuario, 
-                    FechaModificacion = GETDATE()
-                WHERE IDDocumentoFirmante = @IDFirmante;
+                BEGIN TRY
+                    BEGIN TRANSACTION;
 
-                -- Obtener IDDocumento
-                DECLARE @IDDocumento INT;
-                SELECT @IDDocumento = IDDocumento FROM FIR_DocumentoFirmante WHERE IDDocumentoFirmante = @IDFirmante;
-
-                -- 2. Auditoría
-                INSERT INTO FIR_DocumentoAuditoria (IDDocumento, IDUsuario, IDEquipo, TipoOperacion, TipoAccion, Descripcion, FechaCambio)
-                VALUES (@IDDocumento, @IDUsuario, @IDEquipo, 'M', 'REVISION', 
-                        CASE WHEN @EsAprobado = 1 THEN 'Documento APROBADO por revisor' ELSE 'Documento OBSERVADO por revisor' END, GETDATE());
-
-                -- 3. Lógica de cambio de estado de Documento
-                IF @EsAprobado = 0
-                BEGIN
-                    UPDATE FIR_Documento 
-                    SET CodigoEstado = 'OBS', 
+                    -- 1. Actualizar estado de aprobación del Revisor
+                    UPDATE FIR_DocumentoFirmante
+                    SET EsAprobado = @EsAprobado, 
+                        Comentario = @Comentario,
                         IDUsuarioModificador = @IDUsuario, 
-                        FechaModificacion = GETDATE() 
-                    WHERE IDDocumento = @IDDocumento;
-                END
-                ELSE
-                BEGIN
-                    IF NOT EXISTS (SELECT 1 FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDocumento AND (EsAprobado IS NULL OR EsAprobado = 0))
+                        FechaModificacion = GETDATE()
+                    WHERE IDDocumentoFirmante = @IDFirmante;
+
+                    -- Obtener IDDocumento y Version
+                    DECLARE @IDDocumento INT;
+                    DECLARE @Version INT;
+                    SELECT @IDDocumento = f.IDDocumento, @Version = d.Version
+                    FROM FIR_DocumentoFirmante f
+                    INNER JOIN FIR_Documento d ON d.IDDocumento = f.IDDocumento
+                    WHERE f.IDDocumentoFirmante = @IDFirmante;
+
+                    -- 2. Auditoría
+                    INSERT INTO FIR_DocumentoAuditoria (IDDocumento, IDUsuario, IDEquipo, TipoOperacion, TipoAccion, Descripcion, FechaCambio)
+                    VALUES (@IDDocumento, @IDUsuario, @IDEquipo, 'M', 'REVISION', 
+                            CASE WHEN @EsAprobado = 1 THEN 'Documento APROBADO por revisor' ELSE 'Documento OBSERVADO por revisor' END, GETDATE());
+
+                    -- 3. Insertar observación si hubo rechazo
+                    IF @EsAprobado = 0 AND LEN(ISNULL(@Comentario, '')) > 0
                     BEGIN
-                        UPDATE FIR_Documento 
-                        SET CodigoEstado = 'APR_FIRMA', 
-                            IDUsuarioModificador = @IDUsuario, 
-                            FechaModificacion = GETDATE() 
-                        WHERE IDDocumento = @IDDocumento;
+                        INSERT INTO dbo.FIR_Observacion (IDDocumento, LoginUsuario, NombreRevisor, Descripcion, Version, IDUsuarioCreador, FechaCreacion)
+                        SELECT @IDDocumento, @IDUsuario, NombreFirmante, @Comentario, ISNULL(@Version, 1), @IDUsuario, GETDATE()
+                        FROM FIR_DocumentoFirmante
+                        WHERE IDDocumentoFirmante = @IDFirmante;
                     END
-                END
+
+                    -- 4. Lógica de cambio de estado de Documento (solo si todos ya revisaron)
+                    DECLARE @Faltantes INT;
+                    SELECT @Faltantes = COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDocumento AND EsAprobado IS NULL;
+
+                    IF @Faltantes = 0
+                    BEGIN
+                        DECLARE @Rechazados INT;
+                        SELECT @Rechazados = COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDocumento AND EsAprobado = 0;
+
+                        IF @Rechazados > 0
+                        BEGIN
+                            UPDATE FIR_Documento 
+                            SET CodigoEstado = 'OBS', 
+                                IDUsuarioModificador = @IDUsuario, 
+                                FechaModificacion = GETDATE() 
+                            WHERE IDDocumento = @IDDocumento;
+                        END
+                        ELSE
+                        BEGIN
+                            UPDATE FIR_Documento 
+                            SET CodigoEstado = 'APR_FIRMA', 
+                                IDUsuarioModificador = @IDUsuario, 
+                                FechaModificacion = GETDATE() 
+                            WHERE IDDocumento = @IDDocumento;
+                        END
+                    END
+
+                    COMMIT TRANSACTION;
+                END TRY
+                BEGIN CATCH
+                    IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+                    THROW;
+                END CATCH
             ";
 
             SqlParameter[] p = {

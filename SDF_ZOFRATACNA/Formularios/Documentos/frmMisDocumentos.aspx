@@ -11,7 +11,6 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <!-- Theme Configuration -->
@@ -75,7 +74,6 @@
                         "xl": "0.5rem",
                         "full": "0.75rem"
                     },
-                    "spacing": {},
                     "fontFamily": {
                         "headline": ["Public Sans"],
                         "body": ["Public Sans"],
@@ -86,20 +84,19 @@
         }
     </script>
     <style>
-        /* Base typography application */
         body {
             font-family: 'Public Sans', sans-serif;
-            background-color: #faf9fc; /* surface */
+            background-color: #faf9fc;
         }
+        .modal-overlay { background-color: rgba(0, 5, 17, 0.5); backdrop-filter: blur(4px); }
     </style>
 </head>
 <body class="bg-surface text-on-surface antialiased overflow-hidden selection:bg-primary-container selection:text-white">
     <form id="form1" runat="server" class="flex h-screen w-full">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <!-- App Layout Container -->
         <div class="flex h-screen w-full">
-            <!-- ========================================== -->
-            <!-- SIDENAVBAR COMPONENT                       -->
-            <!-- ========================================== -->
+            <!-- SIDENAVBAR COMPONENT -->
             <aside class="bg-white dark:bg-slate-950 h-screen w-72 fixed left-0 top-0 border-r-0 shadow-[8px_0_24px_rgba(0,30,64,0.04)] z-50 flex flex-col py-8">
                 <!-- Brand Header -->
                 <div class="px-8 mb-12 flex items-center gap-4">
@@ -113,18 +110,15 @@
                 </div>
                 <!-- Navigation Links -->
                 <nav class="flex-1 px-4 space-y-1 font-public-sans tracking-tight text-sm font-medium">
-                    <!-- Inactive Tab: Dashboard -->
                     <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="~/Formularios/Documentos/frmDashboardRegistrador.aspx">
                         <span class="material-symbols-outlined group-hover:text-primary-container transition-colors">dashboard</span>
                         <span>Dashboard</span>
                     </a>
-                    <!-- Active Tab: Mis Documentos -->
                     <a runat="server" class="flex items-center gap-3 px-6 py-4 text-[#001E40] dark:text-white bg-slate-100 dark:bg-[#001E40]/20 font-bold border-r-4 border-[#001E40] rounded-l-xl Active: translate-x-1 duration-150 relative group overflow-hidden" href="~/Formularios/Documentos/frmMisDocumentos.aspx">
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-200/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <span class="material-symbols-outlined fill" style="font-variation-settings: 'FILL' 1;">description</span>
                         <span class="relative z-10">Mis Documentos</span>
                     </a>
-                    <!-- Inactive Tabs -->
                     <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="~/Formularios/Documentos/frmRegistrarDocumento.aspx">
                         <span class="material-symbols-outlined group-hover:text-primary-container transition-colors">add_box</span>
                         <span>Registrar Nuevo</span>
@@ -133,7 +127,6 @@
                         <span class="material-symbols-outlined group-hover:text-primary-container transition-colors">archive</span>
                         <span>Archivo</span>
                     </a>
-                    <!-- Separation Logic (Spacer) -->
                     <div class="my-6 h-px bg-slate-50 dark:bg-slate-900/50 mx-6"></div>
                     <a runat="server" class="flex items-center gap-3 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-l-xl group" href="~/Formularios/Documentos/frmDirectorio.aspx">
                         <span class="material-symbols-outlined group-hover:text-primary-container transition-colors">contact_phone</span>
@@ -157,19 +150,15 @@
                     </div>
                 </div>
             </aside>
-            <!-- Main Content Wrapper (Accounts for SideNav width) -->
+            <!-- Main Content Wrapper -->
             <main class="ml-72 flex-1 flex flex-col h-screen relative bg-surface">
-                <!-- ========================================== -->
-                <!-- TOPNAVBAR COMPONENT                        -->
-                <!-- ========================================== -->
+                <!-- TOPNAVBAR COMPONENT -->
                 <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 z-40 shadow-sm dark:shadow-none flex items-center justify-between px-10 transition-all duration-300 ease-in-out border-b border-surface-container/50">
-                    <!-- Navigation Links (Breadcrumb style) -->
                     <nav class="font-public-sans text-sm tracking-wide text-[#001E40] dark:text-[#d5e3ff] flex items-center gap-4">
                         <span class="text-slate-400">Inicio</span>
                         <span class="material-symbols-outlined text-sm text-slate-300">chevron_right</span>
                         <span class="text-[#001E40] font-bold border-b-2 border-[#001E40] pb-1 translate-y-[2px]">Mis Documentos</span>
                     </nav>
-                    <!-- Trailing Actions -->
                     <div class="flex items-center gap-6">
                         <button type="button" class="text-slate-400 hover:text-[#001E40] dark:hover:text-white transition-colors relative group">
                             <span class="material-symbols-outlined">notifications</span>
@@ -182,155 +171,146 @@
                         </asp:LinkButton>
                     </div>
                 </header>
-                <!-- ========================================== -->
-                <!-- PAGE CONTENT CANVAS                        -->
-                <!-- ========================================== -->
+                <!-- PAGE CONTENT CANVAS -->
                 <div class="flex-1 overflow-y-auto pt-24 px-12 pb-12">
-                    <!-- Page Header Area -->
                     <div class="mb-10 flex justify-between items-end">
                         <div>
                             <h2 class="font-headline text-3xl font-extrabold tracking-tight text-primary-container">Bandeja de Entrada</h2>
                             <p class="font-body text-secondary mt-2 text-base">Gestión y revisión de expedientes documentales.</p>
                         </div>
-                        <!-- Search Input (Precision Grid Style) -->
                         <div class="relative w-72">
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-lg">search</span>
-                            <input class="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant focus:border-primary-container focus:ring-0 pl-10 pr-4 py-2 text-sm font-body text-on-surface rounded-t-sm transition-colors" placeholder="Buscar por ID o Asunto..." type="text"/>
+                            <asp:TextBox ID="txtBuscar" runat="server" CssClass="w-full bg-surface-container-high border-0 border-b-2 border-outline-variant focus:border-primary-container focus:ring-0 pl-10 pr-4 py-2 text-sm font-body text-on-surface rounded-t-sm transition-colors" placeholder="Buscar por ID o Asunto..." AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged"></asp:TextBox>
                         </div>
                     </div>
 
-                    <!-- Filters Strip (Bento Pattern) -->
-                    <div class="flex gap-2 mb-8 border-b border-surface-container-high pb-4">
-                        <button class="px-5 py-2 rounded-full bg-primary-container text-on-primary font-label text-sm font-semibold tracking-wide uppercase transition-all shadow-[0_4px_12px_rgba(0,30,64,0.15)]">
-                            Todos
-                        </button>
-                        <button class="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">
-                            Pendientes
-                        </button>
-                        <button class="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">
-                            Observados
-                        </button>
-                        <button class="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">
-                            Firmados
-                        </button>
-                    </div>
+                    <asp:UpdatePanel ID="upBandeja" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <!-- Filters Strip -->
+                            <div class="flex gap-2 mb-8 border-b border-surface-container-high pb-4">
+                                <asp:LinkButton ID="btnFiltroTodos" runat="server" OnClick="FiltrarBandeja" CommandArgument="TODOS" CssClass="px-5 py-2 rounded-full bg-primary-container text-on-primary font-label text-sm font-semibold tracking-wide uppercase transition-all shadow-[0_4px_12px_rgba(0,30,64,0.15)]">Todos</asp:LinkButton>
+                                <asp:LinkButton ID="btnFiltroPendientes" runat="server" OnClick="FiltrarBandeja" CommandArgument="PENDIENTES" CssClass="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">Pendientes</asp:LinkButton>
+                                <asp:LinkButton ID="btnFiltroObservados" runat="server" OnClick="FiltrarBandeja" CommandArgument="OBSERVADOS" CssClass="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">Observados</asp:LinkButton>
+                                <asp:LinkButton ID="btnFiltroFirmados" runat="server" OnClick="FiltrarBandeja" CommandArgument="FIRMADOS" CssClass="px-5 py-2 rounded-full bg-surface text-secondary hover:bg-surface-container hover:text-on-surface font-label text-sm font-medium tracking-wide uppercase transition-colors">Firmados</asp:LinkButton>
+                            </div>
 
-                    <!-- Data Table (The Invisible Grid / Editorial Style) -->
-                    <div class="bg-surface-container-lowest rounded-lg p-2 shadow-[0_8px_32px_rgba(0,30,64,0.04)] relative">
-                        <!-- Ghost border defined by subtle background shift -->
-                        <table class="w-full text-left font-body border-collapse">
-                            <thead>
-                                <tr>
-                                    <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-32">ID Exp.</th>
-                                    <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high">Asunto del Documento</th>
-                                    <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-40">Fecha Reg.</th>
-                                    <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-40">Estado Legal</th>
-                                    <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-24 text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <!-- Row 1: Pendiente -->
-                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
-                                    <td class="py-5 px-6 font-medium text-primary-container">EXP-2023-0891</td>
-                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md">Solicitud de autorización de ingreso de mercancía restringida zona franca</td>
-                                    <td class="py-5 px-6 text-secondary">12 Oct 2023</td>
-                                    <td class="py-5 px-6">
-                                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider">
-                                            Pendiente
-                                        </span>
-                                    </td>
-                                    <td class="py-5 px-6 text-right">
-                                        <button class="text-secondary hover:text-primary-container transition-colors p-1" title="Revisar">
-                                            <span class="material-symbols-outlined text-xl">visibility</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 2: Registrado -->
-                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
-                                    <td class="py-5 px-6 font-medium text-primary-container">EXP-2023-0890</td>
-                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md">Declaración jurada de origen de componentes de ensamblaje Lote B</td>
-                                    <td class="py-5 px-6 text-secondary">12 Oct 2023</td>
-                                    <td class="py-5 px-6">
-                                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-surface-container-highest text-on-surface font-label text-xs font-bold uppercase tracking-wider">
-                                            Registrado
-                                        </span>
-                                    </td>
-                                    <td class="py-5 px-6 text-right">
-                                        <button class="text-secondary hover:text-primary-container transition-colors p-1" title="Revisar">
-                                            <span class="material-symbols-outlined text-xl">visibility</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 3: Observado -->
-                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
-                                    <td class="py-5 px-6 font-medium text-primary-container">EXP-2023-0885</td>
-                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md">Manifiesto de carga internacional terrestre fronterizo (Incompleto)</td>
-                                    <td class="py-5 px-6 text-secondary">11 Oct 2023</td>
-                                    <td class="py-5 px-6">
-                                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-error-container text-on-error-container font-label text-xs font-bold uppercase tracking-wider">
-                                            Observado
-                                        </span>
-                                    </td>
-                                    <td class="py-5 px-6 text-right">
-                                        <button class="text-secondary hover:text-primary-container transition-colors p-1" title="Revisar">
-                                            <span class="material-symbols-outlined text-xl">visibility</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 4: Firmado (Status Monolith) -->
-                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
-                                    <td class="py-5 px-6 font-medium text-primary-container">EXP-2023-0882</td>
-                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md">Resolución de aprobación de tarifa preferencial temporal</td>
-                                    <td class="py-5 px-6 text-secondary">10 Oct 2023</td>
-                                    <td class="py-5 px-6">
-                                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label text-xs font-bold uppercase tracking-wider">
-                                            Firmado
-                                        </span>
-                                    </td>
-                                    <td class="py-5 px-6 text-right">
-                                        <button class="text-secondary hover:text-primary-container transition-colors p-1" title="Descargar PDF">
-                                            <span class="material-symbols-outlined text-xl">download</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 5: Firmado -->
-                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
-                                    <td class="py-5 px-6 font-medium text-primary-container">EXP-2023-0879</td>
-                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md">Certificado de usuario de Zona Franca Comercial (Renovación anual)</td>
-                                    <td class="py-5 px-6 text-secondary">09 Oct 2023</td>
-                                    <td class="py-5 px-6">
-                                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label text-xs font-bold uppercase tracking-wider">
-                                            Firmado
-                                        </span>
-                                    </td>
-                                    <td class="py-5 px-6 text-right">
-                                        <button class="text-secondary hover:text-primary-container transition-colors p-1" title="Descargar PDF">
-                                            <span class="material-symbols-outlined text-xl">download</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- Pagination (Editorial styling) -->
-                        <div class="px-6 py-4 flex items-center justify-between border-t border-surface-container mt-2">
-                            <span class="text-xs font-label text-secondary uppercase tracking-widest">Mostrando 1-5 de 142</span>
-                            <div class="flex gap-1">
-                                <button type="button" class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container-highest transition-colors disabled:opacity-30" disabled="">
-                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
-                                </button>
-                                <button type="button" class="w-8 h-8 rounded flex items-center justify-center text-on-primary bg-primary-container font-label text-xs">1</button>
-                                <button type="button" class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container-highest transition-colors font-label text-xs">2</button>
-                                <button type="button" class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container-highest transition-colors font-label text-xs">3</button>
-                                <span class="w-8 h-8 flex items-center justify-center text-secondary text-xs">...</span>
-                                <button type="button" class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:bg-surface-container-highest transition-colors">
-                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
-                                </button>
+                            <!-- Data Table -->
+                            <div class="bg-surface-container-lowest rounded-lg p-2 shadow-[0_8px_32px_rgba(0,30,64,0.04)] relative">
+                                <table class="w-full text-left font-body border-collapse">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-32">ID Exp.</th>
+                                            <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high">Asunto del Documento</th>
+                                            <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-40">Fecha Reg.</th>
+                                            <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-40">Estado Legal</th>
+                                            <th class="py-4 px-6 font-label text-xs font-bold uppercase tracking-widest text-secondary border-b border-surface-container-high w-24 text-right">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-sm">
+                                        <asp:Repeater ID="rptDocumentos" runat="server" OnItemCommand="rptDocumentos_ItemCommand">
+                                            <ItemTemplate>
+                                                <tr class="group hover:bg-surface-container-low transition-colors duration-200">
+                                                    <td class="py-5 px-6 font-medium text-primary-container"><%# Eval("CodigoDocumento") %></td>
+                                                    <td class="py-5 px-6 text-on-surface-variant pr-12 truncate max-w-md"><%# Eval("Asunto") %></td>
+                                                    <td class="py-5 px-6 text-secondary"><%# Convert.ToDateTime(Eval("FechaCreacion")).ToString("dd MMM yyyy") %></td>
+                                                    <td class="py-5 px-6">
+                                                        <span class='<%# ObtenerClaseEstado(Eval("CodigoEstado").ToString()) %>'>
+                                                            <%# ObtenerNombreEstado(Eval("CodigoEstado").ToString()) %>
+                                                        </span>
+                                                    </td>
+                                                    <td class="py-5 px-6 text-right">
+                                                        <asp:LinkButton ID="btnAccion" runat="server" CommandName='<%# (Eval("CodigoEstado").ToString() == "OBS") ? "VerObservaciones" : "VerDocumento" %>' CommandArgument='<%# Eval("IDDocumento") %>' CssClass="text-secondary hover:text-primary-container transition-colors p-1" ToolTip='<%# (Eval("CodigoEstado").ToString() == "OBS") ? "Ver Observaciones" : "Ver" %>'>
+                                                            <span class="material-symbols-outlined text-xl"><%# (Eval("CodigoEstado").ToString() == "FIRM_COM" || Eval("CodigoEstado").ToString() == "FPAR") ? "download" : "visibility" %></span>
+                                                        </asp:LinkButton>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                        <asp:PlaceHolder ID="phSinDatos" runat="server" Visible="false">
+                                            <tr>
+                                                <td colspan="5" class="py-8 text-center text-secondary font-medium">No se encontraron documentos para el filtro seleccionado.</td>
+                                            </tr>
+                                        </asp:PlaceHolder>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </main>
+        </div>
+
+        <!-- MODAL OBSERVACIONES -->
+        <asp:UpdatePanel ID="upModal" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div id="modalObservaciones" runat="server" visible="false" class="fixed inset-0 z-[100] flex items-center justify-center modal-overlay p-4">
+                    <div class="bg-surface rounded-xl shadow-2xl w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                        <!-- Modal Header -->
+                        <div class="px-6 py-4 border-b border-surface-container-high flex justify-between items-center bg-white">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary-container font-headline">Observaciones del Documento</h3>
+                                <p class="text-sm text-secondary font-body mt-1">Revisa los comentarios y sube una versión corregida.</p>
+                            </div>
+                            <asp:LinkButton ID="btnCerrarModal" runat="server" OnClick="btnCerrarModal_Click" CssClass="text-secondary hover:text-error transition-colors">
+                                <span class="material-symbols-outlined">close</span>
+                            </asp:LinkButton>
+                        </div>
+                        
+                        <!-- Modal Body (Two columns) -->
+                        <div class="flex-1 flex overflow-hidden">
+                            <!-- Left: PDF Viewer -->
+                            <div class="w-1/2 bg-surface-container-low border-r border-surface-container-high p-4 flex flex-col">
+                                <h4 class="font-bold text-sm text-on-surface mb-2 uppercase tracking-wider font-label">Documento Actual</h4>
+                                <iframe id="iframePDF" runat="server" class="w-full flex-1 rounded border border-outline-variant/30" src=""></iframe>
+                            </div>
+                            
+                            <!-- Right: Observations & Upload -->
+                            <div class="w-1/2 p-6 flex flex-col bg-white overflow-y-auto">
+                                <h4 class="font-bold text-sm text-on-surface mb-4 uppercase tracking-wider font-label flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-error">warning</span>
+                                    Listado de Observaciones
+                                </h4>
+                                
+                                <div class="space-y-4 mb-8 flex-1 overflow-y-auto pr-2">
+                                    <asp:Repeater ID="rptListaObservaciones" runat="server">
+                                        <ItemTemplate>
+                                            <div class="bg-error-container/30 border border-error-container rounded-lg p-4">
+                                                <div class="flex justify-between items-start mb-2">
+                                                    <span class="font-bold text-sm text-on-error-container"><%# Eval("NombreRevisor") %></span>
+                                                    <span class="text-xs text-secondary"><%# Convert.ToDateTime(Eval("FechaCreacion")).ToString("dd/MM/yyyy HH:mm") %></span>
+                                                </div>
+                                                <p class="text-sm text-on-surface-variant leading-relaxed">
+                                                    <%# Eval("Descripcion") %>
+                                                </p>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                                
+                                <!-- Upload Section -->
+                                <div class="bg-surface-container-low rounded-lg p-5 border border-surface-container">
+                                    <h4 class="font-bold text-sm text-primary-container mb-3 font-label">Subir Corrección</h4>
+                                    <p class="text-xs text-secondary mb-4">Selecciona el nuevo archivo PDF. Esto actualizará la versión y reiniciará el flujo de revisión.</p>
+                                    <asp:HiddenField ID="hdnIdDocumentoObser" runat="server" />
+                                    <asp:FileUpload ID="fuCorreccion" runat="server" CssClass="block w-full text-sm text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary hover:file:bg-primary transition-colors cursor-pointer mb-4" accept="application/pdf" />
+                                    <asp:Label ID="lblErrorUpload" runat="server" CssClass="text-error text-xs block mb-2 font-medium" Visible="false"></asp:Label>
+                                    
+                                    <div class="flex justify-end gap-3">
+                                        <asp:Button ID="btnCancelarCorreccion" runat="server" Text="Cancelar" OnClick="btnCerrarModal_Click" CssClass="px-4 py-2 rounded-lg text-sm font-bold text-secondary bg-surface-container-high hover:bg-surface-container-highest transition-colors cursor-pointer" />
+                                        
+                                        <!-- PostBackTrigger needed for FileUpload inside UpdatePanel -->
+                                        <asp:Button ID="btnSubirCorreccion" runat="server" Text="Guardar y Enviar a Revisión" OnClick="btnSubirCorreccion_Click" CssClass="px-4 py-2 rounded-lg text-sm font-bold text-white bg-primary-container hover:bg-primary shadow-md transition-colors cursor-pointer" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </ContentTemplate>
+            <Triggers>
+                <asp:PostBackTrigger ControlID="btnSubirCorreccion" />
+            </Triggers>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>
