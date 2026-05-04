@@ -25,37 +25,62 @@ namespace SDF_ZOFRATACNA.App_Code.DAL
     /// </summary>
     public class ConexionBD
     {
-        // Cadena de conexión a la BD principal de firma (string → prefijo str)
-        private static readonly string strRutaConexion = ConfigurationManager.ConnectionStrings["SDF_Conexion"].ConnectionString;
+        // Nuevas cadenas de conexi�n para la arquitectura separada en 3 BD
+        private static readonly string strRutaAdministracion = ConfigurationManager.ConnectionStrings["SDF_Administracion"].ConnectionString;
+        private static readonly string strRutaFirmador = ConfigurationManager.ConnectionStrings["SDF_Firmador"].ConnectionString;
+        private static readonly string strRutaArchivos = ConfigurationManager.ConnectionStrings["SDF_Archivos"].ConnectionString;
 
-        // Cadena de conexión a la BD de seguridad (string → prefijo str)
+        // Cadena de conexi�n a la BD de seguridad
         private static readonly string strRutaSeguridad = ConfigurationManager.ConnectionStrings["SDF_Seguridad"].ConnectionString;
 
-        /// <summary>
-        /// Ejecuta un SP en la BD FirmaDigital y retorna un DataTable.
-        /// Útil para lecturas (SELECT).
-        /// </summary>
-        public static DataTable EjecutarConsultaFirma(string strNombreSP, SqlParameter[] parametros = null)
+        // ==========================================
+        // M�TODOS PARA DB ADMINISTRACION
+        // ==========================================
+        public static DataTable EjecutarConsultaAdministracion(string strNombreSP, SqlParameter[] parametros = null)
         {
-            return EjecutarConsultaBase(strRutaConexion, strNombreSP, parametros);
+            return EjecutarConsultaBase(strRutaAdministracion, strNombreSP, parametros);
         }
 
-        /// <summary>
-        /// Ejecuta un SP en la BD de Seguridad y retorna un DataTable.
-        /// Útil para autenticación interactuando con la DB de validaciones de accesos.
-        /// </summary>
+        public static int EjecutarAccionAdministracion(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarAccionBase(strRutaAdministracion, strNombreSP, parametros);
+        }
+
+        // ==========================================
+        // M�TODOS PARA DB FIRMADOR
+        // ==========================================
+        public static DataTable EjecutarConsultaFirma(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarConsultaBase(strRutaFirmador, strNombreSP, parametros);
+        }
+
+        public static int EjecutarAccionFirmador(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarAccionBase(strRutaFirmador, strNombreSP, parametros);
+        }
+
+        // Método de compatibilidad para evitar errores CS0117 en demás formularios
+        public static int EjecutarAccionFirma(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarAccionFirmador(strNombreSP, parametros);
+        }
+
+        // ==========================================
+        // M�TODOS PARA DB ARCHIVOS
+        // ==========================================
+        public static DataTable EjecutarConsultaArchivos(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarConsultaBase(strRutaArchivos, strNombreSP, parametros);
+        }
+
+        public static int EjecutarAccionArchivos(string strNombreSP, SqlParameter[] parametros = null)
+        {
+            return EjecutarAccionBase(strRutaArchivos, strNombreSP, parametros);
+        }
+
         public static DataTable EjecutarConsultaSeguridad(string strNombreSP, SqlParameter[] parametros = null)
         {
             return EjecutarConsultaBase(strRutaSeguridad, strNombreSP, parametros);
-        }
-
-        /// <summary>
-        /// Ejecuta un SP en la BD FirmaDigital sin retorno de filas (INSERT/UPDATE/DELETE).
-        /// Requisito ET-003: Debe enviar parámetros de auditoría donde aplique.
-        /// </summary>
-        public static int EjecutarAccionFirma(string strNombreSP, SqlParameter[] parametros = null)
-        {
-            return EjecutarAccionBase(strRutaConexion, strNombreSP, parametros);
         }
 
         #region Métodos Privados Internos
@@ -125,7 +150,7 @@ namespace SDF_ZOFRATACNA.App_Code.DAL
         }
         public static DataTable EjecutarConsultaFirmaSQL(string sql, SqlParameter[] pars)
         {
-            using (SqlConnection cn = new SqlConnection(strRutaConexion))
+            using (SqlConnection cn = new SqlConnection(strRutaFirmador))
             using (SqlCommand cmd = new SqlCommand(sql, cn))
             {
                 cmd.CommandType = CommandType.Text;
@@ -139,7 +164,7 @@ namespace SDF_ZOFRATACNA.App_Code.DAL
 
         public static void EjecutarAccionFirmaSQL(string sql, SqlParameter[] pars)
         {
-            using (SqlConnection cn = new SqlConnection(strRutaConexion))
+            using (SqlConnection cn = new SqlConnection(strRutaFirmador))
             using (SqlCommand cmd = new SqlCommand(sql, cn))
             {
                 cmd.CommandType = CommandType.Text;
@@ -151,3 +176,6 @@ namespace SDF_ZOFRATACNA.App_Code.DAL
         #endregion
     }
 }
+
+
+
