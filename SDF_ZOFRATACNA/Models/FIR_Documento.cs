@@ -172,11 +172,9 @@ namespace SDF_ZOFRATACNA.Models
                     VALUES (@ID, @Login, 'M', 'CORRECCION', 'Se subió una nueva versión corrigiendo observaciones. Versión: ' + CAST(@NewVersion AS VARCHAR), GETDATE());
 
                     -- Reiniciar Revisores
-                    UPDATE dbo.FIR_DocumentoRevisor
-                    SET Version = @NewVersion,
-                        Completado = 0,
-                        CodigoResultado = NULL,
-                        FechaRevision = NULL,
+                    UPDATE dbo.FIR_DocumentoFirmante
+                    SET EsAprobado = NULL,
+                        Comentario = NULL,
                         IDUsuarioModificador = @Login,
                         FechaModificacion = GETDATE()
                     WHERE IDDocumento = @ID;
