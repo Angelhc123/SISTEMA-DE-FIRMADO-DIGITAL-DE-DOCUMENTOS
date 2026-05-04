@@ -261,6 +261,17 @@
     <Compile Include="Formularios\Revision\frmDashboardRevisor.aspx.designer.cs">
       <DependentUpon>frmDashboardRevisor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FIR_Conformidad.cs" />
+    <Compile Include="Models\FIR_Documento.cs" />
+    <Compile Include="Models\FIR_DocumentoAuditoria.cs" />
+    <Compile Include="Models\FIR_DocumentoFirmante.cs" />
+    <Compile Include="Models\FIR_DocumentoRevisor.cs" />
+    <Compile Include="Models\FIR_FirmaDigital.cs" />
+    <Compile Include="Models\FIR_Maestro.cs" />
+    <Compile Include="Models\FIR_Observacion.cs" />
+    <Compile Include="Models\FIR_UsuarioPrueba.cs" />
+    <Compile Include="Models\FIR_UsuarioRol.cs" />
+    <Compile Include="Models\FIR_VersionDocumento.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmLogin.aspx.cs">
@@ -286,6 +297,7 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SDF_ZOFRATACNA.csproj.CoreCompileInputs.cache" />
+    <Content Include=".vs\SDF_ZOFRATACNA.csproj.dtbcache.json" />
     <None Include="packages.config" />
     <Content Include="Temp\Resolucion_Directoral_Gerencia_General_20260427_110542_395_854e5ced.pdf" />
     <None Include="Web.Debug.config">

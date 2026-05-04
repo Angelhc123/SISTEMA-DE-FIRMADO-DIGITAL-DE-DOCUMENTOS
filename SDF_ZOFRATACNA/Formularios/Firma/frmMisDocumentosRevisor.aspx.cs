@@ -63,35 +63,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
 
             try
             {
-                string sql = @"
-                    SELECT 
-                        vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
-                        vd.AreaResponsable, vd.FechaCreacionDoc,
-                        vd.IDUsuarioCreador,
-                        vd.EstadoDocumento, vd.TipoDocumento,
-                        vd.RutaArchivo,
-                        f.IDFirmante, f.Orden, f.FechaCreacion AS FechaAsignacion,
-                        me.Descripcion AS EstadoFirma
-                    FROM dbo.FIR_DocumentoFirmante f
-                    INNER JOIN dbo.FIR_VW_DocumentosPendientes vd ON vd.IDDocumento = f.IDDocumento
-                    INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
-                    WHERE f.IDUsuarioFirmante = @IDUsuario
-                      AND me.Codigo = 'PENDIENTE'
-                      AND f.EsAprobado IS NULL";
-
-                if (!string.IsNullOrEmpty(filtroBusqueda))
-                {
-                    sql += " AND (vd.Asunto LIKE @Busqueda OR vd.CodigoDocumento LIKE @Busqueda OR vd.IDUsuarioCreador LIKE @Busqueda)";
-                }
-
-                sql += " ORDER BY f.FechaCreacion DESC";
-
-                SqlParameter[] pars = { 
-                    new SqlParameter("@IDUsuario", loginUsuario),
-                    new SqlParameter("@Busqueda", "%" + filtroBusqueda + "%")
-                };
-                
-                DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, pars);
+                DataTable dt = SDF_ZOFRATACNA.Models.FIR_DocumentoFirmante.ListarPendientesRevision(loginUsuario, filtroBusqueda);
 
                 // Estadísticas
                 int total = dt.Rows.Count;
@@ -118,7 +90,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                 Label lblHistorial = (Label)FindControl("lblHistorial");
                 if (lblHistorial != null)
                 {
-                    string sqlHist = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE IDUsuarioFirmante = @IDUsuario AND EsAprobado IS NOT NULL";
+                    string sqlHist = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE LoginUsuario = @IDUsuario AND EsAprobado IS NOT NULL";
                     DataTable dtHist = ConexionBD.EjecutarConsultaFirmaSQL(sqlHist, new SqlParameter[] { new SqlParameter("@IDUsuario", loginUsuario) });
                     if (dtHist.Rows.Count > 0) lblHistorial.Text = dtHist.Rows[0][0].ToString();
                 }
@@ -166,46 +138,9 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             try
             {
                 bool esAprobado = (decision == "APROBADO");
+                string idEquipo = Request.UserHostAddress ?? Environment.MachineName;
 
-                // 1. Actualizar Firmante
-                string sql = @"
-                    UPDATE FIR_DocumentoFirmante
-                    SET EsAprobado = @EsAprobado, Comentario = @Comentario,
-                        IDUsuarioModificador = @IDUsuario, FechaModificacion = GETDATE()
-                    WHERE IDFirmante = @IDFirmante";
-
-                SqlParameter[] p = {
-                    new SqlParameter("@EsAprobado", esAprobado),
-                    new SqlParameter("@Comentario", (object)comentario ?? DBNull.Value),
-                    new SqlParameter("@IDUsuario", loginUsuario),
-                    new SqlParameter("@IDFirmante", idFirmante)
-                };
-                ConexionBD.EjecutarAccionFirmaSQL(sql, p);
-
-                // 2. Auditoría
-                string sqlAudit = @"
-                    INSERT INTO FIR_DocumentoFirmanteAuditoria
-                        (IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, EsAprobado, Comentario,
-                         IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, TipoOperacion, IDUsuario, IDEquipo, FechaCambio)
-                    SELECT IDFirmante, IDDocumento, IDUsuarioFirmante, Orden, IDRolFirmante, IDEstadoFirma, EsAprobado, Comentario,
-                           IDUsuarioCreador, FechaCreacion, IDUsuarioModificador, FechaModificacion, 'M', @IDUsuario, @IDEquipo, GETDATE()
-                    FROM FIR_DocumentoFirmante WHERE IDFirmante = @IDFirmante";
-
-                ConexionBD.EjecutarAccionFirmaSQL(sqlAudit, new SqlParameter[] {
-                    new SqlParameter("@IDUsuario", loginUsuario),
-                    new SqlParameter("@IDEquipo", Request.UserHostAddress ?? Environment.MachineName),
-                    new SqlParameter("@IDFirmante", idFirmante)
-                });
-
-                // 3. Estado Global
-                string sqlGetDoc = "SELECT IDDocumento FROM FIR_DocumentoFirmante WHERE IDFirmante = @IDFirmante";
-                DataTable dtDoc = ConexionBD.EjecutarConsultaFirmaSQL(sqlGetDoc, new SqlParameter[] { new SqlParameter("@IDFirmante", idFirmante) });
-                if (dtDoc.Rows.Count > 0)
-                {
-                    int idDoc = Convert.ToInt32(dtDoc.Rows[0]["IDDocumento"]);
-                    if (!esAprobado) ActualizarEstadoGlobal(idDoc, 2, loginUsuario); // Observado
-                    else if (VerificarUnanimidad(idDoc)) ActualizarEstadoGlobal(idDoc, 3, loginUsuario); // Aprobado
-                }
+                SDF_ZOFRATACNA.Models.FIR_DocumentoFirmante.RegistrarRevision(idFirmante, esAprobado, comentario, loginUsuario, idEquipo);
 
                 CargarDocumentosPendientes();
                 MostrarMensaje(esAprobado ? "✓ Documento aprobado." : "✓ Observación registrada.", false);
@@ -214,23 +149,6 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
             {
                 MostrarMensaje("Error: " + ex.Message);
             }
-        }
-
-        private bool VerificarUnanimidad(int idDoc)
-        {
-            string sql = "SELECT COUNT(*) FROM FIR_DocumentoFirmante WHERE IDDocumento = @IDDoc AND (EsAprobado IS NULL OR EsAprobado = 0)";
-            DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, new SqlParameter[] { new SqlParameter("@IDDoc", idDoc) });
-            return (Convert.ToInt32(dt.Rows[0][0]) == 0);
-        }
-
-        private void ActualizarEstadoGlobal(int idDoc, int idEstado, string user)
-        {
-            string sql = "UPDATE FIR_Documento SET IDEstadoDoc = @IDEstado, IDUsuarioModificador = @IDUser, FechaModificacion = GETDATE() WHERE IDDocumento = @IDDoc";
-            ConexionBD.EjecutarAccionFirmaSQL(sql, new SqlParameter[] {
-                new SqlParameter("@IDEstado", idEstado),
-                new SqlParameter("@IDUser", user),
-                new SqlParameter("@IDDoc", idDoc)
-            });
         }
 
         private void MostrarMensaje(string texto, bool esError = true)

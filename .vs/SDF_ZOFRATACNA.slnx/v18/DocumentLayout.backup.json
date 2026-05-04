@@ -1,29 +1,89 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\",
+  "WorkspaceRootPath": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\source\\repos\\sdf_zofratacna\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\formularios\\documentos\\frmmisdocumentos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmmisdocumentos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\documentos\\frmregistrardocumento.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_documento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_documento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_documentofirmante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_documentofirmante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_documentorevisor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_documentorevisor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_firmadigital.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_firmadigital.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_maestro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_maestro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_usuariorol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_usuarioprueba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_usuarioprueba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\sdf_zofratacna\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_documentoauditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_documentoauditoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_observacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_observacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_conformidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_conformidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\models\\fir_versiondocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\models\\fir_versiondocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|c:\\users\\desci2\\documents\\cosntrupersonalizar\\sistema-de-firmado-digital-de-documentos\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosrevisor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\formularios\\firma\\frmmisdocumentosfirmante.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\frmlogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\sdf_zofratacna\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{C45DC478-0483-4129-8645-8C7FDF446611}|SDF_ZOFRATACNA\\SDF_ZOFRATACNA.csproj|solutionrelative:sdf_zofratacna\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
@@ -34,54 +94,260 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmMisDocumentosRevisor.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
-              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
-              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAowJ0AAABQAAAAAAAAAA==",
+              "Title": "frmMisDocumentos.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmMisDocumentos.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmMisDocumentos.aspx",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmMisDocumentos.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmMisDocumentos.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-05-04T16:55:20.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmRegistrarDocumento.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.designer.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.designer.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T18:12:38.365Z",
+              "WhenOpened": "2026-05-04T16:54:48.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FIR_DocumentoFirmante.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoFirmante.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoFirmante.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoFirmante.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoFirmante.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAIwFwAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:24:01.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FIR_Documento.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Documento.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_Documento.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Documento.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_Documento.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAUwHYAAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:23:14.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FIR_DocumentoRevisor.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoRevisor.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoRevisor.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoRevisor.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoRevisor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:23:36.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "frmRegistrarDocumento.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwCsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:41:39.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmRegistrarDocumento.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Documentos\\frmRegistrarDocumento.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-05-04T16:43:06.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FIR_FirmaDigital.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_FirmaDigital.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_FirmaDigital.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_FirmaDigital.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_FirmaDigital.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:24:34.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FIR_Maestro.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Maestro.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_Maestro.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Maestro.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_Maestro.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:22:58.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "frmLogin.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\frmLogin.aspx",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\frmLogin.aspx",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-04-27T16:50:22.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "FIR_VersionDocumento.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_VersionDocumento.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_VersionDocumento.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_VersionDocumento.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_VersionDocumento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:24:20.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FIR_UsuarioPrueba.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_UsuarioPrueba.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_UsuarioPrueba.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_UsuarioPrueba.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_UsuarioPrueba.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAywCEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:22:36.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FIR_UsuarioRol.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_UsuarioRol.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_UsuarioRol.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_UsuarioRol.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_UsuarioRol.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:25:57.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FIR_Conformidad.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Conformidad.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_Conformidad.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Conformidad.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_Conformidad.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:24:47.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FIR_Observacion.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Observacion.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_Observacion.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_Observacion.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_Observacion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:25:12.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FIR_DocumentoAuditoria.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoAuditoria.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoAuditoria.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Models\\FIR_DocumentoAuditoria.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Models\\FIR_DocumentoAuditoria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T16:25:40.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "frmMisDocumentosRevisor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosRevisor.aspx.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAowJ0AAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T18:12:38.365Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "frmMisDocumentosFirmante.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAiwDQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAqwDUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-29T17:17:58.196Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
               "Title": "frmMisDocumentosFirmante.aspx",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
               "RelativeToolTip": "SDF_ZOFRATACNA\\Formularios\\Firma\\frmMisDocumentosFirmante.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2026-04-29T16:21:49.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T16:21:49.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 20,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Web.config",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Web.config",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\Web.config",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\Web.config",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\Web.config",
               "RelativeToolTip": "SDF_ZOFRATACNA\\Web.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -90,28 +356,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 19,
               "Title": "frmLogin.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
+              "ToolTip": "C:\\Users\\desci2\\Documents\\cosntrupersonalizar\\SISTEMA-DE-FIRMADO-DIGITAL-DE-DOCUMENTOS\\SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx.cs",
               "ViewState": "AgIAAIkAAAAAAAAAAAAUwKQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T16:54:46.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmLogin.aspx",
-              "DocumentMoniker": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx",
-              "RelativeDocumentMoniker": "SDF_ZOFRATACNA\\frmLogin.aspx",
-              "ToolTip": "C:\\Users\\desci2\\source\\repos\\SDF_ZOFRATACNA\\SDF_ZOFRATACNA\\frmLogin.aspx",
-              "RelativeToolTip": "SDF_ZOFRATACNA\\frmLogin.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2026-04-27T16:50:22.901Z"
+              "WhenOpened": "2026-04-27T16:54:46.565Z"
             }
           ]
         }

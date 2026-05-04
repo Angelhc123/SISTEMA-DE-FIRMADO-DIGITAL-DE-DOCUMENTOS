@@ -1,34 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.IO;
-using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using SDF_ZOFRATACNA.App_Code.DAL;
+using SDF_ZOFRATACNA.Models;
 
 namespace SDF_ZOFRATACNA.Formularios.Documentos
 {
     public partial class frmRegistrarDocumento : System.Web.UI.Page
     {
-        // Clases para serializar
-        public class FirmanteData
-        {
-            public string IDUsuarioFirmante { get; set; }
-            public int Orden { get; set; }
-            public int IDRol { get; set; }
-        }
-
         // Listas en memoria para ViewState
         [Serializable]
         public class PersonaViewModel
         {
             public string LoginUsuario { get; set; }
             public string NombreCompleto { get; set; }
-            public int IDRol { get; set; }
-            public string RolDescripcion { get; set; }
+            public string Email { get; set; }
+            public string CodigoRol { get; set; }
+            public int Orden { get; set; }
         }
 
         private List<PersonaViewModel> ListaFirmantes
@@ -44,173 +33,95 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // 1. Verificar sesión SIEMPRE (tanto en la primera carga como en PostBacks)
+            if (Session["strUsuario"] == null)
+            {
+                Response.Redirect("~/frmLogin.aspx");
+                return;
+            }
+
+            // 2. Carga inicial del formulario
             if (!IsPostBack)
             {
-                // Verificar sesión COMPLETA
-                if (Session["IdUsuario"] == null || Session["strUsuario"] == null)
-                {
-                    Response.Redirect("~/frmLogin.aspx");
-                    return;
-                }
-
-                // Mostrar información del usuario logueado
                 litUsuario.Text = Session["Nombres"]?.ToString() ?? "Registrador";
                 txtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-                // Cargar catálogos
                 CargarTiposDocumento();
                 CargarAreasResponsables();
-                CargarUsuariosFirmantes(); // Ahora carga desde BD o Mock según disponibilidad
+                CargarUsuariosFirmantes();
             }
         }
 
-        /// <summary>
-        /// Carga los tipos de documento desde la base de datos
-        /// </summary>
         private void CargarTiposDocumento()
         {
             try
             {
-                SqlParameter[] pars = { new SqlParameter("@Tipo", "TIPO_DOC") };
-                DataTable dt = ConexionBD.EjecutarConsultaFirma("USP_FIR_Maestro_Listar", pars);
-                
+                var dt = FIR_Maestro.ListarPorTipo("TIPO_DOC");
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     ddlTipoDoc.DataSource = dt;
                     ddlTipoDoc.DataTextField = "Descripcion";
-                    ddlTipoDoc.DataValueField = "IDMaestro";
+                    ddlTipoDoc.DataValueField = "Codigo";
                     ddlTipoDoc.DataBind();
                 }
-                
-                ddlTipoDoc.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+
+                ddlTipoDoc.Items.Insert(0, new ListItem("-- Seleccione --", ""));
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Error al cargar Tipos de Documento: " + ex.Message, true);
+                MostrarMensaje("Error al cargar Tipos: " + ex.Message, true);
             }
         }
 
-        /// <summary>
-        /// Carga las áreas responsables (puede venir de BD o ser estático)
-        /// </summary>
         private void CargarAreasResponsables()
         {
             try
             {
-                // Intentar cargar desde BD primero
-                SqlParameter[] pars = { new SqlParameter("@Tipo", "AREA_RESPONSABLE") };
-                DataTable dt = ConexionBD.EjecutarConsultaFirma("USP_FIR_Maestro_Listar", pars);
-                
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    ddlAreaResponsable.DataSource = dt;
-                    ddlAreaResponsable.DataTextField = "Descripcion";
-                    ddlAreaResponsable.DataValueField = "Codigo";
-                    ddlAreaResponsable.DataBind();
-                }
-                else
-                {
-                    // Fallback: áreas estáticas
-                    ddlAreaResponsable.Items.Clear();
-                    ddlAreaResponsable.Items.Add(new ListItem("Gerencia General", "GER"));
-                    ddlAreaResponsable.Items.Add(new ListItem("Asesoría Legal", "LEG"));
-                    ddlAreaResponsable.Items.Add(new ListItem("Administración", "ADM"));
-                    ddlAreaResponsable.Items.Add(new ListItem("Operaciones", "OPE"));
-                    ddlAreaResponsable.Items.Add(new ListItem("Sub-Gerencia Administrativa", "SUB"));
-                    ddlAreaResponsable.Items.Add(new ListItem("Secretaria General", "SEC"));
-                }
-                
-                ddlAreaResponsable.Items.Insert(0, new ListItem("-- Seleccione --", ""));
-            }
-            catch (Exception)
-            {
-                // Si hay error, usar áreas estáticas
                 ddlAreaResponsable.Items.Clear();
                 ddlAreaResponsable.Items.Add(new ListItem("-- Seleccione --", ""));
-                ddlAreaResponsable.Items.Add(new ListItem("Gerencia General", "GER"));
-                ddlAreaResponsable.Items.Add(new ListItem("Asesoría Legal", "LEG"));
-                ddlAreaResponsable.Items.Add(new ListItem("Administración", "ADM"));
-                ddlAreaResponsable.Items.Add(new ListItem("Operaciones", "OPE"));
-                ddlAreaResponsable.Items.Add(new ListItem("Sub-Gerencia Administrativa", "SUB"));
-                ddlAreaResponsable.Items.Add(new ListItem("Secretaria General", "SEC"));
+                ddlAreaResponsable.Items.Add(new ListItem("Gerencia General", "Gerencia General"));
+                ddlAreaResponsable.Items.Add(new ListItem("Asesoría Legal", "Asesoría Legal"));
+                ddlAreaResponsable.Items.Add(new ListItem("Administración", "Administración"));
+                ddlAreaResponsable.Items.Add(new ListItem("Operaciones", "Operaciones"));
+                ddlAreaResponsable.Items.Add(new ListItem("Sub-Gerencia Administrativa", "Sub-Gerencia Administrativa"));
+                ddlAreaResponsable.Items.Add(new ListItem("Secretaria General", "Secretaria General"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al cargar Áreas: " + ex.Message, true);
             }
         }
 
-        /// <summary>
-        /// Carga los usuarios firmantes (prioriza BD, fallback a datos de prueba)
-        /// </summary>
         private void CargarUsuariosFirmantes()
         {
             try
             {
-                // Intentar cargar desde la base de datos
-                SqlParameter[] pars = { new SqlParameter("@Tipo", "FIRMANTES") };
-                DataTable dt = ConexionBD.EjecutarConsultaFirma("USP_FIR_UsuariosFirmantes_Listar", pars);
-                
+                var dt = FIR_UsuarioPrueba.ListarFirmantes();
+
+                ddlFirmante.Items.Clear();
+                ddlFirmante.Items.Add(new ListItem("-- Añadir Firmante --", ""));
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    foreach (DataRow row in dt.Rows)
+                    foreach (System.Data.DataRow row in dt.Rows)
                     {
                         string login = row["LoginUsuario"].ToString();
-                        string nombre = row["Nombres"].ToString();
-                        int idRol = Convert.ToInt32(row["IDRol"]);
-                        string rolDesc = row["RolDescripcion"].ToString();
-                        
+                        string nombre = row["NombreCompleto"].ToString();
+                        string email = row["Email"].ToString();
+                        string rol = row["CodigoRol"].ToString();
+
                         ddlFirmante.Items.Add(new ListItem(
-                            $"{nombre} - {rolDesc}", 
-                            $"{login}|{idRol}|{rolDesc}"
+                            $"{nombre} - {rol}",
+                            $"{login}|{nombre}|{email}|{rol}"
                         ));
                     }
                 }
-                else
-                {
-                    // Fallback: Datos de prueba (consistentes con frmLogin)
-                    CargarUsuariosPrueba();
-                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Si hay error, usar datos de prueba
-                CargarUsuariosPrueba();
+                MostrarMensaje("Error al cargar Firmantes: " + ex.Message, true);
             }
-        }
-
-        /// <summary>
-        /// Datos de prueba para firmantes (coinciden con los del frmLogin mejorado)
-        /// </summary>
-        private void CargarUsuariosPrueba()
-        {
-            var firmantes = new List<PersonaViewModel>
-            {
-                new PersonaViewModel { 
-                    LoginUsuario = "japaza", 
-                    NombreCompleto = "Jorge Apaza Huanca", 
-                    IDRol = 17, 
-                    RolDescripcion = "Gerente General" 
-                },
-                new PersonaViewModel { 
-                    LoginUsuario = "accoa", 
-                    NombreCompleto = "Ana Ccoa Flores", 
-                    IDRol = 18, 
-                    RolDescripcion = "Sub-Gerente" 
-                },
-                new PersonaViewModel { 
-                    LoginUsuario = "lhuanca", 
-                    NombreCompleto = "Luis Huanca Pari", 
-                    IDRol = 19, 
-                    RolDescripcion = "Jefe de Area" 
-                }
-            };
-
-            foreach (var f in firmantes)
-            {
-                ddlFirmante.Items.Add(new ListItem(
-                    f.NombreCompleto + " - " + f.RolDescripcion, 
-                    $"{f.LoginUsuario}|{f.IDRol}|{f.RolDescripcion}"
-                ));
-            }
-            
-            ddlFirmante.Items.Insert(0, new ListItem("-- Añadir Firmante --", ""));
         }
 
         protected void btnAddFirmante_Click(object sender, EventArgs e)
@@ -219,37 +130,36 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
             {
                 string val = ddlFirmante.SelectedValue;
                 string[] parts = val.Split('|');
-                
-                if (parts.Length == 3)
+
+                if (parts.Length >= 4)
                 {
                     string login = parts[0];
-                    int idRol = int.Parse(parts[1]);
-                    string rolDesc = parts[2];
-                    string nombreCompleto = ddlFirmante.SelectedItem.Text.Split('-')[0].Trim();
+                    string nombre = parts[1];
+                    string email = parts[2];
+                    string rol = parts[3];
 
                     var list = ListaFirmantes;
-                    
-                    // Validar que no esté ya agregado
+
                     if (!list.Exists(x => x.LoginUsuario == login))
                     {
-                        list.Add(new PersonaViewModel 
-                        { 
-                            LoginUsuario = login, 
-                            NombreCompleto = nombreCompleto, 
-                            IDRol = idRol, 
-                            RolDescripcion = rolDesc 
+                        list.Add(new PersonaViewModel
+                        {
+                            LoginUsuario = login,
+                            NombreCompleto = nombre,
+                            Email = email,
+                            CodigoRol = rol,
+                            Orden = list.Count + 1
                         });
-                        
+
                         ListaFirmantes = list;
                         rptFirmantes.DataSource = list;
                         rptFirmantes.DataBind();
-                        
-                        // Limpiar selección
+
                         ddlFirmante.SelectedIndex = 0;
                     }
                     else
                     {
-                        MostrarMensaje("Este firmante ya ha sido agregado al flujo.", true);
+                        MostrarMensaje("Este firmante ya ha sido agregado.", true);
                     }
                 }
             }
@@ -259,11 +169,15 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
         {
             LinkButton btn = (LinkButton)sender;
             string login = btn.CommandArgument;
-            
+
             var list = ListaFirmantes;
             list.RemoveAll(x => x.LoginUsuario == login);
+
+            // Reordenar
+            for (int i = 0; i < list.Count; i++)
+                list[i].Orden = i + 1;
+
             ListaFirmantes = list;
-            
             rptFirmantes.DataSource = list;
             rptFirmantes.DataBind();
         }
@@ -271,11 +185,8 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
         protected void cvFirmantes_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = ListaFirmantes.Count > 0;
-            
             if (!args.IsValid)
-            {
-                MostrarMensaje("Debe agregar al menos un firmante al documento.", true);
-            }
+                MostrarMensaje("Debe agregar al menos un firmante.", true);
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -292,14 +203,14 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
             string ext = Path.GetExtension(fileUploadPDF.FileName).ToLower();
             if (ext != ".pdf")
             {
-                MostrarMensaje("El archivo debe ser un documento PDF.", true);
+                MostrarMensaje("El archivo debe ser PDF.", true);
                 return;
             }
 
-            // Validar tamaño máximo (10MB)
-            if (fileUploadPDF.PostedFile.ContentLength > 10 * 1024 * 1024)
+            // Cambiado a 45MB para soportar archivos pesados, acorde al Web.config
+            if (fileUploadPDF.PostedFile.ContentLength > 45 * 1024 * 1024)
             {
-                MostrarMensaje("El archivo no puede superar los 10MB.", true);
+                MostrarMensaje("El archivo no puede superar los 45MB.", true);
                 return;
             }
 
@@ -311,125 +222,63 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
 
             try
             {
-                // Crear carpeta Temp si no existe
+                // Guardar archivo temporal
                 string tempFolder = Server.MapPath("~/Temp/");
-                if (!Directory.Exists(tempFolder)) 
+                if (!Directory.Exists(tempFolder))
                     Directory.CreateDirectory(tempFolder);
-                
-                // Generar nombre único para el archivo
-                string tipoDoc = ddlTipoDoc.SelectedItem.Text.Replace(" ", "_").Replace("/", "_");
-                string areaResp = ddlAreaResponsable.SelectedItem.Text.Replace(" ", "_");
-                string fechaStr = DateTime.Now.ToString("yyyyMMdd_HHmmss_fff");
-                string guid = Guid.NewGuid().ToString().Substring(0, 8);
-                
-                string nuevoNombre = $"{tipoDoc}_{areaResp}_{fechaStr}_{guid}.pdf";
-                string rutaRelativa = "~/Temp/" + nuevoNombre;
-                string rutaFisica = Path.Combine(tempFolder, nuevoNombre);
-                
-                // Guardar archivo
-                fileUploadPDF.SaveAs(rutaFisica);
-                
-                // Validar que se guardó correctamente
-                if (!File.Exists(rutaFisica))
-                {
-                    throw new Exception("No se pudo guardar el archivo PDF.");
-                }
 
-                // Configurar JSON para Firmantes
-                List<FirmanteData> firData = new List<FirmanteData>();
-                int orden = 1;
+                string tempFile = Path.Combine(tempFolder, Guid.NewGuid().ToString() + ".pdf");
+                fileUploadPDF.SaveAs(tempFile);
+
+                // Construir lista de firmantes
+                var firmantes = new List<FIR_Documento.FirmanteJson>();
                 foreach (var f in ListaFirmantes)
                 {
-                    firData.Add(new FirmanteData 
-                    { 
-                        IDUsuarioFirmante = f.LoginUsuario, 
-                        Orden = orden++, 
-                        IDRol = f.IDRol 
+                    firmantes.Add(new FIR_Documento.FirmanteJson
+                    {
+                        IDUsuarioFirmante = f.LoginUsuario,
+                        NombreFirmante = f.NombreCompleto,
+                        CorreoFirmante = f.Email,
+                        Orden = f.Orden,
+                        CodigoRol = "VB" // <- FIX: Pasamos validación de 'AUT', 'CON', 'VB'. Asumimos 'Visto Bueno' por defecto.
                     });
                 }
 
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string jsonFirmantes = js.Serialize(firData);
-                string jsonRevisores = "[]"; // Array vacío para compatibilidad
+                // Registrar documento usando modelo
+                int idDocumento = FIR_Documento.Registrar(
+                    asunto: txtAsunto.Text.Trim(),
+                    codigoTipoDocumento: ddlTipoDoc.SelectedValue,
+                    areaResponsable: ddlAreaResponsable.SelectedValue,
+                    fechaDocumento: Convert.ToDateTime(txtFechaEmision.Text),
+                    codigoDocumento: txtCodigoReferencia.Text.Trim(),
+                    rutaArchivoPDF: tempFile,
+                    loginRegistrador: Session["strUsuario"].ToString(),
+                    idEquipo: Request.UserHostAddress ?? Environment.MachineName,
+                    firmantes: firmantes
+                );
 
-                // Validar datos obligatorios
-                if (string.IsNullOrWhiteSpace(txtAsunto.Text))
+                if (idDocumento > 0)
                 {
-                    MostrarMensaje("El asunto del documento es obligatorio.", true);
-                    return;
-                }
+                    MostrarMensaje("✓ Documento registrado correctamente.", false);
+                    LimpiarFormulario();
 
-                if (ddlTipoDoc.SelectedValue == "0")
+                    string script = @"
+                        setTimeout(function() {
+                            window.location.href = 'frmMisDocumentos.aspx';
+                        }, 2000);";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+                else
                 {
-                    MostrarMensaje("Debe seleccionar un tipo de documento.", true);
-                    return;
+                    MostrarMensaje("Error al registrar el documento.", true);
                 }
-
-                if (string.IsNullOrWhiteSpace(ddlAreaResponsable.SelectedValue))
-                {
-                    MostrarMensaje("Debe seleccionar un área responsable.", true);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtCodigoReferencia.Text))
-                {
-                    MostrarMensaje("El código de referencia es obligatorio.", true);
-                    return;
-                }
-
-                // Obtener ID del usuario creador desde sesión
-                string idUsuarioCreador = Session["strUsuario"]?.ToString();
-                if (string.IsNullOrEmpty(idUsuarioCreador))
-                {
-                    MostrarMensaje("Error de sesión: No se identificó al usuario creador.", true);
-                    return;
-                }
-
-                // Llamar al procedimiento almacenado
-                SqlParameter[] pars = {
-                    new SqlParameter("@Asunto", txtAsunto.Text.Trim()),
-                    new SqlParameter("@IDTipoDoc", int.Parse(ddlTipoDoc.SelectedValue)),
-                    new SqlParameter("@AreaResponsable", ddlAreaResponsable.SelectedItem.Text),
-                    new SqlParameter("@FechaCreacionDoc", Convert.ToDateTime(txtFechaEmision.Text)),
-                    new SqlParameter("@CodigoDocumento", txtCodigoReferencia.Text.Trim()),
-                    new SqlParameter("@RutaArchivo", rutaRelativa),
-                    new SqlParameter("@IDUsuarioCreador", idUsuarioCreador),
-                    new SqlParameter("@IDEquipo", Request.UserHostAddress ?? Environment.MachineName),
-                    new SqlParameter("@JsonRevisores", jsonRevisores),
-                    new SqlParameter("@JsonFirmantes", jsonFirmantes)
-                };
-
-                ConexionBD.EjecutarAccionFirma("USP_FIR_Documento_Registrar", pars);
-
-                // Éxito - Limpiar formulario
-                MostrarMensaje("✓ El documento se ha registrado y enviado al flujo de firmas con éxito.", false);
-                
-                // Limpiar campos después del registro exitoso
-                LimpiarFormulario();
-                
-                // Opcional: Redirigir después de 3 segundos
-                string script = @"
-                    setTimeout(function() {
-                        window.location.href = 'frmDashboardRegistrador.aspx';
-                    }, 3000);
-                ";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-            }
-            catch (SqlException sqlEx)
-            {
-                MostrarMensaje("Error en la base de datos: " + sqlEx.Message, true);
-                // Log del error detallado (implementar según necesidades)
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Ocurrió un error al registrar: " + ex.Message, true);
-                // Log del error detallado
+                MostrarMensaje("Error: " + ex.Message, true);
             }
         }
 
-        /// <summary>
-        /// Limpia todos los campos del formulario después de un registro exitoso
-        /// </summary>
         private void LimpiarFormulario()
         {
             txtAsunto.Text = "";
@@ -441,9 +290,6 @@ namespace SDF_ZOFRATACNA.Formularios.Documentos
             ListaFirmantes.Clear();
             rptFirmantes.DataSource = null;
             rptFirmantes.DataBind();
-            
-            // Nota: El FileUpload no se puede limpiar fácilmente desde servidor
-            // Se recomienda redirigir a una página nueva o usar JavaScript
         }
 
         private void MostrarMensaje(string msg, bool esError)

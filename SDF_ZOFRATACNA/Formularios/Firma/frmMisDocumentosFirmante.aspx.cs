@@ -1,4 +1,5 @@
 using SDF_ZOFRATACNA.App_Code.DAL;
+using SDF_ZOFRATACNA.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -71,49 +72,7 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
 
             try
             {
-                // ── QUERY PRINCIPAL ──────────────────────────────────────────
-                // Solo documentos en estado 3 (En Firma) donde el firmante tiene
-                // estado PENDIENTE. Calcula EsMiTurno con la misma lógica
-                // del código original (no existe firmante anterior sin FIRMADO).
-                string sql = @"
-                    SELECT
-                        vd.IDDocumento, vd.Asunto, vd.CodigoDocumento,
-                        vd.AreaResponsable, vd.FechaCreacionDoc,
-                        vd.IDUsuarioCreador,
-                        vd.EstadoDocumento, vd.TipoDocumento,
-                        vd.RutaArchivo,
-                        f.IDFirmante, f.Orden, f.FechaCreacion AS FechaAsignacion,
-                        d.IDEstadoDoc,
-                        CAST(CASE WHEN NOT EXISTS (
-                            SELECT 1 FROM dbo.FIR_DocumentoFirmante f2
-                            INNER JOIN dbo.FIR_Maestro me2 ON me2.IDMaestro = f2.IDEstadoFirma
-                            WHERE f2.IDDocumento = f.IDDocumento
-                              AND f2.Orden < f.Orden
-                              AND me2.Codigo <> 'FIRMADO'
-                        ) THEN 1 ELSE 0 END AS BIT) AS EsMiTurno
-                    FROM dbo.FIR_DocumentoFirmante f
-                    INNER JOIN dbo.FIR_VW_DocumentosPendientes vd ON vd.IDDocumento = f.IDDocumento
-                    INNER JOIN dbo.FIR_Documento d ON d.IDDocumento = vd.IDDocumento
-                    INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
-                    WHERE f.IDUsuarioFirmante = @IDUsuario
-                      AND me.Codigo = 'PENDIENTE'
-                      AND d.IDEstadoDoc = 3";
-
-                if (!string.IsNullOrEmpty(filtro))
-                {
-                    sql += @" AND (vd.Asunto            LIKE @Busqueda
-                                OR vd.CodigoDocumento   LIKE @Busqueda
-                                OR vd.IDUsuarioCreador  LIKE @Busqueda)";
-                }
-
-                sql += " ORDER BY EsMiTurno DESC, f.Orden ASC, vd.FechaCreacionDoc ASC";
-
-                SqlParameter[] pars = {
-                    new SqlParameter("@IDUsuario", usuario),
-                    new SqlParameter("@Busqueda",  "%" + filtro + "%")
-                };
-
-                DataTable dt = ConexionBD.EjecutarConsultaFirmaSQL(sql, pars);
+                DataTable dt = Models.FIR_DocumentoFirmante.ListarPendientesFirma(usuario, filtro);
 
                 // ── ESTADÍSTICAS ─────────────────────────────────────────────
                 int total    = dt.Rows.Count;
@@ -130,18 +89,11 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
                 if (lblBadge      != null) lblBadge.Text      = total.ToString();
                 if (lblMiTurno    != null) lblMiTurno.Text    = miTurno.ToString();
 
-                // Firmados hoy: consulta independiente
+                // Firmados hoy
                 if (lblFirmadosHoy != null)
                 {
-                    string sqlHoy = @"
-                        SELECT COUNT(*) FROM dbo.FIR_DocumentoFirmante f
-                        INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
-                        WHERE f.IDUsuarioFirmante = @IDUsuario
-                          AND me.Codigo = 'FIRMADO'
-                          AND CAST(f.FechaModificacion AS DATE) = CAST(GETDATE() AS DATE)";
-                    DataTable dtHoy = ConexionBD.EjecutarConsultaFirmaSQL(
-                        sqlHoy, new SqlParameter[] { new SqlParameter("@IDUsuario", usuario) });
-                    lblFirmadosHoy.Text = dtHoy.Rows.Count > 0 ? dtHoy.Rows[0][0].ToString() : "0";
+                    int hoy = Models.FIR_DocumentoFirmante.ContarFirmadosHoy(usuario);
+                    lblFirmadosHoy.Text = hoy.ToString();
                 }
 
                 // ── PANELES ──────────────────────────────────────────────────
@@ -186,65 +138,14 @@ namespace SDF_ZOFRATACNA.Formularios.Firma
 
             try
             {
-                // ── PASO 0: Obtener el IDDocumento directamente (evita subconsultas ambiguas) ──
-                string sqlGetDoc = @"
-                    SELECT TOP 1 IDDocumento 
-                    FROM dbo.FIR_DocumentoFirmante 
-                    WHERE IDFirmante = @IDFirmante";
-
-                DataTable dtDoc = ConexionBD.EjecutarConsultaFirmaSQL(
-                    sqlGetDoc,
-                    new SqlParameter[] { new SqlParameter("@IDFirmante", idFirmante) });
-
-                if (dtDoc.Rows.Count == 0)
-                {
-                    MostrarMensaje("No se encontró el registro de firma.");
-                    return;
-                }
-
-                int idDocumento = Convert.ToInt32(dtDoc.Rows[0]["IDDocumento"]);
-
-                // ── PASO 1: Ejecutar SP de firma ──────────────────────────────
-                SqlParameter[] pars = {
-                    new SqlParameter("@IDFirmante",          idFirmante),
-                    new SqlParameter("@SerieToken",          "DEMO-" + DateTime.Now.Ticks),
-                    new SqlParameter("@HuellaCertificado",   "FIRMA-DIGITAL-DEMO"),
-                    new SqlParameter("@Observacion",         "Documento firmado digitalmente"),
-                    new SqlParameter("@IDUsuarioModificador",usuario),
-                    new SqlParameter("@IDEquipo",            equipo)
-                };
-                ConexionBD.EjecutarAccionFirma("USP_FIR_Documento_Firmar", pars);
-
-                // ── PASO 2: Contar firmantes aún PENDIENTES en ese documento ──
-                // Se obtiene el IDMaestro de PENDIENTE una sola vez con TOP 1
-                string sqlPendientes = @"
-                    SELECT COUNT(*) 
-                    FROM dbo.FIR_DocumentoFirmante f
-                    INNER JOIN dbo.FIR_Maestro me ON me.IDMaestro = f.IDEstadoFirma
-                    WHERE f.IDDocumento = @IDDocumento
-                      AND me.Codigo    = 'PENDIENTE'";
-
-                int pendientes = Convert.ToInt32(
-                    ConexionBD.EjecutarConsultaFirmaSQL(
-                        sqlPendientes,
-                        new SqlParameter[] { new SqlParameter("@IDDocumento", idDocumento) }
-                    ).Rows[0][0]);
-
-                // ── PASO 3: Si ya no hay pendientes → estado 4 (Completado) ──
-                if (pendientes == 0)
-                {
-                    string sqlCerrar = @"
-                        UPDATE dbo.FIR_Documento
-                        SET IDEstadoDoc       = 4,
-                            FechaModificacion = GETDATE(),
-                            IDUsuarioModificador = @User
-                        WHERE IDDocumento = @IDDocumento";
-
-                    ConexionBD.EjecutarAccionFirmaSQL(sqlCerrar, new SqlParameter[] {
-                        new SqlParameter("@User",        usuario),
-                        new SqlParameter("@IDDocumento", idDocumento)
-                    });
-                }
+                Models.FIR_DocumentoFirmante.Firmar(
+                    idDocumentoFirmante: idFirmante,
+                    serieToken: "DEMO-" + DateTime.Now.Ticks,
+                    huellaCertificado: "FIRMA-DIGITAL-DEMO",
+                    observacion: "Documento firmado digitalmente",
+                    idUsuarioModificador: usuario,
+                    idEquipo: equipo
+                );
 
                 // ── PASO 4: Recargar + mensaje ────────────────────────────────
                 CargarDocumentosPendientes();
